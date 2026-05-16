@@ -1,0 +1,111 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 9000;
+    pointer-events: auto;
+}
+
+.highlightContainer {
+    position: absolute;
+    z-index: 9001;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.highlight {
+    position: absolute;
+    border: 2px solid var(--accent-cyan);
+    border-radius: 16px;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-cyan);
+    pointer-events: none;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(20, 25, 30, 0.95);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 20px;
+    padding: 24px;
+    width: 320px;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tooltipHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stepIndicator {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent-cyan);
+    opacity: 0.8;
+}
+
+.title {
+    font-family: var(--font-space);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #fff;
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.skipBtn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s;
+}
+
+.skipBtn:hover {
+    color: white;
+}
+
+.nextBtn {
+    background: var(--accent-cyan);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.nextBtn:hover {
+    transform: translateY(-2px);
+    background: #33ebff;
+}
+
+/* Positioning Tooltips */
+.pos_bottom { top: calc(100% + 20px); left: 50%; transform: translateX(-50%); }
+.pos_top { bottom: calc(100% + 20px); left: 50%; transform: translateX(-50%); }
+.pos_left { right: calc(100% + 20px); top: 50%; transform: translateY(-50%); }
+.pos_right { left: calc(100% + 20px); top: 50%; transform: translateY(-50%); }

@@ -74,7 +74,7 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
     };
 
     return (
-        <div className={styles.container}>
+        <div id="task-input" className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.inputGroup}>
 

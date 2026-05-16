@@ -87,7 +87,7 @@ export const TodoList = ({ onStartRace }: TodoListProps) => {
     };
 
     return (
-        <div className={styles.todoContainer}>
+        <div id="todo-list" className={styles.todoContainer}>
             <form className={styles.inputGroup} onSubmit={handleAddTodo}>
                 <input
                     ref={inputRef}
