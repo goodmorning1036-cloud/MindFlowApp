@@ -103,13 +103,13 @@ export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
         if (onComplete) onComplete();
     };
 
-    if (!isVisible || (currentStep > 0 && !targetRect)) return null;
-
     const step = TOUR_STEPS[currentStep];
     const isWelcome = step.id === "welcome" || step.id === "ready";
+
+    if (!isVisible || (!isWelcome && !targetRect)) return null;
     
     const getTooltipPos = () => {
-        if (isWelcome) {
+        if (isWelcome || !targetRect) {
             return {
                 top: "50%",
                 left: "50%",
@@ -162,10 +162,10 @@ export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
             <motion.div 
                 className={styles.highlight}
                 animate={{
-                    top: isWelcome ? "50%" : targetRect.top - 8,
-                    left: isWelcome ? "50%" : targetRect.left - 8,
-                    width: isWelcome ? 0 : targetRect.width + 16,
-                    height: isWelcome ? 0 : targetRect.height + 16,
+                    top: isWelcome ? "50%" : (targetRect as DOMRect).top - 8,
+                    left: isWelcome ? "50%" : (targetRect as DOMRect).left - 8,
+                    width: isWelcome ? 0 : (targetRect as DOMRect).width + 16,
+                    height: isWelcome ? 0 : (targetRect as DOMRect).height + 16,
                     opacity: isWelcome ? 0 : 1
                 }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
