@@ -1,0 +1,537 @@
+/* [project]/Desktop/MindFlowApp/app/components/ExamPlannerModal.module.css [app-client] (css) */
+.ExamPlannerModal-module__RFOjGW__overlay {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  background: #000000d9;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.ExamPlannerModal-module__RFOjGW__modal {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff14 transparent;
+  background: #0e0a16f2;
+  border: 1px solid #af52de40;
+  border-radius: 24px;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  padding: 2rem;
+  display: flex;
+  overflow-y: auto;
+  box-shadow: 0 0 60px #af52de1a;
+}
+
+.ExamPlannerModal-module__RFOjGW__header {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__headerTabs {
+  align-items: center;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__headerTab {
+  color: #fff6;
+  letter-spacing: .15em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #0000;
+  padding: .5rem .2rem;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__headerTab:hover {
+  color: #fffc;
+}
+
+.ExamPlannerModal-module__RFOjGW__headerTabActive {
+  color: #af52de;
+  border-bottom: 2px solid #af52de;
+}
+
+.ExamPlannerModal-module__RFOjGW__closeBtn {
+  color: #fff6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: color .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__closeBtn:hover {
+  color: #fff;
+}
+
+.ExamPlannerModal-module__RFOjGW__viewToggle {
+  background: #ffffff0a;
+  border-radius: 10px;
+  gap: .25rem;
+  padding: .25rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__toggleBtn {
+  color: #fff6;
+  letter-spacing: .1em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  flex: 1;
+  padding: .5rem;
+  font-size: .7rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__toggleActive {
+  color: #e58eff;
+  background: #af52de26;
+  border: 1px solid #af52de4d;
+}
+
+.ExamPlannerModal-module__RFOjGW__nav {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__navBtn {
+  color: #fff9;
+  cursor: pointer;
+  background: #ffffff0d;
+  border: 1px solid #ffffff14;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: .8rem;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__navBtn:hover {
+  color: #e58eff;
+  background: #af52de33;
+  border-color: #af52de66;
+}
+
+.ExamPlannerModal-module__RFOjGW__navLabel {
+  color: #fff;
+  letter-spacing: .05em;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module__RFOjGW__monthGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  display: grid;
+}
+
+.ExamPlannerModal-module__RFOjGW__dayName {
+  color: #ffffff4d;
+  text-align: center;
+  letter-spacing: .08em;
+  padding-bottom: .4rem;
+  font-size: .6rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module__RFOjGW__emptyCell {
+  aspect-ratio: 1;
+}
+
+.ExamPlannerModal-module__RFOjGW__dayCell {
+  aspect-ratio: 1;
+  cursor: pointer;
+  background: #ffffff08;
+  border: 1px solid #0000;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+.ExamPlannerModal-module__RFOjGW__dayCell:hover {
+  background: #ffffff14;
+  border-color: #ffffff26;
+}
+
+.ExamPlannerModal-module__RFOjGW__dayNum {
+  color: #ffffffb3;
+  font-size: .7rem;
+  font-weight: 500;
+}
+
+.ExamPlannerModal-module__RFOjGW__today {
+  box-shadow: 0 0 0 2px #af52de33;
+  border-color: #af52de99 !important;
+}
+
+.ExamPlannerModal-module__RFOjGW__today .ExamPlannerModal-module__RFOjGW__dayNum {
+  color: #f2aaff;
+  font-weight: 800;
+}
+
+.ExamPlannerModal-module__RFOjGW__selectedDay {
+  outline-offset: 2px;
+  outline: 2px solid #af52decc;
+}
+
+.ExamPlannerModal-module__RFOjGW__examDot {
+  background: #af52de;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  box-shadow: 0 0 6px #af52de;
+}
+
+.ExamPlannerModal-module__RFOjGW__taskDot {
+  background: #ffffffb3;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: 2px;
+}
+
+.ExamPlannerModal-module__RFOjGW__weekGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  min-height: 180px;
+  display: grid;
+}
+
+.ExamPlannerModal-module__RFOjGW__weekDay {
+  cursor: pointer;
+  background: #ffffff05;
+  border: 1px solid #ffffff0f;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .4rem;
+  padding: .75rem .5rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__weekDayHeader {
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__weekDayName {
+  color: #ffffff59;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module__RFOjGW__weekDayNum {
+  color: #ffffffb3;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ExamPlannerModal-module__RFOjGW__todayNum {
+  color: #e58eff;
+  text-shadow: 0 0 10px #af52de80;
+}
+
+.ExamPlannerModal-module__RFOjGW__weekIndicators {
+  flex-direction: column;
+  gap: .25rem;
+  margin-top: auto;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__examBadge {
+  color: #f2aaff;
+  text-align: center;
+  background: #af52de26;
+  border: 1px solid #af52de4d;
+  border-radius: 4px;
+  padding: .15rem;
+  font-size: .5rem;
+  font-weight: 700;
+}
+
+.ExamPlannerModal-module__RFOjGW__taskBadge {
+  color: #ffffff80;
+  text-align: center;
+  font-size: .5rem;
+}
+
+.ExamPlannerModal-module__RFOjGW__detailPanel {
+  background: #ffffff08;
+  border: 1px solid #af52de33;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__detailHeader {
+  border-bottom: 1px solid #ffffff0d;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__detailDate {
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module__RFOjGW__noData {
+  color: #ffffff40;
+  text-align: center;
+  margin: 0;
+  padding: .5rem 0;
+  font-size: .7rem;
+}
+
+.ExamPlannerModal-module__RFOjGW__sectionLabel {
+  letter-spacing: .12em;
+  color: #fff6;
+  font-size: .6rem;
+  font-weight: 700;
+}
+
+.ExamPlannerModal-module__RFOjGW__list {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__examCard {
+  background: #af52de1a;
+  border: 1px solid #af52de4d;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__taskCard {
+  background: #ffffff0a;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: .6rem .75rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__taskLeft {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__taskParentBadge {
+  color: #f2aaff;
+  background: #af52de33;
+  border-radius: 999px;
+  padding: .15rem .4rem;
+  font-size: .55rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module__RFOjGW__checkboxContainer {
+  cursor: pointer;
+  color: #ffffffe6;
+  align-items: center;
+  gap: .6rem;
+  font-size: .8rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__examCheckbox {
+  accent-color: #af52de;
+  width: 16px;
+  height: 16px;
+}
+
+.ExamPlannerModal-module__RFOjGW__taskCheckbox {
+  accent-color: #ffffff80;
+  width: 14px;
+  height: 14px;
+}
+
+.ExamPlannerModal-module__RFOjGW__completedText {
+  opacity: .4;
+  text-decoration: line-through;
+}
+
+.ExamPlannerModal-module__RFOjGW__deleteBtn {
+  color: #fff3;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: color .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__deleteBtn:hover {
+  color: #ff5050;
+}
+
+.ExamPlannerModal-module__RFOjGW__addSection {
+  border-top: 1px solid #ffffff0d;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__inputGroup {
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__subtaskForm {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__subtaskInputWrapper {
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__examSelect {
+  color: #fff;
+  background: #0006;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  outline: none;
+  width: 140px;
+  padding: .5rem;
+  font-size: .7rem;
+}
+
+.ExamPlannerModal-module__RFOjGW__input {
+  color: #fff;
+  background: #0000004d;
+  border: 1px dashed #ffffff26;
+  border-radius: 8px;
+  outline: none;
+  flex: 1;
+  padding: .5rem .75rem;
+  font-family: inherit;
+  font-size: .75rem;
+  transition: border-color .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__input:focus {
+  background: #00000080;
+  border-style: solid;
+  border-color: #af52de80;
+}
+
+.ExamPlannerModal-module__RFOjGW__submitBtn {
+  color: #e58eff;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #af52de33;
+  border: 1px solid #af52de66;
+  border-radius: 8px;
+  padding: 0 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__submitBtn:hover {
+  background: #af52de4d;
+}
+
+.ExamPlannerModal-module__RFOjGW__backBtn {
+  color: #e58eff;
+  cursor: pointer;
+  background: #af52de1a;
+  border: 1px solid #af52de4d;
+  border-radius: 6px;
+  padding: .3rem .6rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__backBtn:hover {
+  background: #af52de33;
+}
+
+.ExamPlannerModal-module__RFOjGW__examDetailsView {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__examDetailsTitle {
+  color: #fff;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.ExamPlannerModal-module__RFOjGW__examDetailsDate {
+  color: #ffffff80;
+  margin: 0 0 1rem;
+  font-size: .75rem;
+}
+
+.ExamPlannerModal-module__RFOjGW__examProgressSection {
+  background: #af52de0d;
+  border: 1px solid #af52de33;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module__RFOjGW__examClickableTitle {
+  cursor: pointer;
+  transition: color .2s;
+}
+
+.ExamPlannerModal-module__RFOjGW__examClickableTitle:hover {
+  color: #e58eff;
+}
+
+.ExamPlannerModal-module__RFOjGW__viewMoreHint {
+  color: #fff6;
+  font-size: .65rem;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=Desktop_MindFlowApp_app_components_ExamPlannerModal_module_css_bad6b30c._.single.css.map*/

@@ -1,0 +1,3853 @@
+/* [project]/app/components/TaskInput.module.css [app-client] (css) */
+.TaskInput-module__BPxeiW__container {
+  z-index: 10;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.TaskInput-module__BPxeiW__form {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__inputGroup {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__input {
+  border: none;
+  border-bottom: 2px solid var(--input-border);
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  color: var(--input-text);
+  background: none;
+  padding: 1rem 0;
+  font-weight: 200;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+}
+
+.TaskInput-module__BPxeiW__input:focus {
+  border-bottom-color: #00e5ff80;
+  outline: none;
+  box-shadow: 0 15px 30px -15px #00e5ff33;
+}
+
+.TaskInput-module__BPxeiW__input::placeholder {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .9rem;
+}
+
+.TaskInput-module__BPxeiW__timeInputWrapper {
+  opacity: .7;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  margin-top: .5rem;
+  transition: opacity .3s;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__timeInputWrapper:focus-within, .TaskInput-module__BPxeiW__timeInputWrapper:hover {
+  opacity: 1;
+}
+
+.TaskInput-module__BPxeiW__timeLabel {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 1rem;
+}
+
+.TaskInput-module__BPxeiW__timeInput {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--accent-cyan);
+  text-align: center;
+  width: 90px;
+  font-family: var(--font-mono);
+  border-radius: 6px;
+  padding: .5rem .8rem;
+  font-size: 1.2rem;
+}
+
+.TaskInput-module__BPxeiW__timeInput:focus {
+  background: #00e5ff0d;
+  border-color: #00e5ff;
+  outline: none;
+}
+
+.TaskInput-module__BPxeiW__submitBtn {
+  color: #22d3ee;
+  width: 80px;
+  height: 80px;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #22d3ee66;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+  box-shadow: 0 0 20px #00e5ff26;
+}
+
+.TaskInput-module__BPxeiW__submitBtn:hover:not(:disabled) {
+  background: #22d3ee1a;
+  border-color: #22d3ee;
+  box-shadow: 0 0 40px #00e5ff66;
+}
+
+.TaskInput-module__BPxeiW__submitBtn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+  color: #ffffff4d;
+  border-color: #ffffff1a;
+}
+
+.TaskInput-module__BPxeiW__recentSection {
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  margin-top: 2rem;
+  animation: 1s ease-out .5s both TaskInput-module__BPxeiW__fadeIn;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__subtaskRow {
+  align-items: center;
+  gap: .4rem;
+  width: 100%;
+  margin-top: -.25rem;
+  margin-bottom: .25rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.TaskInput-module__BPxeiW__subtaskArrow {
+  color: #00e5ff59;
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.TaskInput-module__BPxeiW__subtaskInput {
+  font-size: .75rem;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  color: #ffffff73;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #ffffff1a;
+  flex: 1;
+  padding: .3rem 0;
+  font-weight: 300;
+  transition: border-color .3s;
+}
+
+.TaskInput-module__BPxeiW__subtaskInput:focus {
+  color: #ffffffb3;
+  border-bottom-color: #00e5ff59;
+  outline: none;
+}
+
+.TaskInput-module__BPxeiW__subtaskInput::placeholder {
+  color: #ffffff2e;
+  letter-spacing: .08em;
+  font-size: .7rem;
+}
+
+.TaskInput-module__BPxeiW__recentTitle {
+  letter-spacing: .3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: .7rem;
+}
+
+.TaskInput-module__BPxeiW__taskList {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  max-width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__taskChip {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 999px;
+  align-items: center;
+  gap: .8rem;
+  padding: .6rem .5rem .6rem 1rem;
+  font-size: .85rem;
+  font-weight: 400;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__taskTime {
+  color: var(--accent-cyan);
+  opacity: .8;
+  background: var(--accent-cyan-bg);
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  padding: .1rem .5rem;
+}
+
+.TaskInput-module__BPxeiW__taskChip:hover {
+  color: #00e5ff;
+  background: #22d3ee14;
+  border-color: #22d3ee66;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #0003;
+}
+
+.TaskInput-module__BPxeiW__deleteTaskBtn {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: .75rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__deleteTaskBtn:hover {
+  color: #ff3b30;
+  background: #ff3b3033;
+}
+
+@keyframes TaskInput-module__BPxeiW__fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* [project]/app/components/TodoList.module.css [app-client] (css) */
+.TodoList-module__miUY6G__todoContainer {
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__inputGroup {
+  gap: .5rem;
+  width: 100%;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
+  border-radius: 8px;
+  outline: none;
+  flex: 1;
+  padding: .75rem 1rem;
+  font-size: .9rem;
+  transition: all .3s;
+}
+
+.TodoList-module__miUY6G__input:focus {
+  background: var(--glass-hover);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px var(--accent-cyan-bg);
+}
+
+.TodoList-module__miUY6G__addButton {
+  background: var(--accent-cyan-bg);
+  border: 1px solid var(--accent-cyan);
+  width: 40px;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__addButton:hover {
+  background: var(--accent-cyan-bg);
+  transform: translateY(-1px);
+}
+
+.TodoList-module__miUY6G__todoList {
+  flex-direction: column;
+  gap: .5rem;
+  max-height: 200px;
+  padding-right: .5rem;
+  display: flex;
+  overflow-y: auto;
+}
+
+.TodoList-module__miUY6G__todoList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.TodoList-module__miUY6G__todoList::-webkit-scrollbar-track {
+  background: #ffffff05;
+}
+
+.TodoList-module__miUY6G__todoList::-webkit-scrollbar-thumb {
+  background: #ffffff1a;
+  border-radius: 10px;
+}
+
+.TodoList-module__miUY6G__todoItem {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__todoItem:hover {
+  background: var(--glass-hover);
+  border-color: var(--glass-border);
+}
+
+.TodoList-module__miUY6G__checkbox {
+  border: 2px solid var(--accent-cyan);
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  transition: all .2s;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__checkbox.TodoList-module__miUY6G__completed {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+}
+
+.TodoList-module__miUY6G__checkbox .TodoList-module__miUY6G__check {
+  background: #fff;
+  border-radius: 1px;
+  width: 50%;
+  height: 50%;
+}
+
+.TodoList-module__miUY6G__text {
+  color: var(--text-primary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+  font-size: .9rem;
+  transition: all .2s;
+  overflow: hidden;
+}
+
+.TodoList-module__miUY6G__text.TodoList-module__miUY6G__completed {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+.TodoList-module__miUY6G__actions {
+  opacity: 0;
+  gap: .25rem;
+  transition: opacity .2s;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__todoItem:hover .TodoList-module__miUY6G__actions {
+  opacity: 1;
+}
+
+.TodoList-module__miUY6G__iconButton {
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  transition: all .2s;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__iconButton:hover {
+  background: var(--glass-hover);
+  color: var(--text-primary);
+}
+
+.TodoList-module__miUY6G__deleteButton:hover {
+  color: #ff4b4b;
+  background: #ff4b4b1a;
+}
+
+.TodoList-module__miUY6G__raceButton:hover {
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-bg);
+}
+
+.TodoList-module__miUY6G__timeBadge {
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-bg);
+  border: 1px solid var(--accent-cyan);
+  letter-spacing: .05em;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 12px;
+  flex-shrink: 0;
+  padding: 2px 8px;
+  font-size: .7rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.TodoList-module__miUY6G__timeBadge:hover {
+  background: var(--accent-cyan-bg);
+  border-color: var(--accent-cyan);
+}
+
+.TodoList-module__miUY6G__timeEditor {
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+.TodoList-module__miUY6G__timeEditorInput {
+  background: var(--accent-cyan-bg);
+  border: 1px solid var(--accent-cyan);
+  width: 48px;
+  color: var(--accent-cyan);
+  text-align: center;
+  appearance: textfield;
+  border-radius: 6px;
+  outline: none;
+  padding: 3px 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.TodoList-module__miUY6G__timeEditorInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.TodoList-module__miUY6G__timeEditorInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.TodoList-module__miUY6G__timeEditorInput:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan-bg);
+}
+
+.TodoList-module__miUY6G__timeEditorLabel {
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  opacity: .5;
+  font-size: .65rem;
+  font-weight: 600;
+}
+
+.TodoList-module__miUY6G__timeButton:hover {
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-bg);
+}
+
+/* [project]/app/components/NoiseMixer.module.css [app-client] (css) */
+.NoiseMixer-module__54vQjG__container {
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 100;
+  background: #0b0e1466;
+  border: 1px solid #ffffff14;
+  border-radius: 12px;
+  width: 200px;
+  padding: .75rem;
+  transition: all .3s;
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.NoiseMixer-module__54vQjG__header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+  display: flex;
+}
+
+.NoiseMixer-module__54vQjG__title {
+  color: #ffffff4d;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.NoiseMixer-module__54vQjG__volumeControl {
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+}
+
+.NoiseMixer-module__54vQjG__range {
+  appearance: none;
+  background: #ffffff14;
+  border-radius: 2px;
+  outline: none;
+  width: 50px;
+  height: 3px;
+}
+
+.NoiseMixer-module__54vQjG__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: #00e5ff;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 8px #00e5ff66;
+}
+
+.NoiseMixer-module__54vQjG__optionsGrid {
+  grid-template-columns: repeat(5, 1fr);
+  gap: .35rem;
+  display: grid;
+}
+
+.NoiseMixer-module__54vQjG__optionButton {
+  cursor: pointer;
+  color: #fff6;
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 6px;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+  padding: .35rem .2rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.NoiseMixer-module__54vQjG__optionButton:hover {
+  background: #ffffff0f;
+  border-color: #00e5ff1a;
+}
+
+.NoiseMixer-module__54vQjG__optionButton.NoiseMixer-module__54vQjG__active {
+  color: #00e5ff;
+  background: #00e5ff14;
+  border-color: #00e5ff4d;
+}
+
+.NoiseMixer-module__54vQjG__icon {
+  font-size: .9rem;
+}
+
+.NoiseMixer-module__54vQjG__label {
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-size: .5rem;
+  font-weight: 500;
+}
+
+/* [project]/app/components/RaceView.module.css [app-client] (css) */
+.RaceView-module__Oh4i1a__container {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.RaceView-module__Oh4i1a__timer {
+  font-family: var(--font-mono);
+  letter-spacing: -.05em;
+  color: #fff;
+  text-shadow: 0 0 20px #fff6, 0 0 40px #00e5ff33;
+  z-index: 100;
+  pointer-events: none;
+  font-size: 4.5rem;
+  font-weight: 200;
+  transition: all .5s cubic-bezier(.4, 0, .2, 1);
+  position: absolute;
+  top: 1.5rem;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.RaceView-module__Oh4i1a__timerWinning {
+  color: var(--color-lead-green);
+  text-shadow: 0 0 10px #00ff8780, 0 0 25px #00ff874d, 0 0 50px #00ff871a;
+}
+
+.RaceView-module__Oh4i1a__timerLosing {
+  color: var(--color-lag-red);
+  text-shadow: 0 0 10px #ff313180, 0 0 25px #ff31314d, 0 0 50px #ff31311a;
+}
+
+.RaceView-module__Oh4i1a__envWrapper {
+  z-index: 0;
+  perspective: 800px;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.RaceView-module__Oh4i1a__horizonGlow {
+  pointer-events: none;
+  z-index: 0;
+  transition: background 2s ease-in-out;
+  animation: 4s ease-in-out infinite alternate RaceView-module__Oh4i1a__horizonPulse;
+  position: absolute;
+  inset: 0;
+}
+
+.RaceView-module__Oh4i1a__horizonMilestone {
+  background: radial-gradient(80% 20% at 50% 45%, #00ff8766 0%, #00ff871a 60%, #0000 100%) !important;
+}
+
+@keyframes RaceView-module__Oh4i1a__horizonPulse {
+  0% {
+    opacity: .6;
+    filter: brightness(.8);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+.RaceView-module__Oh4i1a__starsLayerSlow, .RaceView-module__Oh4i1a__starsLayerFast {
+  pointer-events: none;
+  z-index: 1;
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-mask-image: linear-gradient(#000 0% 85%, #0000 100%);
+  mask-image: linear-gradient(#000 0% 85%, #0000 100%);
+}
+
+.RaceView-module__Oh4i1a__starsLayerSlow {
+  opacity: .8;
+  background-image: radial-gradient(2px 2px at 20px 30px, #fff, #0000), radial-gradient(2px 2px at 40px 70px, #fffc, #0000), radial-gradient(2px 2px at 90px 40px, #fff9, #0000);
+  background-size: 120px 120px;
+  animation: 90s linear infinite RaceView-module__Oh4i1a__starsDriftSlow;
+}
+
+.RaceView-module__Oh4i1a__starsLayerFast {
+  opacity: .6;
+  background-image: radial-gradient(2.5px 2.5px at 10px 10px, #ffffffe6, #0000), radial-gradient(2.5px 2.5px at 80px 80px, #ffffffb3, #0000), radial-gradient(1.5px 1.5px at 150px 60px, #ffffff80, #0000);
+  background-size: 200px 200px;
+  animation: 60s linear infinite RaceView-module__Oh4i1a__starsDriftFast;
+}
+
+@keyframes RaceView-module__Oh4i1a__starsDriftSlow {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 120px 120px;
+  }
+}
+
+@keyframes RaceView-module__Oh4i1a__starsDriftFast {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -200px 200px;
+  }
+}
+
+:is([data-theme="light"] .RaceView-module__Oh4i1a__starsLayerSlow, [data-theme="light"] .RaceView-module__Oh4i1a__starsLayerFast) {
+  display: none;
+}
+
+.RaceView-module__Oh4i1a__roadGroup {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.RaceView-module__Oh4i1a__roadFloor {
+  transform-origin: top;
+  width: 600px;
+  height: 2000px;
+  transform-style: preserve-3d;
+  border-left: 2px solid var(--color-neon-cyan);
+  border-right: 2px solid var(--color-neon-cyan);
+  background: linear-gradient(#00e5ff1a 1px, #0000 1px) 0 0 / 40px 40px, linear-gradient(90deg, #00e5ff1a 1px, #0000 1px) 0 0 / 40px 40px, #060b19f2 linear-gradient(#000 0%, #1a1f29 100%) 0 0 / 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%)rotateX(85deg);
+  box-shadow: 0 0 50px #00e5ff33, inset 0 0 50px #00000080;
+  -webkit-mask-image: linear-gradient(#0000 0%, #000 5%);
+  mask-image: linear-gradient(#0000 0%, #000 5%);
+}
+
+.RaceView-module__Oh4i1a__guardrailLeft, .RaceView-module__Oh4i1a__guardrailRight {
+  display: none;
+}
+
+.RaceView-module__Oh4i1a__roadCenterLine {
+  background: repeating-linear-gradient(#fff3 0 50px, #0000 50px 150px);
+  width: 2px;
+  height: 100%;
+  animation: 1s linear infinite RaceView-module__Oh4i1a__moveRoadLine;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes RaceView-module__Oh4i1a__moveRoadLine {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 150px;
+  }
+}
+
+.RaceView-module__Oh4i1a__finishLine {
+  z-index: 25;
+  pointer-events: none;
+  background: linear-gradient(90deg, #0000 0%, #00e5ff33 5%, #00e5ff 20%, #fff 50%, #00e5ff 80%, #00e5ff33 95%, #0000 100%);
+  height: 4px;
+  transition: box-shadow .3s;
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 12px #00e5ffe6, 0 0 30px #00e5ff80, 0 0 60px #00e5ff33;
+}
+
+.RaceView-module__Oh4i1a__finishLineCrossed {
+  background: linear-gradient(90deg, #0000 0%, #00ff8733 5%, #00ff87 20%, #fff 50%, #00ff87 80%, #00ff8733 95%, #0000 100%);
+  animation: .5s ease-out forwards RaceView-module__Oh4i1a__finishFlash;
+  box-shadow: 0 0 20px #00ff87, 0 0 50px #00ff8799, 0 0 100px #00ff874d;
+}
+
+@keyframes RaceView-module__Oh4i1a__finishFlash {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scaleY(6);
+  }
+
+  100% {
+    opacity: .6;
+    transform: scaleY(1);
+  }
+}
+
+.RaceView-module__Oh4i1a__finishLineLabel {
+  letter-spacing: .2em;
+  color: #00e5ffb3;
+  text-shadow: 0 0 8px #00e5ff99;
+  white-space: nowrap;
+  pointer-events: none;
+  font-size: .55rem;
+  font-weight: 800;
+  position: absolute;
+  top: 50%;
+  right: 12%;
+  transform: translateY(-50%);
+}
+
+.RaceView-module__Oh4i1a__finishLineRoad {
+  z-index: 20;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, #00e5ff66 0 20px, #0000 20px 40px);
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px #00e5ff4d;
+}
+
+.RaceView-module__Oh4i1a__markerItem {
+  pointer-events: none;
+  z-index: 15;
+  margin-left: 20px;
+  position: absolute;
+  left: 100%;
+  transform: translateY(-50%);
+}
+
+.RaceView-module__Oh4i1a__markerItemLeft {
+  margin-right: 20px;
+  left: auto;
+  right: 100%;
+}
+
+.RaceView-module__Oh4i1a__treeItem {
+  pointer-events: none;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.RaceView-module__Oh4i1a__treeVisual {
+  filter: drop-shadow(0 0 15px var(--color-neon-cyan));
+}
+
+.RaceView-module__Oh4i1a__lightPole {
+  width: 5px;
+  height: 110px;
+  box-shadow: 0 0 8px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  pointer-events: none;
+  z-index: 11;
+  background: linear-gradient(#00e5ff 0%, #00e5ffb3 70%, #00e5ff33 100%);
+  border-radius: 3px;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__neonGate {
+  pointer-events: none;
+  z-index: 12;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__neonGatePost {
+  background: var(--color-neon-cyan);
+  width: 8px;
+  height: 120px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+}
+
+.RaceView-module__Oh4i1a__neonGateBar {
+  background: var(--color-neon-cyan);
+  width: 48px;
+  height: 7px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+  margin-bottom: -1px;
+}
+
+.RaceView-module__Oh4i1a__vehicleOverlay {
+  z-index: 20;
+  pointer-events: none;
+  height: 60%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.RaceView-module__Oh4i1a__carGroundShadow {
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(#00e5ff73 0%, #0000 70%);
+  border-radius: 50%;
+  width: 130px;
+  height: 22px;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.RaceView-module__Oh4i1a__roadVehicle {
+  transform-origin: bottom;
+  pointer-events: none;
+  will-change: transform, bottom;
+  transition: bottom .15s linear, left .3s;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__vehicleImg {
+  width: 260px;
+  height: auto;
+  display: block;
+}
+
+.RaceView-module__Oh4i1a__ghostImg {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+.RaceView-module__Oh4i1a__reflection {
+  transform-origin: top;
+  opacity: .15;
+  filter: blur(4px);
+  mix-blend-mode: lighten;
+  pointer-events: none;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: scaleY(-1);
+  -webkit-mask-image: linear-gradient(to top, #ffffff80, #0000 60%);
+  mask-image: linear-gradient(to top, #ffffff80, #0000 60%);
+}
+
+.RaceView-module__Oh4i1a__carGlow {
+  filter: drop-shadow(0 0 30px #00e5ff66);
+}
+
+.RaceView-module__Oh4i1a__ghostGlow {
+  filter: drop-shadow(0 0 30px #ffffff4d);
+}
+
+.RaceView-module__Oh4i1a__spark {
+  mix-blend-mode: screen;
+  animation: .1s infinite alternate RaceView-module__Oh4i1a__flicker;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%)rotateX(90deg)scale(.8);
+}
+
+@keyframes RaceView-module__Oh4i1a__flicker {
+  0% {
+    opacity: .8;
+    filter: brightness(1.2);
+  }
+
+  100% {
+    opacity: .4;
+    filter: brightness(.8);
+  }
+}
+
+.RaceView-module__Oh4i1a__leadIndicator {
+  font-family: var(--font-mono);
+  z-index: auto;
+  text-align: center;
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: .2rem .8rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  position: relative;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  transform: none;
+}
+
+.RaceView-module__Oh4i1a__leadSign {
+  vertical-align: middle;
+  margin-right: .2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.RaceView-module__Oh4i1a__leadPositive {
+  color: var(--color-lead-green);
+  text-shadow: 0 0 10px #20c99733;
+}
+
+.RaceView-module__Oh4i1a__leadNegative {
+  color: var(--color-lag-red);
+  text-shadow: 0 0 10px #ff6b6b33;
+}
+
+.RaceView-module__Oh4i1a__label {
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--color-text-secondary);
+  opacity: .8;
+  font-size: .7rem;
+  position: absolute;
+  top: -2rem;
+  left: 0;
+}
+
+.RaceView-module__Oh4i1a__dashboardPanel {
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 1000;
+  pointer-events: auto;
+  background: #060e1c8c;
+  border: 1px solid #00e5ff38;
+  border-radius: 22px;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  min-width: 220px;
+  padding: 1.2rem 2.5rem 1.4rem;
+  display: flex;
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 30px #00e5ff1f, inset 0 1px #ffffff0f;
+}
+
+.RaceView-module__Oh4i1a__completeBtn {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff66;
+  border-radius: 999px;
+  width: 100%;
+  padding: .85rem 3rem;
+  font-size: .78rem;
+  font-weight: 800;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 0 18px #00e5ff33;
+}
+
+.RaceView-module__Oh4i1a__completeBtn:hover {
+  background: #00e5ff38;
+  border-color: #00e5ffb3;
+  transform: scale(1.02);
+  box-shadow: 0 0 30px #00e5ff59;
+}
+
+.RaceView-module__Oh4i1a__secondaryActions {
+  gap: .5rem;
+  width: 100%;
+  margin-top: .25rem;
+  display: flex;
+}
+
+.RaceView-module__Oh4i1a__pauseBtn {
+  color: #ffffffe6;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: #ffffff0d;
+  border: 1px solid #ffffff4d;
+  border-radius: 999px;
+  flex: 1;
+  padding: .65rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .3s;
+}
+
+.RaceView-module__Oh4i1a__pauseBtn:hover {
+  background: #ffffff26;
+  border-color: #fff9;
+}
+
+.RaceView-module__Oh4i1a__cancelAction {
+  color: #ff3b30b3;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: none;
+  border: 1px solid #0000;
+  border-radius: 999px;
+  flex: none;
+  padding: .65rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .3s;
+}
+
+.RaceView-module__Oh4i1a__cancelAction:hover {
+  color: #ff3b30;
+  background: #ff3b301a;
+}
+
+.RaceView-module__Oh4i1a__roadUnderGlow {
+  pointer-events: none;
+  z-index: 2;
+  filter: blur(8px);
+  background: radial-gradient(70% 60% at 50% 100%, #00e5ff38 0%, #00c8ff14 50%, #0000 100%);
+  width: 900px;
+  height: 320px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.RaceView-module__Oh4i1a__speedLinesOverlay {
+  pointer-events: none;
+  z-index: 5;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.RaceView-module__Oh4i1a__speedLine {
+  background: linear-gradient(to right, transparent, var(--color-neon-cyan), transparent);
+  width: 150px;
+  height: 1px;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__driftOverlay {
+  pointer-events: none;
+  z-index: 100;
+  background: radial-gradient(circle, #0000 40%, #0006 100%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.RaceView-module__Oh4i1a__driftOverlay:before {
+  content: "";
+  pointer-events: none;
+  border: 24px solid #0000;
+  border-image: repeating-linear-gradient(-45deg, gold, gold 30px, #111 30px 60px) 24;
+  animation: .7s infinite alternate RaceView-module__Oh4i1a__hazardFlash;
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes RaceView-module__Oh4i1a__hazardFlash {
+  0% {
+    opacity: .3;
+    filter: brightness(.8);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+.RaceView-module__Oh4i1a__driftText {
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #111;
+  background: gold;
+  border: 6px solid #111;
+  border-radius: 12px;
+  padding: .6rem 2rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  animation: .7s infinite alternate RaceView-module__Oh4i1a__hazardTextBounce;
+  box-shadow: 0 10px 30px #00000080;
+}
+
+@keyframes RaceView-module__Oh4i1a__hazardTextBounce {
+  0% {
+    transform: scale(.96)translateY(5px);
+    box-shadow: 0 5px 15px #ffd70033;
+  }
+
+  100% {
+    transform: scale(1.04)translateY(-5px);
+    box-shadow: 0 15px 40px #ffd70099;
+  }
+}
+
+.RaceView-module__Oh4i1a__timerDrifting {
+  transition: opacity .5s;
+  opacity: 0 !important;
+}
+
+.RaceView-module__Oh4i1a__iconDrifting {
+  filter: blur(1px);
+  opacity: .6;
+  transform: translate(-50%, -50%)skewX(10deg);
+}
+
+.RaceView-module__Oh4i1a__carSpinning {
+  filter: blur(2px) drop-shadow(0 0 30px var(--color-neon-cyan));
+  animation: .6s linear infinite RaceView-module__Oh4i1a__carSpinOut;
+}
+
+@keyframes RaceView-module__Oh4i1a__carSpinOut {
+  0% {
+    transform: rotate(0)scale(1.2);
+  }
+
+  25% {
+    transform: rotate(90deg)scale(1.4);
+  }
+
+  50% {
+    transform: rotate(180deg)scale(1.1);
+  }
+
+  75% {
+    transform: rotate(270deg)scale(1.5);
+  }
+
+  100% {
+    transform: rotate(360deg)scale(1.2);
+  }
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__envWrapper {
+  background: radial-gradient(60% 18% at 50% 42%, #ffa03238 0%, #ffd26414 50%, #0000 100%), radial-gradient(circle at 50% 30%, #d4e8f5 0%, #b8d4ec 40%, #8fb8d8 100%);
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__roadFloor {
+  background: linear-gradient(#05966926 1px, #0000 1px) 0 0 / 40px 40px, linear-gradient(90deg, #05966926 1px, #0000 1px) 0 0 / 40px 40px, #c8dde8 linear-gradient(#c8dbe8 0%, #d8e8f0 100%) 0 0 / 100% 100%;
+  border-left: 2px solid #05966999;
+  border-right: 2px solid #05966999;
+  box-shadow: 0 0 40px #05966926, inset 0 0 40px #c8dcf04d;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__timer {
+  color: #1e293b;
+  text-shadow: 0 2px 8px #0000001a, 0 0 30px #05966926;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__timerWinning {
+  color: #059669;
+  text-shadow: 0 0 10px #05966966, 0 0 25px #05966933;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__timerLosing {
+  color: #dc2626;
+  text-shadow: 0 0 10px #dc262666, 0 0 25px #dc262633;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__leadIndicator {
+  background: #fff9;
+  border: 1px solid #05966933;
+  box-shadow: 0 4px 20px #00000014;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__finishLine {
+  background: repeating-linear-gradient(90deg, #059669 0 20px, #0000 20px 40px);
+  box-shadow: 0 0 20px #05966980, 0 0 40px #0596694d;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__treeVisual {
+  filter: drop-shadow(0 0 12px #05966980);
+}
+
+:is([data-theme="light"] .RaceView-module__Oh4i1a__neonGatePost, [data-theme="light"] .RaceView-module__Oh4i1a__neonGateBar) {
+  background: #059669e6;
+  box-shadow: 0 0 8px #05966999, 0 0 20px #05966966, 0 0 40px #05966933;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__roadCenterLine {
+  background: repeating-linear-gradient(#1e293b4d 0 50px, #0000 50px 150px);
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__completeBtn {
+  color: #1e293b;
+  background: #0596691f;
+  border: 1px solid #05966966;
+  box-shadow: 0 0 20px #05966926;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__completeBtn:hover {
+  background: #05966938;
+  border-color: #05966999;
+  box-shadow: 0 0 30px #05966940;
+}
+
+/* [project]/app/components/CustomizationModal.module.css [app-client] (css) */
+.CustomizationModal-module__FLmmuG__overlay {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  background: #000c;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.CustomizationModal-module__FLmmuG__container {
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  border-radius: 2rem;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.CustomizationModal-module__FLmmuG__header {
+  border-bottom: 1px solid #ffffff1a;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__title {
+  letter-spacing: .1em;
+  color: #fff;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__fuelCount {
+  flex-direction: column;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__fuelLabel {
+  color: #fff6;
+  letter-spacing: .2em;
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__fuelValue {
+  color: #00e5ff;
+  text-shadow: 0 0 15px #00e5ff66;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__closeButton {
+  color: #ffffff80;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.CustomizationModal-module__FLmmuG__section {
+  margin-bottom: 2.5rem;
+}
+
+.CustomizationModal-module__FLmmuG__sectionTitle {
+  color: #ffffff80;
+  letter-spacing: .2em;
+  margin-bottom: 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  display: grid;
+}
+
+.CustomizationModal-module__FLmmuG__card {
+  cursor: pointer;
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__card:hover {
+  background: #ffffff14;
+  transform: translateY(-4px);
+}
+
+.CustomizationModal-module__FLmmuG__card.CustomizationModal-module__FLmmuG__active {
+  background: #00e5ff1a;
+  border-color: #00e5ff66;
+  box-shadow: 0 0 20px #00e5ff1a;
+}
+
+.CustomizationModal-module__FLmmuG__card.CustomizationModal-module__FLmmuG__locked {
+  opacity: .6;
+}
+
+.CustomizationModal-module__FLmmuG__preview {
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__info {
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__itemName {
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__cost {
+  color: #cf0;
+  font-size: .7rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__statusLabel {
+  color: #00e5ff;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__levelLabel {
+  font-size: .6rem;
+}
+
+.CustomizationModal-module__FLmmuG__tabs {
+  background: #ffffff08;
+  border-radius: 12px;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  padding: .3rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__tab {
+  color: #ffffff73;
+  letter-spacing: .12em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 9px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: .35rem;
+  padding: .5rem .75rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .2s;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__tab:hover {
+  color: #ffffffbf;
+  background: #ffffff0d;
+}
+
+.CustomizationModal-module__FLmmuG__tabActive {
+  color: #00e5ff;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff4d;
+}
+
+.CustomizationModal-module__FLmmuG__trackGrid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  display: grid;
+}
+
+.CustomizationModal-module__FLmmuG__trackCard {
+  cursor: pointer;
+  background: #ffffff08;
+  border: 1px solid #ffffff12;
+  border-radius: 14px;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  overflow: hidden;
+}
+
+.CustomizationModal-module__FLmmuG__trackCard:hover {
+  background: #ffffff12;
+  transform: translateY(-4px);
+}
+
+.CustomizationModal-module__FLmmuG__trackCard.CustomizationModal-module__FLmmuG__active {
+  box-shadow: 0 0 24px #00e5ff1f;
+}
+
+.CustomizationModal-module__FLmmuG__trackCard.CustomizationModal-module__FLmmuG__locked {
+  opacity: .55;
+}
+
+.CustomizationModal-module__FLmmuG__trackPreview {
+  justify-content: center;
+  align-items: flex-end;
+  height: 80px;
+  padding-bottom: 8px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.CustomizationModal-module__FLmmuG__trackRoadPreview {
+  border-left: 2px solid;
+  border-right: 2px solid;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 60px;
+  display: flex;
+  position: relative;
+}
+
+.CustomizationModal-module__FLmmuG__trackLinePreview {
+  width: 2px;
+  height: 100%;
+}
+
+.CustomizationModal-module__FLmmuG__trackEmoji {
+  font-size: 1.15rem;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.CustomizationModal-module__FLmmuG__trackInfo {
+  flex-direction: column;
+  gap: .2rem;
+  padding: .75rem .9rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__trackDesc {
+  color: #ffffff59;
+  font-size: .6rem;
+  font-style: italic;
+}
+
+/* [project]/app/components/ResultModal.module.css [app-client] (css) */
+.ResultModal-module__VnVcmG__overlay {
+  z-index: 50;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: #0006;
+  justify-content: center;
+  align-items: center;
+  animation: .5s ease-out ResultModal-module__VnVcmG__fadeIn;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.ResultModal-module__VnVcmG__modal {
+  text-align: center;
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: #ffffff05;
+  border: 1px solid #ffffff1a;
+  border-radius: 2rem;
+  width: 90%;
+  max-width: 26rem;
+  padding: 3rem;
+  box-shadow: 0 20px 40px #0006;
+}
+
+.ResultModal-module__VnVcmG__modalWin {
+  border-color: #ffd70033;
+  box-shadow: 0 0 40px #ffd7001a, inset 0 0 20px #ffd7000d;
+}
+
+.ResultModal-module__VnVcmG__iconContainer {
+  justify-content: center;
+  margin-bottom: 2rem;
+  display: flex;
+}
+
+.ResultModal-module__VnVcmG__iconCircle {
+  border: 1px solid #ffffff1a;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  font-size: 2.5rem;
+  display: flex;
+}
+
+.ResultModal-module__VnVcmG__winIcon {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  text-shadow: 0 0 20px #ffd70080;
+  background: radial-gradient(circle, #ffd70033, #0000);
+}
+
+.ResultModal-module__VnVcmG__loseIcon {
+  color: var(--color-text-secondary);
+  background: #ffffff0d;
+}
+
+.ResultModal-module__VnVcmG__title {
+  color: #fff;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.ResultModal-module__VnVcmG__subtitle {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  opacity: .8;
+  margin-bottom: 2.5rem;
+  font-size: .8rem;
+}
+
+.ResultModal-module__VnVcmG__statsGrid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  display: grid;
+}
+
+.ResultModal-module__VnVcmG__statCard {
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.ResultModal-module__VnVcmG__statLabel {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--color-text-secondary);
+  margin-bottom: .5rem;
+  font-size: .6rem;
+}
+
+.ResultModal-module__VnVcmG__statValue {
+  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  color: #fff;
+}
+
+.ResultModal-module__VnVcmG__continueBtn {
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #ffffff1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 1rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.ResultModal-module__VnVcmG__continueBtn:hover {
+  background: #fff3;
+}
+
+.ResultModal-module__VnVcmG__levelSection {
+  text-align: center;
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.ResultModal-module__VnVcmG__levelUpLabel {
+  letter-spacing: .15em;
+  color: #cf0;
+  text-shadow: 0 0 20px #ccff0080, 0 0 40px #cf03;
+  margin-bottom: .75rem;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.ResultModal-module__VnVcmG__levelRow {
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.ResultModal-module__VnVcmG__levelTag {
+  letter-spacing: .15em;
+  color: #ffffff80;
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.ResultModal-module__VnVcmG__levelTitle {
+  letter-spacing: .12em;
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff4d;
+  font-size: .65rem;
+  font-weight: 800;
+}
+
+.ResultModal-module__VnVcmG__levelProgressBar {
+  background: #ffffff0f;
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+
+.ResultModal-module__VnVcmG__levelProgressFill {
+  background: linear-gradient(90deg, #00e5ff, #5c7cfa);
+  border-radius: 2px;
+  height: 100%;
+  box-shadow: 0 0 8px #00e5ff80;
+}
+
+.ResultModal-module__VnVcmG__levelXpText {
+  letter-spacing: .08em;
+  color: #ffffff4d;
+  font-size: .55rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+@keyframes ResultModal-module__VnVcmG__fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* [project]/app/components/Background3D.module.css [app-client] (css) */
+.Background3D-module__-ZvwOa__envWrapper {
+  z-index: 0;
+  perspective: 400px;
+  background: radial-gradient(circle at 50% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  transition: filter .5s, background .4s;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.Background3D-module__-ZvwOa__blurred {
+  filter: blur(8px) brightness(.7);
+}
+
+.Background3D-module__-ZvwOa__roadGroup {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Background3D-module__-ZvwOa__roadFloor {
+  background: linear-gradient(var(--accent-cyan-bg) 1px, transparent 1px), linear-gradient(90deg, var(--accent-cyan-bg) 1px, transparent 1px), linear-gradient(to bottom, var(--bg-gradient-end) 0%, var(--bg-gradient-start) 100%);
+  transform-origin: top;
+  border-left: 2px solid var(--color-neon-cyan);
+  border-right: 2px solid var(--color-neon-cyan);
+  width: 600px;
+  height: 1000px;
+  box-shadow: 0 0 20px var(--accent-cyan-bg), inset 0 0 20px #000c;
+  background-size: 50px 50px, 50px 50px, 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%)rotateX(80deg);
+  -webkit-mask-image: linear-gradient(#0000, #000 15%);
+  mask-image: linear-gradient(#0000, #000 15%);
+}
+
+.Background3D-module__-ZvwOa__roadCenterLine {
+  background: repeating-linear-gradient(#ffffff4d 0 50px, #0000 50px 150px);
+  width: 4px;
+  height: 100%;
+  animation: 1s linear infinite Background3D-module__-ZvwOa__moveRoadLine;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes Background3D-module__-ZvwOa__moveRoadLine {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 150px;
+  }
+}
+
+.Background3D-module__-ZvwOa__treeItem {
+  pointer-events: none;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Background3D-module__-ZvwOa__treeVisual {
+  filter: drop-shadow(0 0 15px var(--color-neon-cyan));
+}
+
+.Background3D-module__-ZvwOa__speedLinesOverlay {
+  pointer-events: none;
+  z-index: 6;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  overflow: visible;
+}
+
+.Background3D-module__-ZvwOa__speedLine {
+  transform-origin: 0 0;
+  width: 0;
+  height: 1px;
+  transform: rotate(var(--angle));
+  animation: Background3D-module__-ZvwOa__dashSpeedLineBg var(--dur, 1.3s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  background: linear-gradient(to right, #00e5ffd9, #00e5ff59 60%, #0000);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 3px #00e5ff66;
+}
+
+@keyframes Background3D-module__-ZvwOa__dashSpeedLineBg {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  8% {
+    opacity: .9;
+  }
+
+  80% {
+    opacity: .4;
+  }
+
+  100% {
+    width: var(--len, 180px);
+    opacity: 0;
+  }
+}
+
+.Background3D-module__-ZvwOa__lightPole {
+  width: 5px;
+  height: 110px;
+  box-shadow: 0 0 8px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  pointer-events: none;
+  z-index: 11;
+  background: linear-gradient(#00e5ff 0%, #00e5ffb3 70%, #00e5ff33 100%);
+  border-radius: 3px;
+  position: absolute;
+}
+
+.Background3D-module__-ZvwOa__neonGate {
+  pointer-events: none;
+  z-index: 12;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.Background3D-module__-ZvwOa__neonGatePost {
+  background: var(--color-neon-cyan);
+  width: 8px;
+  height: 120px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+}
+
+.Background3D-module__-ZvwOa__neonGateBar {
+  background: var(--color-neon-cyan);
+  width: 48px;
+  height: 7px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+  margin-bottom: -1px;
+}
+
+/* [project]/app/components/ThemeToggle.module.css [app-client] (css) */
+.ThemeToggle-module__b1g1DG__toggleButton {
+  z-index: 100;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  overflow: hidden;
+}
+
+.ThemeToggle-module__b1g1DG__toggleButton:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 25px var(--accent-cyan-bg);
+  transform: scale(1.1);
+}
+
+.ThemeToggle-module__b1g1DG__toggleButton:active {
+  transform: scale(.95);
+}
+
+.ThemeToggle-module__b1g1DG__iconWrapper {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.ThemeToggle-module__b1g1DG__icon {
+  width: 24px;
+  height: 24px;
+  transition: all .5s cubic-bezier(.16, 1, .3, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ThemeToggle-module__b1g1DG__icon.ThemeToggle-module__b1g1DG__active {
+  opacity: 1;
+  transform: rotate(0)scale(1);
+}
+
+.ThemeToggle-module__b1g1DG__icon.ThemeToggle-module__b1g1DG__hidden {
+  opacity: 0;
+  transform: rotate(90deg)scale(.5);
+}
+
+/* [project]/app/components/LevelBadge.module.css [app-client] (css) */
+.LevelBadge-module__4NNTRq__badge {
+  -webkit-backdrop-filter: blur(20px);
+  -webkit-user-select: none;
+  user-select: none;
+  background: #ffffff0a;
+  border: 1px solid #ffffff14;
+  border-radius: 3rem;
+  align-items: center;
+  gap: .75rem;
+  padding: .6rem 1rem .6rem .6rem;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__clickable {
+  cursor: pointer;
+}
+
+.LevelBadge-module__4NNTRq__clickable:hover {
+  background: #00e5ff14;
+  border-color: #00e5ff4d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px #00e5ff1a;
+}
+
+.LevelBadge-module__4NNTRq__clickable:active {
+  transform: translateY(0);
+}
+
+.LevelBadge-module__4NNTRq__levelCircle {
+  background: var(--accent-cyan-bg);
+  border: 1.5px solid var(--accent-cyan);
+  width: 2.4rem;
+  height: 2.4rem;
+  box-shadow: 0 0 12px var(--accent-cyan-bg), inset 0 0 8px var(--accent-cyan-bg);
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__levelNumber {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 8px var(--accent-cyan-bg);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.LevelBadge-module__4NNTRq__details {
+  flex-direction: column;
+  gap: .25rem;
+  min-width: 0;
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__titleRow {
+  align-items: center;
+  gap: .35rem;
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__levelLabel {
+  letter-spacing: .15em;
+  color: var(--text-muted);
+  font-size: .6rem;
+  font-weight: 700;
+}
+
+.LevelBadge-module__4NNTRq__dot {
+  color: var(--text-muted);
+  font-size: .6rem;
+}
+
+.LevelBadge-module__4NNTRq__levelTitle {
+  letter-spacing: .12em;
+  color: var(--accent-cyan);
+  font-size: .6rem;
+  font-weight: 800;
+}
+
+.LevelBadge-module__4NNTRq__progressBar {
+  background: #ffffff0f;
+  border-radius: 2px;
+  width: 100%;
+  min-width: 80px;
+  height: 3px;
+  overflow: hidden;
+}
+
+.LevelBadge-module__4NNTRq__progressFill {
+  background: linear-gradient(90deg, var(--accent-cyan), #5c7cfa);
+  height: 100%;
+  box-shadow: 0 0 8px var(--accent-cyan-bg);
+  border-radius: 2px;
+  position: relative;
+}
+
+.LevelBadge-module__4NNTRq__progressFill:after {
+  content: "";
+  width: 4px;
+  box-shadow: 0 0 6px var(--accent-cyan);
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  right: 0;
+}
+
+.LevelBadge-module__4NNTRq__xpText {
+  letter-spacing: .1em;
+  color: var(--text-muted);
+  font-size: .5rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+/* [project]/app/components/LevelModal.module.css [app-client] (css) */
+.LevelModal-module__cMrEIW__overlay {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  background: #000000bf;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.LevelModal-module__cMrEIW__modal {
+  background: #0d1117e6;
+  border: 1px solid #00e5ff33;
+  border-radius: 24px;
+  flex-direction: column;
+  width: 600px;
+  max-height: 85vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 50px #00e5ff1a;
+}
+
+.LevelModal-module__cMrEIW__header {
+  border-bottom: 1px solid #ffffff0d;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__header h2 {
+  letter-spacing: .4em;
+  color: var(--color-neon-cyan);
+  margin: 0;
+  font-size: .85rem;
+  font-weight: 300;
+}
+
+.LevelModal-module__cMrEIW__closeBtn {
+  color: #fff;
+  cursor: pointer;
+  opacity: .5;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  transition: opacity .2s;
+}
+
+.LevelModal-module__cMrEIW__closeBtn:hover {
+  opacity: 1;
+}
+
+.LevelModal-module__cMrEIW__currentStats {
+  background: #ffffff05;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  display: grid;
+}
+
+.LevelModal-module__cMrEIW__statBox {
+  flex-direction: column;
+  gap: .25rem;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__statLabel {
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  font-size: .65rem;
+}
+
+.LevelModal-module__cMrEIW__statValue {
+  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  color: #fff;
+}
+
+.LevelModal-module__cMrEIW__levelList {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff1a transparent;
+  flex: 1;
+  margin: 0 1rem 1.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.LevelModal-module__cMrEIW__levelList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.LevelModal-module__cMrEIW__levelList::-webkit-scrollbar-thumb {
+  background: #ffffff1a;
+  border-radius: 2px;
+}
+
+.LevelModal-module__cMrEIW__levelItem {
+  opacity: .4;
+  border-radius: 16px;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: .5rem;
+  padding: 1.25rem;
+  transition: all .3s;
+  display: flex;
+  position: relative;
+}
+
+.LevelModal-module__cMrEIW__levelItem.LevelModal-module__cMrEIW__reached {
+  opacity: 1;
+}
+
+.LevelModal-module__cMrEIW__levelItem.LevelModal-module__cMrEIW__current {
+  background: #00e5ff0d;
+  border: 1px solid #00e5ff33;
+}
+
+.LevelModal-module__cMrEIW__levelNumberContainer {
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  display: flex;
+  position: relative;
+}
+
+.LevelModal-module__cMrEIW__levelLine {
+  z-index: 0;
+  background: #ffffff1a;
+  width: 1px;
+  position: absolute;
+  top: -100%;
+  bottom: -100%;
+}
+
+.LevelModal-module__cMrEIW__levelItem:first-child .LevelModal-module__cMrEIW__levelLine {
+  top: 50%;
+}
+
+.LevelModal-module__cMrEIW__levelItem:last-child .LevelModal-module__cMrEIW__levelLine {
+  bottom: 50%;
+}
+
+.LevelModal-module__cMrEIW__levelHex {
+  width: 32px;
+  height: 32px;
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  z-index: 1;
+  background: #0d1117;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transform: rotate(45deg);
+}
+
+.LevelModal-module__cMrEIW__levelHex span {
+  transform: rotate(-45deg);
+}
+
+.LevelModal-module__cMrEIW__reached .LevelModal-module__cMrEIW__levelHex {
+  border-color: var(--color-neon-cyan);
+  color: var(--color-neon-cyan);
+  box-shadow: 0 0 10px #00e5ff33;
+}
+
+.LevelModal-module__cMrEIW__reached .LevelModal-module__cMrEIW__levelLine {
+  background: var(--color-neon-cyan);
+  opacity: .3;
+}
+
+.LevelModal-module__cMrEIW__levelInfo {
+  flex-direction: column;
+  flex: 1;
+  gap: .5rem;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__levelHeader {
+  justify-content: space-between;
+  align-items: baseline;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__levelTitle {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.LevelModal-module__cMrEIW__xpRequirement {
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.LevelModal-module__cMrEIW__progressBar {
+  background: #ffffff0d;
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+}
+
+.LevelModal-module__cMrEIW__progressFill {
+  background: var(--color-neon-cyan);
+  height: 100%;
+  box-shadow: 0 0 8px var(--color-neon-cyan);
+}
+
+.LevelModal-module__cMrEIW__activeTag {
+  background: var(--color-neon-cyan);
+  color: #000;
+  letter-spacing: .05em;
+  border-radius: 4px;
+  padding: .2rem .5rem;
+  font-size: .6rem;
+  font-weight: 800;
+}
+
+.LevelModal-module__cMrEIW__lockedIcon {
+  opacity: .5;
+  font-size: .8rem;
+}
+
+/* [project]/app/components/CalendarModal.module.css [app-client] (css) */
+.CalendarModal-module__jOrN-q__overlay {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  background: #000c;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.CalendarModal-module__jOrN-q__modal {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff14 transparent;
+  background: #0a0e16f2;
+  border: 1px solid #00e5ff26;
+  border-radius: 24px;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  padding: 2rem;
+  display: flex;
+  overflow-y: auto;
+  box-shadow: 0 0 60px #00e5ff14;
+}
+
+.CalendarModal-module__jOrN-q__header {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__headerActions {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__addEntryBtn {
+  color: #00e5ff;
+  letter-spacing: .08em;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #00e5ff1a;
+  border: 1px solid #00e5ff4d;
+  border-radius: 999px;
+  padding: .4rem .9rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__addEntryBtn:hover {
+  background: #00e5ff33;
+}
+
+.CalendarModal-module__jOrN-q__addForm {
+  background: #00e5ff0a;
+  border: 1px solid #00e5ff26;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__formRow {
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__formField {
+  flex-direction: column;
+  flex: 1;
+  gap: .3rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__formLabel {
+  color: #ffffff59;
+  letter-spacing: .1em;
+  font-size: .6rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__formInput {
+  color: #fff;
+  --lightningcss-light: ;
+  --lightningcss-dark: initial;
+  color-scheme: dark;
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  padding: .45rem .65rem;
+  font-family: inherit;
+  font-size: .78rem;
+  transition: border-color .2s;
+}
+
+.CalendarModal-module__jOrN-q__formInput:focus {
+  border-color: #00e5ff66;
+}
+
+.CalendarModal-module__jOrN-q__formInput::placeholder {
+  color: #fff3;
+}
+
+.CalendarModal-module__jOrN-q__submitBtn {
+  color: #00e5ff;
+  letter-spacing: .08em;
+  cursor: pointer;
+  background: #00e5ff26;
+  border: 1px solid #00e5ff66;
+  border-radius: 8px;
+  align-self: flex-end;
+  padding: .55rem 1.25rem;
+  font-size: .72rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__submitBtn:hover {
+  background: #00e5ff40;
+}
+
+.CalendarModal-module__jOrN-q__headerTabs {
+  align-items: center;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__headerTab {
+  color: #fff6;
+  letter-spacing: .15em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #0000;
+  padding: .5rem .2rem;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__headerTab:hover {
+  color: #fffc;
+}
+
+.CalendarModal-module__jOrN-q__headerTabActive {
+  color: #00e5ff;
+  border-bottom: 2px solid #00e5ff;
+}
+
+.CalendarModal-module__jOrN-q__closeBtn {
+  color: #fff6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: color .2s;
+}
+
+.CalendarModal-module__jOrN-q__closeBtn:hover {
+  color: #fff;
+}
+
+.CalendarModal-module__jOrN-q__viewToggle {
+  background: #ffffff0a;
+  border-radius: 10px;
+  gap: .25rem;
+  padding: .25rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__toggleBtn {
+  color: #fff6;
+  letter-spacing: .1em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  flex: 1;
+  padding: .5rem;
+  font-size: .7rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__toggleActive {
+  color: #00e5ff;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff40;
+}
+
+.CalendarModal-module__jOrN-q__nav {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__navBtn {
+  color: #fff9;
+  cursor: pointer;
+  background: #ffffff0d;
+  border: 1px solid #ffffff14;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: .8rem;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__navBtn:hover {
+  color: #00e5ff;
+  background: #00e5ff1a;
+  border-color: #00e5ff4d;
+}
+
+.CalendarModal-module__jOrN-q__navLabel {
+  color: #fff;
+  letter-spacing: .05em;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__monthGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  display: grid;
+}
+
+.CalendarModal-module__jOrN-q__dayName {
+  color: #ffffff4d;
+  text-align: center;
+  letter-spacing: .08em;
+  padding-bottom: .4rem;
+  font-size: .6rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__emptyCell {
+  aspect-ratio: 1;
+}
+
+.CalendarModal-module__jOrN-q__dayCell {
+  aspect-ratio: 1;
+  cursor: pointer;
+  background: #ffffff05;
+  border: 1px solid #0000;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+.CalendarModal-module__jOrN-q__dayCell:hover {
+  background: #ffffff0f;
+  border-color: #ffffff1a;
+}
+
+.CalendarModal-module__jOrN-q__dayNum {
+  color: #fff9;
+  font-size: .7rem;
+  font-weight: 500;
+}
+
+.CalendarModal-module__jOrN-q__sessionDot {
+  background: #00e5ff;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: 2px;
+}
+
+.CalendarModal-module__jOrN-q__intensity0 {
+  background: #ffffff05;
+}
+
+.CalendarModal-module__jOrN-q__intensity1 {
+  background: #00e5ff14;
+  border-color: #00e5ff26 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity2 {
+  background: #00e5ff29;
+  border-color: #00e5ff40 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity3 {
+  background: #00e5ff47;
+  border-color: #00e5ff66 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity4 {
+  background: #00e5ff6b;
+  box-shadow: 0 0 10px #00e5ff33;
+  border-color: #00e5ff99 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity1 .CalendarModal-module__jOrN-q__dayNum, .CalendarModal-module__jOrN-q__intensity2 .CalendarModal-module__jOrN-q__dayNum, .CalendarModal-module__jOrN-q__intensity3 .CalendarModal-module__jOrN-q__dayNum, .CalendarModal-module__jOrN-q__intensity4 .CalendarModal-module__jOrN-q__dayNum {
+  color: #fff;
+}
+
+.CalendarModal-module__jOrN-q__today {
+  box-shadow: 0 0 0 2px #00e5ff33;
+  border-color: #00e5ff99 !important;
+}
+
+.CalendarModal-module__jOrN-q__today .CalendarModal-module__jOrN-q__dayNum {
+  color: #00e5ff;
+  font-weight: 800;
+}
+
+.CalendarModal-module__jOrN-q__selectedDay {
+  outline-offset: 2px;
+  outline: 2px solid #00e5ffcc;
+}
+
+.CalendarModal-module__jOrN-q__weekGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  min-height: 200px;
+  display: grid;
+}
+
+.CalendarModal-module__jOrN-q__weekDay {
+  cursor: pointer;
+  border: 1px solid #ffffff0f;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .4rem;
+  min-height: 160px;
+  padding: .75rem .5rem;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.CalendarModal-module__jOrN-q__weekDayHeader {
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__weekDayName {
+  color: #ffffff59;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__weekDayNum {
+  color: #ffffffb3;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__todayNum {
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff80;
+}
+
+.CalendarModal-module__jOrN-q__weekStats {
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  margin-top: auto;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__weekSessions {
+  color: #ffffff80;
+  font-size: .55rem;
+}
+
+.CalendarModal-module__jOrN-q__weekTime {
+  color: #00e5ff;
+  font-size: .7rem;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+}
+
+.CalendarModal-module__jOrN-q__noSession {
+  color: #ffffff26;
+  text-align: center;
+  margin-top: auto;
+  font-size: .55rem;
+}
+
+.CalendarModal-module__jOrN-q__weekBar {
+  align-items: flex-end;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.CalendarModal-module__jOrN-q__weekBarFill {
+  background: linear-gradient(to top, #00e5ff40, #0000);
+  border-radius: 0 0 11px 11px;
+  width: 100%;
+  min-height: 2px;
+  transition: height .6s;
+}
+
+.CalendarModal-module__jOrN-q__detailPanel {
+  background: #ffffff08;
+  border: 1px solid #00e5ff26;
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+}
+
+.CalendarModal-module__jOrN-q__detailHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__detailDate {
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__detailTotal {
+  color: #00e5ff;
+  font-size: .7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__noData {
+  color: #ffffff40;
+  text-align: center;
+  margin: 0;
+  padding: .5rem 0;
+  font-size: .7rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionList {
+  flex-direction: column;
+  gap: .4rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__sessionItem {
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__manualEntry {
+  background: #00e5ff08;
+  border-color: #00e5ff1f;
+}
+
+.CalendarModal-module__jOrN-q__sectionLabel {
+  letter-spacing: .12em;
+  color: #ffffff59;
+  margin-top: .25rem;
+  padding: .3rem 0;
+  font-size: .58rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__goalEntry {
+  background: #ffc80008;
+  border-color: #ffc80026;
+}
+
+.CalendarModal-module__jOrN-q__goalDuration {
+  color: #ffc850e6;
+  font-size: .7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__weekGoalHint {
+  color: #ffc85099;
+  text-align: center;
+  margin-top: auto;
+  font-size: .55rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionLeft {
+  flex: 1;
+  align-items: flex-start;
+  gap: .5rem;
+  min-width: 0;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__sessionRight {
+  flex-shrink: 0;
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__manualBadge {
+  color: #00e5ff;
+  letter-spacing: .05em;
+  white-space: nowrap;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff40;
+  border-radius: 4px;
+  margin-top: 2px;
+  padding: .15rem .4rem;
+  font-size: .5rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionTask {
+  color: #fffc;
+  font-size: .75rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionNote {
+  color: #ffffff4d;
+  margin-top: .1rem;
+  font-size: .62rem;
+  font-style: italic;
+}
+
+.CalendarModal-module__jOrN-q__sessionDuration {
+  color: #00e5ff;
+  font-size: .7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__deleteBtn {
+  color: #ff505080;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #ff505040;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  font-size: .75rem;
+  line-height: 1;
+  transition: all .2s;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__deleteBtn:hover {
+  color: #ff5050;
+  background: #ff505026;
+  border-color: #ff505099;
+}
+
+.CalendarModal-module__jOrN-q__detailHeaderRight {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__addDayBtn {
+  color: #00e5ff;
+  cursor: pointer;
+  letter-spacing: .05em;
+  background: #00e5ff14;
+  border: 1px solid #00e5ff33;
+  border-radius: 999px;
+  padding: .25rem .65rem;
+  font-size: .6rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__addDayBtn:hover {
+  background: #00e5ff2e;
+}
+
+.CalendarModal-module__jOrN-q__legend {
+  align-items: center;
+  gap: .4rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__legendLabel {
+  color: #ffffff4d;
+  letter-spacing: .05em;
+  font-size: .6rem;
+}
+
+.CalendarModal-module__jOrN-q__legendDot {
+  border: 1px solid #0000;
+  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.CalendarModal-module__jOrN-q__examDot {
+  background: #af52de;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  box-shadow: 0 0 6px #af52decc;
+}
+
+.CalendarModal-module__jOrN-q__examBadge {
+  color: #e58eff;
+  text-align: center;
+  background: #af52de26;
+  border: 1px solid #af52de66;
+  border-radius: 4px;
+  margin-bottom: .25rem;
+  padding: .15rem .3rem;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__examList {
+  flex-direction: column;
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__examCard {
+  background: #af52de0d;
+  border: 1px solid #af52de33;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .75rem;
+  display: flex;
+  box-shadow: 0 2px 10px #0003;
+}
+
+.CalendarModal-module__jOrN-q__examHeader {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__examCheckboxContainer {
+  cursor: pointer;
+  align-items: center;
+  gap: .6rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__examCheckboxRow {
+  accent-color: #af52de;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.CalendarModal-module__jOrN-q__examTitle {
+  color: #f2aaff;
+  transition: all .2sease;
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__examCompleted {
+  opacity: .5;
+  color: #fff6;
+  text-decoration: line-through;
+}
+
+.CalendarModal-module__jOrN-q__deleteExamBtn {
+  color: #ff505080;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #ff505026;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: .9rem;
+  line-height: 1;
+  transition: all .2s;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__deleteExamBtn:hover {
+  color: #ff5050;
+  background: #ff50501a;
+  border-color: #ff505080;
+}
+
+.CalendarModal-module__jOrN-q__deleteSubtaskBtn {
+  color: #ffffff26;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: .9rem;
+  transition: color .2s;
+}
+
+.CalendarModal-module__jOrN-q__deleteSubtaskBtn:hover {
+  color: #ff5050;
+}
+
+.CalendarModal-module__jOrN-q__subtaskList {
+  flex-direction: column;
+  gap: .4rem;
+  margin-top: .2rem;
+  padding-left: 1.8rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__subtaskItem {
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 6px;
+  justify-content: space-between;
+  align-items: center;
+  padding: .35rem .5rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__subtaskCheckboxContainer {
+  cursor: pointer;
+  color: #ffffffd9;
+  align-items: center;
+  gap: .5rem;
+  font-size: .72rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__subtaskCompleted {
+  opacity: .4;
+  text-decoration: line-through;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskRow {
+  margin-top: .3rem;
+  padding-left: 1.8rem;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskInput {
+  color: #fff;
+  background: none;
+  border: 1px dashed #ffffff26;
+  border-radius: 6px;
+  outline: none;
+  width: 100%;
+  padding: .4rem .6rem;
+  font-family: inherit;
+  font-size: .7rem;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskInput:focus {
+  background: #0003;
+  border: 1px solid #af52de66;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskInput::placeholder {
+  color: #ffffff40;
+}
+
+.CalendarModal-module__jOrN-q__addExamRow {
+  gap: .5rem;
+  margin-top: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__addExamInput {
+  color: #fff;
+  background: #0000004d;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  outline: none;
+  flex: 1;
+  padding: .55rem .8rem;
+  font-family: inherit;
+  font-size: .75rem;
+  transition: border-color .2s;
+}
+
+.CalendarModal-module__jOrN-q__addExamInput:focus {
+  border-color: #af52de80;
+}
+
+.CalendarModal-module__jOrN-q__addExamInput::placeholder {
+  color: #ffffff4d;
+}
+
+.CalendarModal-module__jOrN-q__saveExamBtn {
+  color: #e58eff;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #af52de33;
+  border: 1px solid #af52de66;
+  border-radius: 8px;
+  padding: 0 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__saveExamBtn:hover {
+  background: #af52de66;
+}
+
+/* [project]/app/components/ExamPlannerModal.module.css [app-client] (css) */
+.ExamPlannerModal-module____UPDW__overlay {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  background: #000000d9;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.ExamPlannerModal-module____UPDW__modal {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff14 transparent;
+  background: #0e0a16f2;
+  border: 1px solid #af52de40;
+  border-radius: 24px;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  padding: 2rem;
+  display: flex;
+  overflow-y: auto;
+  box-shadow: 0 0 60px #af52de1a;
+}
+
+.ExamPlannerModal-module____UPDW__header {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__headerTabs {
+  align-items: center;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__headerTab {
+  color: #fff6;
+  letter-spacing: .15em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #0000;
+  padding: .5rem .2rem;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module____UPDW__headerTab:hover {
+  color: #fffc;
+}
+
+.ExamPlannerModal-module____UPDW__headerTabActive {
+  color: #af52de;
+  border-bottom: 2px solid #af52de;
+}
+
+.ExamPlannerModal-module____UPDW__closeBtn {
+  color: #fff6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: color .2s;
+}
+
+.ExamPlannerModal-module____UPDW__closeBtn:hover {
+  color: #fff;
+}
+
+.ExamPlannerModal-module____UPDW__viewToggle {
+  background: #ffffff0a;
+  border-radius: 10px;
+  gap: .25rem;
+  padding: .25rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__toggleBtn {
+  color: #fff6;
+  letter-spacing: .1em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  flex: 1;
+  padding: .5rem;
+  font-size: .7rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module____UPDW__toggleActive {
+  color: #e58eff;
+  background: #af52de26;
+  border: 1px solid #af52de4d;
+}
+
+.ExamPlannerModal-module____UPDW__nav {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__navBtn {
+  color: #fff9;
+  cursor: pointer;
+  background: #ffffff0d;
+  border: 1px solid #ffffff14;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: .8rem;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module____UPDW__navBtn:hover {
+  color: #e58eff;
+  background: #af52de33;
+  border-color: #af52de66;
+}
+
+.ExamPlannerModal-module____UPDW__navLabel {
+  color: #fff;
+  letter-spacing: .05em;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module____UPDW__monthGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  display: grid;
+}
+
+.ExamPlannerModal-module____UPDW__dayName {
+  color: #ffffff4d;
+  text-align: center;
+  letter-spacing: .08em;
+  padding-bottom: .4rem;
+  font-size: .6rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module____UPDW__emptyCell {
+  aspect-ratio: 1;
+}
+
+.ExamPlannerModal-module____UPDW__dayCell {
+  aspect-ratio: 1;
+  cursor: pointer;
+  background: #ffffff08;
+  border: 1px solid #0000;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+.ExamPlannerModal-module____UPDW__dayCell:hover {
+  background: #ffffff14;
+  border-color: #ffffff26;
+}
+
+.ExamPlannerModal-module____UPDW__dayNum {
+  color: #ffffffb3;
+  font-size: .7rem;
+  font-weight: 500;
+}
+
+.ExamPlannerModal-module____UPDW__today {
+  box-shadow: 0 0 0 2px #af52de33;
+  border-color: #af52de99 !important;
+}
+
+.ExamPlannerModal-module____UPDW__today .ExamPlannerModal-module____UPDW__dayNum {
+  color: #f2aaff;
+  font-weight: 800;
+}
+
+.ExamPlannerModal-module____UPDW__selectedDay {
+  outline-offset: 2px;
+  outline: 2px solid #af52decc;
+}
+
+.ExamPlannerModal-module____UPDW__examDot {
+  background: #af52de;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  box-shadow: 0 0 6px #af52de;
+}
+
+.ExamPlannerModal-module____UPDW__taskDot {
+  background: #ffffffb3;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: 2px;
+}
+
+.ExamPlannerModal-module____UPDW__weekGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  min-height: 180px;
+  display: grid;
+}
+
+.ExamPlannerModal-module____UPDW__weekDay {
+  cursor: pointer;
+  background: #ffffff05;
+  border: 1px solid #ffffff0f;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .4rem;
+  padding: .75rem .5rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__weekDayHeader {
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__weekDayName {
+  color: #ffffff59;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module____UPDW__weekDayNum {
+  color: #ffffffb3;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ExamPlannerModal-module____UPDW__todayNum {
+  color: #e58eff;
+  text-shadow: 0 0 10px #af52de80;
+}
+
+.ExamPlannerModal-module____UPDW__weekIndicators {
+  flex-direction: column;
+  gap: .25rem;
+  margin-top: auto;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__examBadge {
+  color: #f2aaff;
+  text-align: center;
+  background: #af52de26;
+  border: 1px solid #af52de4d;
+  border-radius: 4px;
+  padding: .15rem;
+  font-size: .5rem;
+  font-weight: 700;
+}
+
+.ExamPlannerModal-module____UPDW__taskBadge {
+  color: #ffffff80;
+  text-align: center;
+  font-size: .5rem;
+}
+
+.ExamPlannerModal-module____UPDW__detailPanel {
+  background: #ffffff08;
+  border: 1px solid #af52de33;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__detailHeader {
+  border-bottom: 1px solid #ffffff0d;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__detailDate {
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module____UPDW__noData {
+  color: #ffffff40;
+  text-align: center;
+  margin: 0;
+  padding: .5rem 0;
+  font-size: .7rem;
+}
+
+.ExamPlannerModal-module____UPDW__sectionLabel {
+  letter-spacing: .12em;
+  color: #fff6;
+  font-size: .6rem;
+  font-weight: 700;
+}
+
+.ExamPlannerModal-module____UPDW__list {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__examCard {
+  background: #af52de1a;
+  border: 1px solid #af52de4d;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__taskCard {
+  background: #ffffff0a;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: .6rem .75rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__taskLeft {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__taskParentBadge {
+  color: #f2aaff;
+  background: #af52de33;
+  border-radius: 999px;
+  padding: .15rem .4rem;
+  font-size: .55rem;
+  font-weight: 600;
+}
+
+.ExamPlannerModal-module____UPDW__checkboxContainer {
+  cursor: pointer;
+  color: #ffffffe6;
+  align-items: center;
+  gap: .6rem;
+  font-size: .8rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__examCheckbox {
+  accent-color: #af52de;
+  width: 16px;
+  height: 16px;
+}
+
+.ExamPlannerModal-module____UPDW__taskCheckbox {
+  accent-color: #ffffff80;
+  width: 14px;
+  height: 14px;
+}
+
+.ExamPlannerModal-module____UPDW__completedText {
+  opacity: .4;
+  text-decoration: line-through;
+}
+
+.ExamPlannerModal-module____UPDW__deleteBtn {
+  color: #fff3;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: color .2s;
+}
+
+.ExamPlannerModal-module____UPDW__deleteBtn:hover {
+  color: #ff5050;
+}
+
+.ExamPlannerModal-module____UPDW__addSection {
+  border-top: 1px solid #ffffff0d;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__inputGroup {
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__subtaskForm {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__subtaskInputWrapper {
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__examSelect {
+  color: #fff;
+  background: #0006;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  outline: none;
+  width: 140px;
+  padding: .5rem;
+  font-size: .7rem;
+}
+
+.ExamPlannerModal-module____UPDW__input {
+  color: #fff;
+  background: #0000004d;
+  border: 1px dashed #ffffff26;
+  border-radius: 8px;
+  outline: none;
+  flex: 1;
+  padding: .5rem .75rem;
+  font-family: inherit;
+  font-size: .75rem;
+  transition: border-color .2s;
+}
+
+.ExamPlannerModal-module____UPDW__input:focus {
+  background: #00000080;
+  border-style: solid;
+  border-color: #af52de80;
+}
+
+.ExamPlannerModal-module____UPDW__submitBtn {
+  color: #e58eff;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #af52de33;
+  border: 1px solid #af52de66;
+  border-radius: 8px;
+  padding: 0 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module____UPDW__submitBtn:hover {
+  background: #af52de4d;
+}
+
+.ExamPlannerModal-module____UPDW__backBtn {
+  color: #e58eff;
+  cursor: pointer;
+  background: #af52de1a;
+  border: 1px solid #af52de4d;
+  border-radius: 6px;
+  padding: .3rem .6rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.ExamPlannerModal-module____UPDW__backBtn:hover {
+  background: #af52de33;
+}
+
+.ExamPlannerModal-module____UPDW__examDetailsView {
+  flex-direction: column;
+  gap: .5rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__examDetailsTitle {
+  color: #fff;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.ExamPlannerModal-module____UPDW__examDetailsDate {
+  color: #ffffff80;
+  margin: 0 0 1rem;
+  font-size: .75rem;
+}
+
+.ExamPlannerModal-module____UPDW__examProgressSection {
+  background: #af52de0d;
+  border: 1px solid #af52de33;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1rem;
+  display: flex;
+}
+
+.ExamPlannerModal-module____UPDW__examClickableTitle {
+  cursor: pointer;
+  transition: color .2s;
+}
+
+.ExamPlannerModal-module____UPDW__examClickableTitle:hover {
+  color: #e58eff;
+}
+
+.ExamPlannerModal-module____UPDW__viewMoreHint {
+  color: #fff6;
+  font-size: .65rem;
+  font-weight: 400;
+}
+
+/* [project]/app/page.module.css [app-client] (css) */
+.page-module__E0kJGG__pageContainer {
+  background: radial-gradient(circle at 50% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: background .4s;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-module__E0kJGG__racingBackground {
+  background: #050505 !important;
+}
+
+.page-module__E0kJGG__mainContent {
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+.page-module__E0kJGG__glassCard {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  width: 100%;
+  max-width: 28rem;
+  box-shadow: var(--card-shadow);
+  z-index: 20;
+  border-radius: 2rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  transition: background .4s, border-color .4s, box-shadow .4s;
+  animation: .8s cubic-bezier(.16, 1, .3, 1) page-module__E0kJGG__floatIn;
+  display: flex;
+  position: relative;
+}
+
+.page-module__E0kJGG__logo {
+  color: #fff;
+  font-family: var(--font-inter);
+  letter-spacing: .2rem;
+  opacity: .5;
+  text-transform: uppercase;
+  font-size: 1rem;
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes page-module__E0kJGG__floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px)scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)scale(1);
+  }
+}
+
+@keyframes page-module__E0kJGG__ghostFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.page-module__E0kJGG__ghostSilver {
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px #fff3);
+  animation: 6s ease-in-out infinite page-module__E0kJGG__ghostFloat;
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+}
+
+.page-module__E0kJGG__ghostCyan {
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 0 30px #00e5ffcc);
+  animation: 5s ease-in-out infinite page-module__E0kJGG__ghostFloat;
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+}
+
+.page-module__E0kJGG__levelBadgeContainer {
+  z-index: 30;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.page-module__E0kJGG__bottomButtons {
+  gap: .75rem;
+  width: 100%;
+  margin-top: .5rem;
+  display: flex;
+}
+
+.page-module__E0kJGG__garageButton {
+  color: #ffffff8c;
+  letter-spacing: .12em;
+  cursor: pointer;
+  background: #ffffff0a;
+  border: 1px solid #ffffff14;
+  border-radius: 999px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: .4rem;
+  padding: .65rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .25s;
+  display: flex;
+}
+
+.page-module__E0kJGG__garageButton:hover {
+  color: #00e5ff;
+  background: #00e5ff14;
+  border-color: #00e5ff4d;
+}
+
+.page-module__E0kJGG__garageIcon {
+  font-size: 1rem;
+}
+
+/*# sourceMappingURL=app_75c10e84._.css.map*/

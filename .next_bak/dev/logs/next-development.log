@@ -1,0 +1,56 @@
+[00:00:02.483] Server  WARN    ⚠ Turbopack's filesystem cache has been deleted because we previously detected an internal error in Turbopack. Builds or page loads may be slower as a result.
+[00:00:02.823] Server  LOG     ✓ Ready in 2.5s
+[00:00:45.345] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:34.259] Server  LOG     ✓ Compiled in 257ms
+[00:02:16.003] Server  LOG     ✓ Compiled in 113ms
+[00:03:21.624] Server  LOG     ✓ Compiled in 132ms
+[00:03:37.215] Server  LOG     ✓ Compiled in 30ms
+[00:03:53.586] Server  LOG     ✓ Compiled in 27ms
+[00:04:06.679] Server  LOG     ✓ Compiled in 15ms
+[00:04:27.303] Server  LOG     ✓ Compiled in 37ms
+[00:04:38.835] Server  LOG     ✓ Compiled in 21ms
+[00:05:33.085] Server  LOG     ✓ Compiled in 34ms
+[00:06:36.060] Server  LOG     ✓ Compiled in 23ms
+[00:07:18.725] Server  LOG     ✓ Compiled in 39ms
+[00:07:42.888] Server  LOG     ✓ Compiled in 23ms
+[00:07:57.087] Server  LOG     ✓ Compiled in 31ms
+[00:10:06.116] Server  LOG     ✓ Compiled in 15ms
+[00:13:51.953] Server  LOG     ✓ Compiled in 161ms
+[00:13:52.063] Browser ERROR   ./Desktop/MindFlowApp/app/page.tsx:145:14
+Parsing ecmascript source code failed
+  143 |             {mode !== 'RACE' && <Background3D blur={true} />}
+  144 |             {mode === 'HOME' && !isRacing && (
+> 145 |             )}
+      |              ^
+  146 |
+  147 |             <main className={styles.mainContent}>
+  148 |                 <AnimatePresence>
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/MindFlowApp/app/page.tsx [Client Component Browser]
+    ./Desktop/MindFlowApp/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/MindFlowApp/app/page.tsx [Client Component SSR]
+    ./Desktop/MindFlowApp/app/page.tsx [Server Component]
+[00:14:39.222] Server  LOG     ✓ Compiled in 24ms
+[00:15:45.469] Server  LOG     ✓ Compiled in 272ms
+[00:16:29.355] Server  LOG     ✓ Compiled in 11ms
+[00:17:22.067] Server  LOG     ✓ Compiled in 29ms
+[00:17:41.936] Server  LOG     ✓ Compiled in 12ms
+[00:20:37.740] Server  LOG     ✓ Compiled in 88ms
+[00:21:26.919] Server  LOG     ✓ Compiled in 125ms
+[00:21:39.683] Server  LOG     ✓ Compiled in 12ms
+[00:23:58.413] Server  LOG     ✓ Compiled in 8ms
+[00:24:11.291] Server  LOG     ✓ Compiled in 4ms
+[00:24:31.857] Server  LOG     ✓ Compiled in 8ms
+[00:25:56.881] Server  LOG     ✓ Compiled in 18ms
+[00:26:06.525] Server  LOG     ✓ Compiled in 5ms
+[00:26:42.924] Server  LOG     ✓ Compiled in 5ms
+[00:26:56.606] Server  LOG     ✓ Compiled in 11ms
+[01:32:19.952] Server  LOG     ✓ Compiled in 16ms
+[01:32:50.461] Server  LOG     ✓ Compiled in 9ms
+[01:33:21.554] Server  LOG     ✓ Compiled in 17ms

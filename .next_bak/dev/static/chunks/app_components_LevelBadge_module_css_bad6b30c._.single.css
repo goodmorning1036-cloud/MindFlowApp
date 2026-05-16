@@ -1,0 +1,121 @@
+/* [project]/app/components/LevelBadge.module.css [app-client] (css) */
+.LevelBadge-module__4NNTRq__badge {
+  -webkit-backdrop-filter: blur(20px);
+  -webkit-user-select: none;
+  user-select: none;
+  background: #ffffff0a;
+  border: 1px solid #ffffff14;
+  border-radius: 3rem;
+  align-items: center;
+  gap: .75rem;
+  padding: .6rem 1rem .6rem .6rem;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__clickable {
+  cursor: pointer;
+}
+
+.LevelBadge-module__4NNTRq__clickable:hover {
+  background: #00e5ff14;
+  border-color: #00e5ff4d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px #00e5ff1a;
+}
+
+.LevelBadge-module__4NNTRq__clickable:active {
+  transform: translateY(0);
+}
+
+.LevelBadge-module__4NNTRq__levelCircle {
+  background: var(--accent-cyan-bg);
+  border: 1.5px solid var(--accent-cyan);
+  width: 2.4rem;
+  height: 2.4rem;
+  box-shadow: 0 0 12px var(--accent-cyan-bg), inset 0 0 8px var(--accent-cyan-bg);
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__levelNumber {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 8px var(--accent-cyan-bg);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.LevelBadge-module__4NNTRq__details {
+  flex-direction: column;
+  gap: .25rem;
+  min-width: 0;
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__titleRow {
+  align-items: center;
+  gap: .35rem;
+  display: flex;
+}
+
+.LevelBadge-module__4NNTRq__levelLabel {
+  letter-spacing: .15em;
+  color: var(--text-muted);
+  font-size: .6rem;
+  font-weight: 700;
+}
+
+.LevelBadge-module__4NNTRq__dot {
+  color: var(--text-muted);
+  font-size: .6rem;
+}
+
+.LevelBadge-module__4NNTRq__levelTitle {
+  letter-spacing: .12em;
+  color: var(--accent-cyan);
+  font-size: .6rem;
+  font-weight: 800;
+}
+
+.LevelBadge-module__4NNTRq__progressBar {
+  background: #ffffff0f;
+  border-radius: 2px;
+  width: 100%;
+  min-width: 80px;
+  height: 3px;
+  overflow: hidden;
+}
+
+.LevelBadge-module__4NNTRq__progressFill {
+  background: linear-gradient(90deg, var(--accent-cyan), #5c7cfa);
+  height: 100%;
+  box-shadow: 0 0 8px var(--accent-cyan-bg);
+  border-radius: 2px;
+  position: relative;
+}
+
+.LevelBadge-module__4NNTRq__progressFill:after {
+  content: "";
+  width: 4px;
+  box-shadow: 0 0 6px var(--accent-cyan);
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  right: 0;
+}
+
+.LevelBadge-module__4NNTRq__xpText {
+  letter-spacing: .1em;
+  color: var(--text-muted);
+  font-size: .5rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+/*# sourceMappingURL=app_components_LevelBadge_module_css_bad6b30c._.single.css.map*/

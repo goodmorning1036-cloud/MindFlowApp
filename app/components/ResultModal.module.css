@@ -1,0 +1,393 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(11, 14, 20, 0.6) 0%, rgba(5, 5, 5, 0.95) 100%);
+    backdrop-filter: blur(12px);
+    animation: fadeInOverlay 0.8s ease-out;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(11, 14, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh; /* Force it to stay on screen */
+    overflow: hidden;
+}
+
+.modalBody {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Slim scrollbar */
+.modalBody::-webkit-scrollbar {
+    width: 6px;
+}
+.modalBody::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.modalFooter {
+    padding: 1.5rem 2.5rem;
+    background: rgba(15, 20, 28, 0.98);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hud-accent), transparent);
+}
+
+.modalWin {
+    border-color: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.1), inset 0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+.iconContainer {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.iconCircle {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.winIcon {
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.15), transparent);
+    color: #FFD700;
+    border-color: rgba(255, 215, 0, 0.4);
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.loseIcon {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-secondary);
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.statCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.statCard:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.statLabel {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+
+.continueBtn {
+    width: 100%;
+    padding: 1.25rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #5C7CFA 0%, #00E5FF 100%);
+    color: white !important;
+    font-size: 0.95rem;
+    font-weight: 500; /* Matching everything else */
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    box-shadow: 0 15px 35px rgba(0, 229, 255, 0.25);
+    position: relative;
+    z-index: 10;
+}
+
+.continueBtn:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(0, 229, 255, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Level Section */
+.levelSection {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.levelUpLabel {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #CCFF00;
+    text-shadow: 0 0 20px rgba(204, 255, 0, 0.5), 0 0 40px rgba(204, 255, 0, 0.2);
+    margin-bottom: 0.75rem;
+}
+
+.levelRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.levelTag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.levelTitle {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #00E5FF;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.levelProgressBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.levelProgressFill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #00E5FF, #5C7CFA);
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.levelXpText {
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--font-mono);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.cargoSection {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(0, 229, 255, 0.03);
+    border: 1px dashed rgba(0, 229, 255, 0.3);
+    border-radius: 20px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.cargoHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.cargoIcon {
+    font-size: 1.2rem;
+}
+
+.cargoTitle {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #00E5FF;
+    letter-spacing: 0.15em;
+}
+
+.cargoLabel {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.ratingSection {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ratingLabel {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.starsRow {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.starBtn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.starBtn:hover {
+    transform: scale(1.2);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.starActive {
+    color: #FFD700 !important;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+}
+
+.ratingHint {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #FFD700;
+    opacity: 0.8;
+}
+
+.evidenceSection {
+    margin: 1.5rem 0;
+    width: 100%;
+}
+
+.uploadBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.1rem;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+}
+
+.uploadBtn:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #00E5FF !important;
+    color: #00E5FF !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.verifiedBadge {
+    padding: 1.1rem;
+    background: rgba(0, 255, 135, 0.1);
+    border: 1px solid rgba(0, 255, 135, 0.3);
+    color: #00FF87;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.05em;
+    animation: fadeIn 0.5s ease-out;
+}

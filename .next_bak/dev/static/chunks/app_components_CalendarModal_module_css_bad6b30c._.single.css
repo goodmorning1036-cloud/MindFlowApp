@@ -1,0 +1,830 @@
+/* [project]/app/components/CalendarModal.module.css [app-client] (css) */
+.CalendarModal-module__jOrN-q__overlay {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  background: #000c;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.CalendarModal-module__jOrN-q__modal {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff14 transparent;
+  background: #0a0e16f2;
+  border: 1px solid #00e5ff26;
+  border-radius: 24px;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  padding: 2rem;
+  display: flex;
+  overflow-y: auto;
+  box-shadow: 0 0 60px #00e5ff14;
+}
+
+.CalendarModal-module__jOrN-q__header {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__headerActions {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__addEntryBtn {
+  color: #00e5ff;
+  letter-spacing: .08em;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #00e5ff1a;
+  border: 1px solid #00e5ff4d;
+  border-radius: 999px;
+  padding: .4rem .9rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__addEntryBtn:hover {
+  background: #00e5ff33;
+}
+
+.CalendarModal-module__jOrN-q__addForm {
+  background: #00e5ff0a;
+  border: 1px solid #00e5ff26;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__formRow {
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__formField {
+  flex-direction: column;
+  flex: 1;
+  gap: .3rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__formLabel {
+  color: #ffffff59;
+  letter-spacing: .1em;
+  font-size: .6rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__formInput {
+  color: #fff;
+  --lightningcss-light: ;
+  --lightningcss-dark: initial;
+  color-scheme: dark;
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  padding: .45rem .65rem;
+  font-family: inherit;
+  font-size: .78rem;
+  transition: border-color .2s;
+}
+
+.CalendarModal-module__jOrN-q__formInput:focus {
+  border-color: #00e5ff66;
+}
+
+.CalendarModal-module__jOrN-q__formInput::placeholder {
+  color: #fff3;
+}
+
+.CalendarModal-module__jOrN-q__submitBtn {
+  color: #00e5ff;
+  letter-spacing: .08em;
+  cursor: pointer;
+  background: #00e5ff26;
+  border: 1px solid #00e5ff66;
+  border-radius: 8px;
+  align-self: flex-end;
+  padding: .55rem 1.25rem;
+  font-size: .72rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__submitBtn:hover {
+  background: #00e5ff40;
+}
+
+.CalendarModal-module__jOrN-q__headerTabs {
+  align-items: center;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__headerTab {
+  color: #fff6;
+  letter-spacing: .15em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #0000;
+  padding: .5rem .2rem;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__headerTab:hover {
+  color: #fffc;
+}
+
+.CalendarModal-module__jOrN-q__headerTabActive {
+  color: #00e5ff;
+  border-bottom: 2px solid #00e5ff;
+}
+
+.CalendarModal-module__jOrN-q__closeBtn {
+  color: #fff6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: color .2s;
+}
+
+.CalendarModal-module__jOrN-q__closeBtn:hover {
+  color: #fff;
+}
+
+.CalendarModal-module__jOrN-q__viewToggle {
+  background: #ffffff0a;
+  border-radius: 10px;
+  gap: .25rem;
+  padding: .25rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__toggleBtn {
+  color: #fff6;
+  letter-spacing: .1em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  flex: 1;
+  padding: .5rem;
+  font-size: .7rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__toggleActive {
+  color: #00e5ff;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff40;
+}
+
+.CalendarModal-module__jOrN-q__nav {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__navBtn {
+  color: #fff9;
+  cursor: pointer;
+  background: #ffffff0d;
+  border: 1px solid #ffffff14;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: .8rem;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__navBtn:hover {
+  color: #00e5ff;
+  background: #00e5ff1a;
+  border-color: #00e5ff4d;
+}
+
+.CalendarModal-module__jOrN-q__navLabel {
+  color: #fff;
+  letter-spacing: .05em;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__monthGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  display: grid;
+}
+
+.CalendarModal-module__jOrN-q__dayName {
+  color: #ffffff4d;
+  text-align: center;
+  letter-spacing: .08em;
+  padding-bottom: .4rem;
+  font-size: .6rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__emptyCell {
+  aspect-ratio: 1;
+}
+
+.CalendarModal-module__jOrN-q__dayCell {
+  aspect-ratio: 1;
+  cursor: pointer;
+  background: #ffffff05;
+  border: 1px solid #0000;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+.CalendarModal-module__jOrN-q__dayCell:hover {
+  background: #ffffff0f;
+  border-color: #ffffff1a;
+}
+
+.CalendarModal-module__jOrN-q__dayNum {
+  color: #fff9;
+  font-size: .7rem;
+  font-weight: 500;
+}
+
+.CalendarModal-module__jOrN-q__sessionDot {
+  background: #00e5ff;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: 2px;
+}
+
+.CalendarModal-module__jOrN-q__intensity0 {
+  background: #ffffff05;
+}
+
+.CalendarModal-module__jOrN-q__intensity1 {
+  background: #00e5ff14;
+  border-color: #00e5ff26 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity2 {
+  background: #00e5ff29;
+  border-color: #00e5ff40 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity3 {
+  background: #00e5ff47;
+  border-color: #00e5ff66 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity4 {
+  background: #00e5ff6b;
+  box-shadow: 0 0 10px #00e5ff33;
+  border-color: #00e5ff99 !important;
+}
+
+.CalendarModal-module__jOrN-q__intensity1 .CalendarModal-module__jOrN-q__dayNum, .CalendarModal-module__jOrN-q__intensity2 .CalendarModal-module__jOrN-q__dayNum, .CalendarModal-module__jOrN-q__intensity3 .CalendarModal-module__jOrN-q__dayNum, .CalendarModal-module__jOrN-q__intensity4 .CalendarModal-module__jOrN-q__dayNum {
+  color: #fff;
+}
+
+.CalendarModal-module__jOrN-q__today {
+  box-shadow: 0 0 0 2px #00e5ff33;
+  border-color: #00e5ff99 !important;
+}
+
+.CalendarModal-module__jOrN-q__today .CalendarModal-module__jOrN-q__dayNum {
+  color: #00e5ff;
+  font-weight: 800;
+}
+
+.CalendarModal-module__jOrN-q__selectedDay {
+  outline-offset: 2px;
+  outline: 2px solid #00e5ffcc;
+}
+
+.CalendarModal-module__jOrN-q__weekGrid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  min-height: 200px;
+  display: grid;
+}
+
+.CalendarModal-module__jOrN-q__weekDay {
+  cursor: pointer;
+  border: 1px solid #ffffff0f;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .4rem;
+  min-height: 160px;
+  padding: .75rem .5rem;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.CalendarModal-module__jOrN-q__weekDayHeader {
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__weekDayName {
+  color: #ffffff59;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__weekDayNum {
+  color: #ffffffb3;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__todayNum {
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff80;
+}
+
+.CalendarModal-module__jOrN-q__weekStats {
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  margin-top: auto;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__weekSessions {
+  color: #ffffff80;
+  font-size: .55rem;
+}
+
+.CalendarModal-module__jOrN-q__weekTime {
+  color: #00e5ff;
+  font-size: .7rem;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+}
+
+.CalendarModal-module__jOrN-q__noSession {
+  color: #ffffff26;
+  text-align: center;
+  margin-top: auto;
+  font-size: .55rem;
+}
+
+.CalendarModal-module__jOrN-q__weekBar {
+  align-items: flex-end;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.CalendarModal-module__jOrN-q__weekBarFill {
+  background: linear-gradient(to top, #00e5ff40, #0000);
+  border-radius: 0 0 11px 11px;
+  width: 100%;
+  min-height: 2px;
+  transition: height .6s;
+}
+
+.CalendarModal-module__jOrN-q__detailPanel {
+  background: #ffffff08;
+  border: 1px solid #00e5ff26;
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+}
+
+.CalendarModal-module__jOrN-q__detailHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__detailDate {
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.CalendarModal-module__jOrN-q__detailTotal {
+  color: #00e5ff;
+  font-size: .7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__noData {
+  color: #ffffff40;
+  text-align: center;
+  margin: 0;
+  padding: .5rem 0;
+  font-size: .7rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionList {
+  flex-direction: column;
+  gap: .4rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__sessionItem {
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__manualEntry {
+  background: #00e5ff08;
+  border-color: #00e5ff1f;
+}
+
+.CalendarModal-module__jOrN-q__sectionLabel {
+  letter-spacing: .12em;
+  color: #ffffff59;
+  margin-top: .25rem;
+  padding: .3rem 0;
+  font-size: .58rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__goalEntry {
+  background: #ffc80008;
+  border-color: #ffc80026;
+}
+
+.CalendarModal-module__jOrN-q__goalDuration {
+  color: #ffc850e6;
+  font-size: .7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__weekGoalHint {
+  color: #ffc85099;
+  text-align: center;
+  margin-top: auto;
+  font-size: .55rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionLeft {
+  flex: 1;
+  align-items: flex-start;
+  gap: .5rem;
+  min-width: 0;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__sessionRight {
+  flex-shrink: 0;
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__manualBadge {
+  color: #00e5ff;
+  letter-spacing: .05em;
+  white-space: nowrap;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff40;
+  border-radius: 4px;
+  margin-top: 2px;
+  padding: .15rem .4rem;
+  font-size: .5rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionTask {
+  color: #fffc;
+  font-size: .75rem;
+}
+
+.CalendarModal-module__jOrN-q__sessionNote {
+  color: #ffffff4d;
+  margin-top: .1rem;
+  font-size: .62rem;
+  font-style: italic;
+}
+
+.CalendarModal-module__jOrN-q__sessionDuration {
+  color: #00e5ff;
+  font-size: .7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__deleteBtn {
+  color: #ff505080;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #ff505040;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  font-size: .75rem;
+  line-height: 1;
+  transition: all .2s;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__deleteBtn:hover {
+  color: #ff5050;
+  background: #ff505026;
+  border-color: #ff505099;
+}
+
+.CalendarModal-module__jOrN-q__detailHeaderRight {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__addDayBtn {
+  color: #00e5ff;
+  cursor: pointer;
+  letter-spacing: .05em;
+  background: #00e5ff14;
+  border: 1px solid #00e5ff33;
+  border-radius: 999px;
+  padding: .25rem .65rem;
+  font-size: .6rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__addDayBtn:hover {
+  background: #00e5ff2e;
+}
+
+.CalendarModal-module__jOrN-q__legend {
+  align-items: center;
+  gap: .4rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__legendLabel {
+  color: #ffffff4d;
+  letter-spacing: .05em;
+  font-size: .6rem;
+}
+
+.CalendarModal-module__jOrN-q__legendDot {
+  border: 1px solid #0000;
+  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.CalendarModal-module__jOrN-q__examDot {
+  background: #af52de;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  box-shadow: 0 0 6px #af52decc;
+}
+
+.CalendarModal-module__jOrN-q__examBadge {
+  color: #e58eff;
+  text-align: center;
+  background: #af52de26;
+  border: 1px solid #af52de66;
+  border-radius: 4px;
+  margin-bottom: .25rem;
+  padding: .15rem .3rem;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__examList {
+  flex-direction: column;
+  gap: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__examCard {
+  background: #af52de0d;
+  border: 1px solid #af52de33;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .75rem;
+  display: flex;
+  box-shadow: 0 2px 10px #0003;
+}
+
+.CalendarModal-module__jOrN-q__examHeader {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__examCheckboxContainer {
+  cursor: pointer;
+  align-items: center;
+  gap: .6rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__examCheckboxRow {
+  accent-color: #af52de;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.CalendarModal-module__jOrN-q__examTitle {
+  color: #f2aaff;
+  transition: all .2sease;
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.CalendarModal-module__jOrN-q__examCompleted {
+  opacity: .5;
+  color: #fff6;
+  text-decoration: line-through;
+}
+
+.CalendarModal-module__jOrN-q__deleteExamBtn {
+  color: #ff505080;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #ff505026;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: .9rem;
+  line-height: 1;
+  transition: all .2s;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__deleteExamBtn:hover {
+  color: #ff5050;
+  background: #ff50501a;
+  border-color: #ff505080;
+}
+
+.CalendarModal-module__jOrN-q__deleteSubtaskBtn {
+  color: #ffffff26;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: .9rem;
+  transition: color .2s;
+}
+
+.CalendarModal-module__jOrN-q__deleteSubtaskBtn:hover {
+  color: #ff5050;
+}
+
+.CalendarModal-module__jOrN-q__subtaskList {
+  flex-direction: column;
+  gap: .4rem;
+  margin-top: .2rem;
+  padding-left: 1.8rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__subtaskItem {
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 6px;
+  justify-content: space-between;
+  align-items: center;
+  padding: .35rem .5rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__subtaskCheckboxContainer {
+  cursor: pointer;
+  color: #ffffffd9;
+  align-items: center;
+  gap: .5rem;
+  font-size: .72rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__subtaskCompleted {
+  opacity: .4;
+  text-decoration: line-through;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskRow {
+  margin-top: .3rem;
+  padding-left: 1.8rem;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskInput {
+  color: #fff;
+  background: none;
+  border: 1px dashed #ffffff26;
+  border-radius: 6px;
+  outline: none;
+  width: 100%;
+  padding: .4rem .6rem;
+  font-family: inherit;
+  font-size: .7rem;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskInput:focus {
+  background: #0003;
+  border: 1px solid #af52de66;
+}
+
+.CalendarModal-module__jOrN-q__addSubtaskInput::placeholder {
+  color: #ffffff40;
+}
+
+.CalendarModal-module__jOrN-q__addExamRow {
+  gap: .5rem;
+  margin-top: .75rem;
+  display: flex;
+}
+
+.CalendarModal-module__jOrN-q__addExamInput {
+  color: #fff;
+  background: #0000004d;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  outline: none;
+  flex: 1;
+  padding: .55rem .8rem;
+  font-family: inherit;
+  font-size: .75rem;
+  transition: border-color .2s;
+}
+
+.CalendarModal-module__jOrN-q__addExamInput:focus {
+  border-color: #af52de80;
+}
+
+.CalendarModal-module__jOrN-q__addExamInput::placeholder {
+  color: #ffffff4d;
+}
+
+.CalendarModal-module__jOrN-q__saveExamBtn {
+  color: #e58eff;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #af52de33;
+  border: 1px solid #af52de66;
+  border-radius: 8px;
+  padding: 0 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.CalendarModal-module__jOrN-q__saveExamBtn:hover {
+  background: #af52de66;
+}
+
+/*# sourceMappingURL=app_components_CalendarModal_module_css_bad6b30c._.single.css.map*/

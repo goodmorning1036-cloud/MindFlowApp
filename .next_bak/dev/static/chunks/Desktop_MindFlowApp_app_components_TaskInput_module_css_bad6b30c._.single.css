@@ -1,0 +1,443 @@
+/* [project]/Desktop/MindFlowApp/app/components/TaskInput.module.css [app-client] (css) */
+.TaskInput-module__MpLd2a__container {
+  z-index: 10;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.TaskInput-module__MpLd2a__form {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__inputGroup {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__input {
+  border: none;
+  border-bottom: 2px solid var(--input-border);
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  color: var(--input-text);
+  background: none;
+  padding: 1rem 0;
+  font-weight: 200;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+}
+
+.TaskInput-module__MpLd2a__input:focus {
+  border-bottom-color: #00e5ff80;
+  outline: none;
+  box-shadow: 0 15px 30px -15px #00e5ff33;
+}
+
+.TaskInput-module__MpLd2a__input::placeholder {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .9rem;
+}
+
+.TaskInput-module__MpLd2a__modeSelector {
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 99px;
+  margin-top: 1rem;
+  padding: .25rem;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__modeBtn {
+  color: #fff6;
+  cursor: pointer;
+  letter-spacing: .1em;
+  background: none;
+  border: none;
+  border-radius: 99px;
+  padding: .4rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+}
+
+.TaskInput-module__MpLd2a__modeActive {
+  color: #00e5ff;
+  background: #00e5ff1a;
+  box-shadow: 0 0 15px #00e5ff33;
+}
+
+.TaskInput-module__MpLd2a__optionsRow {
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__timeInputWrapper {
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__timeLabel {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  opacity: .6;
+  font-size: .9rem;
+}
+
+.TaskInput-module__MpLd2a__timeInput {
+  color: var(--accent-cyan);
+  text-align: center;
+  width: 120px;
+  font-family: var(--font-mono);
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  border-radius: 12px;
+  padding: .6rem 1rem;
+  font-size: 1.2rem;
+}
+
+.TaskInput-module__MpLd2a__strategyContainer {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: #ffffff08;
+  border: 1px solid #ffffff14;
+  border-radius: 1.25rem;
+  width: 100%;
+  max-width: 450px;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 8px 32px #0003;
+}
+
+.TaskInput-module__MpLd2a__strategyHeader {
+  color: #fff6;
+  letter-spacing: .2em;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  font-size: .65rem;
+  font-weight: 800;
+}
+
+.TaskInput-module__MpLd2a__strategyGrid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+}
+
+.TaskInput-module__MpLd2a__strategyItem {
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__strategyItem label {
+  color: #ffffff4d;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.TaskInput-module__MpLd2a__strategyInput {
+  color: #00e5ff;
+  text-align: center;
+  width: 100%;
+  font-family: var(--font-mono);
+  background: #ffffff0d;
+  border: 1px solid #00e5ff33;
+  border-radius: 12px;
+  outline: none;
+  padding: .6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all .2s;
+}
+
+.TaskInput-module__MpLd2a__strategyInput:focus {
+  background: #00e5ff1a;
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px #00e5ff4d;
+}
+
+.TaskInput-module__MpLd2a__strategyHint {
+  color: #fff3;
+  text-align: center;
+  margin-top: .5rem;
+  font-size: .6rem;
+  font-style: italic;
+}
+
+.TaskInput-module__MpLd2a__submitBtn {
+  color: #22d3ee;
+  width: 80px;
+  height: 80px;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #22d3ee66;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+  box-shadow: 0 0 20px #00e5ff26;
+}
+
+.TaskInput-module__MpLd2a__submitBtn:hover:not(:disabled) {
+  background: #22d3ee1a;
+  border-color: #22d3ee;
+  box-shadow: 0 0 40px #00e5ff66;
+}
+
+.TaskInput-module__MpLd2a__submitBtn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+  color: #ffffff4d;
+  border-color: #ffffff1a;
+}
+
+.TaskInput-module__MpLd2a__recentSection {
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  margin-top: 2rem;
+  animation: 1s ease-out .5s both TaskInput-module__MpLd2a__fadeIn;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__subtaskRow {
+  align-items: center;
+  gap: .4rem;
+  width: 100%;
+  margin-top: -.25rem;
+  margin-bottom: .25rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.TaskInput-module__MpLd2a__subtaskArrow {
+  color: #00e5ff59;
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.TaskInput-module__MpLd2a__subtaskInput {
+  font-size: .75rem;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  color: #ffffff73;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #ffffff1a;
+  flex: 1;
+  padding: .3rem 0;
+  font-weight: 300;
+  transition: border-color .3s;
+}
+
+.TaskInput-module__MpLd2a__subtaskInput:focus {
+  color: #ffffffb3;
+  border-bottom-color: #00e5ff59;
+  outline: none;
+}
+
+.TaskInput-module__MpLd2a__subtaskInput::placeholder {
+  color: #ffffff2e;
+  letter-spacing: .08em;
+  font-size: .7rem;
+}
+
+.TaskInput-module__MpLd2a__recentTitle {
+  letter-spacing: .3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: .7rem;
+}
+
+.TaskInput-module__MpLd2a__taskList {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  max-width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__taskChip {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 999px;
+  align-items: center;
+  gap: .8rem;
+  padding: .6rem .5rem .6rem 1rem;
+  font-size: .85rem;
+  font-weight: 400;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__taskTime {
+  color: var(--accent-cyan);
+  opacity: .8;
+  background: var(--accent-cyan-bg);
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  padding: .1rem .5rem;
+}
+
+.TaskInput-module__MpLd2a__taskChip:hover {
+  color: #00e5ff;
+  background: #22d3ee14;
+  border-color: #22d3ee66;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #0003;
+}
+
+.TaskInput-module__MpLd2a__deleteTaskBtn {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: .75rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.TaskInput-module__MpLd2a__deleteTaskBtn:hover {
+  color: #ff3b30;
+  background: #ff3b3033;
+}
+
+@keyframes TaskInput-module__MpLd2a__fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__input {
+  color: #000;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__input:focus {
+  border-bottom-color: #ef4444;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__input::placeholder {
+  color: #e2e8f0;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__modeSelector {
+  background: none;
+  border: none;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__modeBtn {
+  color: #cbd5e1;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__modeActive {
+  color: #ef4444;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__timeInput {
+  color: #000;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__submitBtn {
+  color: #0000;
+  background: #ef4444;
+  border: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 3rem;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 0 15px #ef44444d;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__submitBtn:hover:not(:disabled) {
+  background: #dc2626;
+  transform: scale(1.5);
+  box-shadow: 0 0 25px #ef444499;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__submitBtn span {
+  display: none;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__taskChip {
+  color: #94a3b8;
+  background: none;
+  border: 1px solid #f1f5f9;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__taskChip:hover {
+  color: #000;
+  border-color: #ef4444;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__taskTime {
+  color: #cbd5e1;
+  background: none;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__strategyContainer {
+  box-shadow: none;
+  background: none;
+  border: none;
+}
+
+[data-theme="light"] .TaskInput-module__MpLd2a__strategyInput {
+  color: #000;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/*# sourceMappingURL=Desktop_MindFlowApp_app_components_TaskInput_module_css_bad6b30c._.single.css.map*/

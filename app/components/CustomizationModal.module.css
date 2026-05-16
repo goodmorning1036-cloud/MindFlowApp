@@ -1,0 +1,386 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(11, 14, 20, 0.7) 0%, rgba(5, 5, 5, 0.98) 100%);
+    backdrop-filter: blur(32px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.container {
+    background: rgba(11, 14, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    width: 100%;
+    max-width: 650px;
+    padding: 2.5rem;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.fuelCount {
+    display: flex;
+    flex-direction: column;
+}
+
+.fuelLabel {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.2em;
+    font-weight: 700;
+}
+
+.fuelValue {
+    font-size: 1.25rem;
+    color: #00E5FF;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+.closeButton {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-4px);
+}
+
+.card.active {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.6);
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+}
+
+.card.locked {
+    opacity: 0.6;
+}
+
+.preview {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.itemName {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+.cost {
+    font-size: 0.7rem;
+    color: #CCFF00;
+    font-weight: 800;
+}
+
+.statusLabel {
+    font-size: 0.55rem;
+    color: #00E5FF;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.levelLabel {
+    font-size: 0.6rem;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 0.3rem;
+}
+
+.tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.tab:hover {
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tabActive {
+    background: rgba(0, 229, 255, 0.12);
+    color: #00E5FF;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+/* Track Cards */
+.trackGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.trackCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trackCard:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.trackCard.active {
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.12);
+}
+
+.trackCard.locked {
+    opacity: 0.55;
+}
+
+.trackPreview {
+    height: 80px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    padding-bottom: 8px;
+}
+
+.trackRoadPreview {
+    width: 40px;
+    height: 60px;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trackLinePreview {
+    width: 2px;
+    height: 100%;
+}
+
+.trackEmoji {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 1.15rem;
+}
+
+.trackInfo {
+    padding: 0.75rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.trackDesc {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-style: italic;
+}
+
+/* Safe List */
+.safeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.safeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.safeTitleGroup {
+    flex: 1;
+}
+
+.safeTitle {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #00FF87;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+}
+
+.safeDesc {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+}
+
+.safeDesc strong {
+    color: #00FF87;
+}
+
+.graceControl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 150px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.75rem;
+    border-radius: 12px;
+}
+
+.graceLabel {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.rangeInput {
+    accent-color: #00FF87;
+}
+
+.safeInputGroup {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.safeInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 0.6rem 1.25rem;
+    color: white;
+}
+
+.safeAddBtn {
+    padding: 0 1.5rem;
+    background: #00FF87;
+    color: #020a04;
+    border: none;
+    border-radius: 999px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.safeList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    min-height: 60px;
+}
+
+.safeItem {
+    background: rgba(0, 255, 135, 0.1);
+    border: 1px solid rgba(0, 255, 135, 0.3);
+    border-radius: 999px;
+    padding: 0.4rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00FF87;
+    font-size: 0.8rem;
+}
+
+.safeRemoveBtn {
+    background: transparent;
+    border: none;
+    color: rgba(0, 255, 135, 0.5);
+    cursor: pointer;
+}
+
+.safeEmpty {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.8rem;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+}

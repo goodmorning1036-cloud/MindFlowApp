@@ -1,0 +1,379 @@
+/* [project]/app/components/CustomizationModal.module.css [app-client] (css) */
+.CustomizationModal-module__FLmmuG__overlay {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  background: #000c;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.CustomizationModal-module__FLmmuG__container {
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  border-radius: 2rem;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.CustomizationModal-module__FLmmuG__header {
+  border-bottom: 1px solid #ffffff1a;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__title {
+  letter-spacing: .1em;
+  color: #fff;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__fuelCount {
+  flex-direction: column;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__fuelLabel {
+  color: #fff6;
+  letter-spacing: .2em;
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__fuelValue {
+  color: #00e5ff;
+  text-shadow: 0 0 15px #00e5ff66;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__closeButton {
+  color: #ffffff80;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.CustomizationModal-module__FLmmuG__section {
+  margin-bottom: 2.5rem;
+}
+
+.CustomizationModal-module__FLmmuG__sectionTitle {
+  color: #ffffff80;
+  letter-spacing: .2em;
+  margin-bottom: 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  display: grid;
+}
+
+.CustomizationModal-module__FLmmuG__card {
+  cursor: pointer;
+  background: #ffffff08;
+  border: 1px solid #ffffff0d;
+  border-radius: 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__card:hover {
+  background: #ffffff14;
+  transform: translateY(-4px);
+}
+
+.CustomizationModal-module__FLmmuG__card.CustomizationModal-module__FLmmuG__active {
+  background: #00e5ff1a;
+  border-color: #00e5ff66;
+  box-shadow: 0 0 20px #00e5ff1a;
+}
+
+.CustomizationModal-module__FLmmuG__card.CustomizationModal-module__FLmmuG__locked {
+  opacity: .6;
+}
+
+.CustomizationModal-module__FLmmuG__preview {
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__info {
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__itemName {
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__cost {
+  color: #cf0;
+  font-size: .7rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__statusLabel {
+  color: #00e5ff;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.CustomizationModal-module__FLmmuG__levelLabel {
+  font-size: .6rem;
+}
+
+.CustomizationModal-module__FLmmuG__tabs {
+  background: #ffffff08;
+  border-radius: 12px;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  padding: .3rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__tab {
+  color: #ffffff73;
+  letter-spacing: .12em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 9px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: .35rem;
+  padding: .5rem .75rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .2s;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__tab:hover {
+  color: #ffffffbf;
+  background: #ffffff0d;
+}
+
+.CustomizationModal-module__FLmmuG__tabActive {
+  color: #00e5ff;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff4d;
+}
+
+.CustomizationModal-module__FLmmuG__trackGrid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  display: grid;
+}
+
+.CustomizationModal-module__FLmmuG__trackCard {
+  cursor: pointer;
+  background: #ffffff08;
+  border: 1px solid #ffffff12;
+  border-radius: 14px;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  overflow: hidden;
+}
+
+.CustomizationModal-module__FLmmuG__trackCard:hover {
+  background: #ffffff12;
+  transform: translateY(-4px);
+}
+
+.CustomizationModal-module__FLmmuG__trackCard.CustomizationModal-module__FLmmuG__active {
+  box-shadow: 0 0 24px #00e5ff1f;
+}
+
+.CustomizationModal-module__FLmmuG__trackCard.CustomizationModal-module__FLmmuG__locked {
+  opacity: .55;
+}
+
+.CustomizationModal-module__FLmmuG__trackPreview {
+  justify-content: center;
+  align-items: flex-end;
+  height: 80px;
+  padding-bottom: 8px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.CustomizationModal-module__FLmmuG__trackRoadPreview {
+  border-left: 2px solid;
+  border-right: 2px solid;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 60px;
+  display: flex;
+  position: relative;
+}
+
+.CustomizationModal-module__FLmmuG__trackLinePreview {
+  width: 2px;
+  height: 100%;
+}
+
+.CustomizationModal-module__FLmmuG__trackEmoji {
+  font-size: 1.15rem;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.CustomizationModal-module__FLmmuG__trackInfo {
+  flex-direction: column;
+  gap: .2rem;
+  padding: .75rem .9rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__trackDesc {
+  color: #ffffff59;
+  font-size: .6rem;
+  font-style: italic;
+}
+
+.CustomizationModal-module__FLmmuG__safeContainer {
+  flex-direction: column;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__safeHeader {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__safeTitleGroup {
+  flex: 1;
+}
+
+.CustomizationModal-module__FLmmuG__safeTitle {
+  color: #00ff87;
+  letter-spacing: .1em;
+  margin-bottom: .4rem;
+  font-size: .9rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__safeDesc {
+  color: #ffffff80;
+  font-size: .72rem;
+  line-height: 1.5;
+}
+
+.CustomizationModal-module__FLmmuG__safeDesc strong {
+  color: #00ff87;
+}
+
+.CustomizationModal-module__FLmmuG__graceControl {
+  background: #ffffff08;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: .5rem;
+  min-width: 150px;
+  padding: .75rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__graceLabel {
+  color: #fff6;
+  font-size: .6rem;
+}
+
+.CustomizationModal-module__FLmmuG__rangeInput {
+  accent-color: #00ff87;
+}
+
+.CustomizationModal-module__FLmmuG__safeInputGroup {
+  gap: .5rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__safeInput {
+  color: #fff;
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  border-radius: 999px;
+  flex: 1;
+  padding: .6rem 1.25rem;
+}
+
+.CustomizationModal-module__FLmmuG__safeAddBtn {
+  color: #020a04;
+  cursor: pointer;
+  background: #00ff87;
+  border: none;
+  border-radius: 999px;
+  padding: 0 1.5rem;
+  font-weight: 800;
+}
+
+.CustomizationModal-module__FLmmuG__safeList {
+  flex-wrap: wrap;
+  gap: .6rem;
+  min-height: 60px;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__safeItem {
+  color: #00ff87;
+  background: #00ff871a;
+  border: 1px solid #00ff874d;
+  border-radius: 999px;
+  align-items: center;
+  gap: .5rem;
+  padding: .4rem .8rem;
+  font-size: .8rem;
+  display: flex;
+}
+
+.CustomizationModal-module__FLmmuG__safeRemoveBtn {
+  color: #00ff8780;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.CustomizationModal-module__FLmmuG__safeEmpty {
+  color: #fff3;
+  text-align: center;
+  width: 100%;
+  font-size: .8rem;
+  font-style: italic;
+}
+
+/*# sourceMappingURL=app_components_CustomizationModal_module_css_bad6b30c._.single.css.map*/

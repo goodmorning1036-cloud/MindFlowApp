@@ -1,0 +1,57 @@
+/* [project]/app/components/ThemeToggle.module.css [app-client] (css) */
+.ThemeToggle-module__b1g1DG__toggleButton {
+  z-index: 100;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  overflow: hidden;
+}
+
+.ThemeToggle-module__b1g1DG__toggleButton:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 25px var(--accent-cyan-bg);
+  transform: scale(1.1);
+}
+
+.ThemeToggle-module__b1g1DG__toggleButton:active {
+  transform: scale(.95);
+}
+
+.ThemeToggle-module__b1g1DG__iconWrapper {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.ThemeToggle-module__b1g1DG__icon {
+  width: 24px;
+  height: 24px;
+  transition: all .5s cubic-bezier(.16, 1, .3, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ThemeToggle-module__b1g1DG__icon.ThemeToggle-module__b1g1DG__active {
+  opacity: 1;
+  transform: rotate(0)scale(1);
+}
+
+.ThemeToggle-module__b1g1DG__icon.ThemeToggle-module__b1g1DG__hidden {
+  opacity: 0;
+  transform: rotate(90deg)scale(.5);
+}
+
+/*# sourceMappingURL=app_components_ThemeToggle_module_css_bad6b30c._.single.css.map*/

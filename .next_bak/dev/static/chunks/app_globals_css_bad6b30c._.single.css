@@ -1,0 +1,87 @@
+/* [project]/app/globals.css [app-client] (css) */
+:root {
+  --color-midnight: #0b0e14;
+  --color-midnight-light: #1a1f29;
+  --color-neon-cyan: #00e5ff;
+  --color-electric-blue: #5c7cfa;
+  --color-lead-green: #00ff87;
+  --color-lag-red: #ff3131;
+  --color-gold: gold;
+  --color-text-primary: #fff;
+  --color-text-secondary: #94a3b8;
+  --bg-primary: #0b0e14;
+  --bg-secondary: #1a1f29;
+  --bg-gradient-start: #1a1f29;
+  --bg-gradient-end: #0b0e14;
+  --text-primary: #fff;
+  --text-secondary: #94a3b8;
+  --text-muted: #ffffff80;
+  --glass-bg: #ffffff0d;
+  --glass-border: #ffffff1a;
+  --glass-hover: #ffffff14;
+  --input-bg: #ffffff0d;
+  --input-border: #ffffff1a;
+  --input-text: #fff;
+  --accent-cyan: #00e5ff;
+  --accent-cyan-bg: #00e5ff1a;
+  --shadow-color: #00000080;
+  --card-shadow: 0 25px 50px -12px #00000080;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+:root[data-theme="light"] {
+  --color-midnight: #f8fafc;
+  --color-midnight-light: #e2e8f0;
+  --color-text-primary: #334155;
+  --color-text-secondary: #64748b;
+  --bg-primary: #f5f5f0;
+  --bg-secondary: #eeeee8;
+  --bg-gradient-start: #e8e8e2;
+  --bg-gradient-end: #f5f5f0;
+  --text-primary: #334155;
+  --text-secondary: #64748b;
+  --text-muted: #33415580;
+  --glass-bg: #fcfcf8b8;
+  --glass-border: #b4b4a538;
+  --glass-hover: #fcfcf8e6;
+  --input-bg: #ffffff80;
+  --input-border: #94a3b84d;
+  --input-text: #1e293b;
+  --accent-cyan: #059669;
+  --accent-cyan-bg: #0596691a;
+  --color-neon-cyan: var(--accent-cyan);
+  --shadow-color: #0f172a0d;
+  --card-shadow: 0 20px 40px -12px #0f172a1a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  max-width: 100vw;
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color .4s, color .4s;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+/*# sourceMappingURL=app_globals_css_bad6b30c._.single.css.map*/

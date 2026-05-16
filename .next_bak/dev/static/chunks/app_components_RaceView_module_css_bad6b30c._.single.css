@@ -1,0 +1,934 @@
+/* [project]/app/components/RaceView.module.css [app-client] (css) */
+.RaceView-module__Oh4i1a__container {
+  --road-width: 600px;
+  --underglow-width: 900px;
+  --tree-offset: 450px;
+  --gate-offset: 300px;
+  --lightpole-offset: 300px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .RaceView-module__Oh4i1a__container {
+    --road-width: 500px;
+    --tree-offset: 380px;
+    --gate-offset: 250px;
+    --lightpole-offset: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .RaceView-module__Oh4i1a__container {
+    --road-width: 90vw;
+    --underglow-width: 100vw;
+    --tree-offset: 38vw;
+    --gate-offset: 30vw;
+    --lightpole-offset: 32vw;
+  }
+}
+
+.RaceView-module__Oh4i1a__timer {
+  font-family: var(--font-mono);
+  letter-spacing: -.05em;
+  color: #fff;
+  text-shadow: 0 0 20px #fff6, 0 0 40px #00e5ff33;
+  z-index: 100;
+  pointer-events: none;
+  text-align: center;
+  width: 100%;
+  font-size: 4.5rem;
+  font-weight: 200;
+  transition: all .5s cubic-bezier(.4, 0, .2, 1);
+  position: absolute;
+  top: 1.5rem;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .RaceView-module__Oh4i1a__timer {
+    font-size: 2.8rem;
+    top: 1rem;
+  }
+}
+
+.RaceView-module__Oh4i1a__timerWinning {
+  color: var(--color-lead-green);
+  text-shadow: 0 0 10px #00ff8780, 0 0 25px #00ff874d, 0 0 50px #00ff871a;
+}
+
+.RaceView-module__Oh4i1a__timerLosing {
+  color: var(--color-lag-red);
+  text-shadow: 0 0 10px #ff313180, 0 0 25px #ff31314d, 0 0 50px #ff31311a;
+}
+
+.RaceView-module__Oh4i1a__envWrapper {
+  z-index: 0;
+  perspective: 800px;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.RaceView-module__Oh4i1a__horizonGlow {
+  pointer-events: none;
+  z-index: 0;
+  transition: background 2s ease-in-out;
+  animation: 4s ease-in-out infinite alternate RaceView-module__Oh4i1a__horizonPulse;
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 20%, #0000 75%);
+  mask-image: radial-gradient(circle at 50% 45%, #000 20%, #0000 75%);
+}
+
+.RaceView-module__Oh4i1a__horizonMilestone {
+  background: radial-gradient(80% 20% at 50% 45%, #00ff8766 0%, #00ff871a 60%, #0000 100%) !important;
+}
+
+@keyframes RaceView-module__Oh4i1a__horizonPulse {
+  0% {
+    opacity: .6;
+    filter: brightness(.8);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+.RaceView-module__Oh4i1a__starsLayerSlow, .RaceView-module__Oh4i1a__starsLayerFast {
+  pointer-events: none;
+  z-index: 1;
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-mask-image: linear-gradient(#000 0% 85%, #0000 100%);
+  mask-image: linear-gradient(#000 0% 85%, #0000 100%);
+}
+
+.RaceView-module__Oh4i1a__starsLayerSlow {
+  opacity: .8;
+  background-image: radial-gradient(2px 2px at 20px 30px, #fff, #0000), radial-gradient(2px 2px at 40px 70px, #fffc, #0000), radial-gradient(2px 2px at 90px 40px, #fff9, #0000);
+  background-size: 120px 120px;
+  animation: 90s linear infinite RaceView-module__Oh4i1a__starsDriftSlow;
+}
+
+.RaceView-module__Oh4i1a__starsLayerFast {
+  opacity: .6;
+  background-image: radial-gradient(2.5px 2.5px at 10px 10px, #ffffffe6, #0000), radial-gradient(2.5px 2.5px at 80px 80px, #ffffffb3, #0000), radial-gradient(1.5px 1.5px at 150px 60px, #ffffff80, #0000);
+  background-size: 200px 200px;
+  animation: 60s linear infinite RaceView-module__Oh4i1a__starsDriftFast;
+}
+
+@keyframes RaceView-module__Oh4i1a__starsDriftSlow {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 120px 120px;
+  }
+}
+
+@keyframes RaceView-module__Oh4i1a__starsDriftFast {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -200px 200px;
+  }
+}
+
+:is([data-theme="light"] .RaceView-module__Oh4i1a__starsLayerSlow, [data-theme="light"] .RaceView-module__Oh4i1a__starsLayerFast) {
+  display: none;
+}
+
+.RaceView-module__Oh4i1a__roadGroup {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.RaceView-module__Oh4i1a__roadFloor {
+  width: var(--road-width, 600px);
+  transform-origin: top;
+  height: 2000px;
+  transform-style: preserve-3d;
+  border-left: 2px solid var(--color-neon-cyan);
+  border-right: 2px solid var(--color-neon-cyan);
+  background: linear-gradient(#00e5ff1a 1px, #0000 1px) 0 0 / 40px 40px, linear-gradient(90deg, #00e5ff1a 1px, #0000 1px) 0 0 / 40px 40px, #060b19f2 linear-gradient(#000 0%, #1a1f29 100%) 0 0 / 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%)rotateX(85deg);
+  box-shadow: 0 0 50px #00e5ff33, inset 0 0 50px #00000080;
+  -webkit-mask-image: linear-gradient(#0000 0%, #000 15%);
+  mask-image: linear-gradient(#0000 0%, #000 15%);
+}
+
+.RaceView-module__Oh4i1a__guardrailLeft, .RaceView-module__Oh4i1a__guardrailRight {
+  display: none;
+}
+
+.RaceView-module__Oh4i1a__roadCenterLine {
+  background: repeating-linear-gradient(#fff3 0 50px, #0000 50px 150px);
+  width: 2px;
+  height: 100%;
+  animation: 1s linear infinite RaceView-module__Oh4i1a__moveRoadLine;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes RaceView-module__Oh4i1a__moveRoadLine {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 150px;
+  }
+}
+
+.RaceView-module__Oh4i1a__finishLine {
+  z-index: 25;
+  pointer-events: none;
+  background: linear-gradient(90deg, #0000 0%, #00e5ff33 5%, #00e5ff 20%, #fff 50%, #00e5ff 80%, #00e5ff33 95%, #0000 100%);
+  height: 4px;
+  transition: box-shadow .3s;
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 12px #00e5ffe6, 0 0 30px #00e5ff80, 0 0 60px #00e5ff33;
+}
+
+.RaceView-module__Oh4i1a__finishLineCrossed {
+  background: linear-gradient(90deg, #0000 0%, #00ff8733 5%, #00ff87 20%, #fff 50%, #00ff87 80%, #00ff8733 95%, #0000 100%);
+  animation: .5s ease-out forwards RaceView-module__Oh4i1a__finishFlash;
+  box-shadow: 0 0 20px #00ff87, 0 0 50px #00ff8799, 0 0 100px #00ff874d;
+}
+
+@keyframes RaceView-module__Oh4i1a__finishFlash {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scaleY(6);
+  }
+
+  100% {
+    opacity: .6;
+    transform: scaleY(1);
+  }
+}
+
+.RaceView-module__Oh4i1a__finishLineLabel {
+  letter-spacing: .2em;
+  color: #00e5ffb3;
+  text-shadow: 0 0 8px #00e5ff99;
+  white-space: nowrap;
+  pointer-events: none;
+  font-size: .55rem;
+  font-weight: 800;
+  position: absolute;
+  top: 50%;
+  right: 12%;
+  transform: translateY(-50%);
+}
+
+.RaceView-module__Oh4i1a__finishLineRoad {
+  z-index: 20;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, #00e5ff66 0 20px, #0000 20px 40px);
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px #00e5ff4d;
+}
+
+.RaceView-module__Oh4i1a__markerItem {
+  pointer-events: none;
+  z-index: 15;
+  margin-left: 20px;
+  position: absolute;
+  left: 100%;
+  transform: translateY(-50%);
+}
+
+.RaceView-module__Oh4i1a__markerItemLeft {
+  margin-right: 20px;
+  left: auto;
+  right: 100%;
+}
+
+.RaceView-module__Oh4i1a__treeItem {
+  pointer-events: none;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.RaceView-module__Oh4i1a__treeVisual {
+  filter: drop-shadow(0 0 15px var(--color-neon-cyan));
+}
+
+.RaceView-module__Oh4i1a__lightPole {
+  width: 5px;
+  height: 110px;
+  box-shadow: 0 0 8px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  pointer-events: none;
+  z-index: 11;
+  background: linear-gradient(#00e5ff 0%, #00e5ffb3 70%, #00e5ff33 100%);
+  border-radius: 3px;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__neonGate {
+  pointer-events: none;
+  z-index: 12;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__neonGatePost {
+  background: var(--color-neon-cyan);
+  width: 8px;
+  height: 120px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+}
+
+.RaceView-module__Oh4i1a__neonGateBar {
+  background: var(--color-neon-cyan);
+  width: 48px;
+  height: 7px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+  margin-bottom: -1px;
+}
+
+.RaceView-module__Oh4i1a__vehicleOverlay {
+  z-index: 20;
+  pointer-events: none;
+  height: 60%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.RaceView-module__Oh4i1a__carGroundShadow {
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(#00e5ff73 0%, #0000 70%);
+  border-radius: 50%;
+  width: 130px;
+  height: 22px;
+  animation: 2s ease-in-out infinite RaceView-module__Oh4i1a__shadowPulse;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes RaceView-module__Oh4i1a__shadowPulse {
+  0%, 100% {
+    opacity: .4;
+    transform: translateX(-50%)scale(1);
+  }
+
+  50% {
+    opacity: .7;
+    transform: translateX(-50%)scale(1.2);
+  }
+}
+
+.RaceView-module__Oh4i1a__roadVehicle {
+  transform-origin: bottom;
+  pointer-events: none;
+  will-change: transform, bottom;
+  transition: bottom .15s linear, left .3s;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__vehicleImg {
+  width: 260px;
+  height: auto;
+  display: block;
+}
+
+.RaceView-module__Oh4i1a__ghostImg {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+.RaceView-module__Oh4i1a__reflection {
+  transform-origin: top;
+  opacity: .15;
+  filter: blur(4px);
+  mix-blend-mode: lighten;
+  pointer-events: none;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: scaleY(-1);
+  -webkit-mask-image: linear-gradient(to top, #ffffff80, #0000 60%);
+  mask-image: linear-gradient(to top, #ffffff80, #0000 60%);
+}
+
+.RaceView-module__Oh4i1a__carGlow {
+  filter: drop-shadow(0 0 30px #00e5ff66);
+}
+
+.RaceView-module__Oh4i1a__ghostGlow {
+  filter: drop-shadow(0 0 30px #ffffff4d);
+}
+
+.RaceView-module__Oh4i1a__spark {
+  mix-blend-mode: screen;
+  animation: .1s infinite alternate RaceView-module__Oh4i1a__flicker;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%)rotateX(90deg)scale(.8);
+}
+
+@keyframes RaceView-module__Oh4i1a__flicker {
+  0% {
+    opacity: .8;
+    filter: brightness(1.2);
+  }
+
+  100% {
+    opacity: .4;
+    filter: brightness(.8);
+  }
+}
+
+.RaceView-module__Oh4i1a__leadIndicator {
+  font-family: var(--font-mono);
+  z-index: auto;
+  text-align: center;
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: .2rem .8rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  position: relative;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  transform: none;
+}
+
+.RaceView-module__Oh4i1a__leadSign {
+  vertical-align: middle;
+  margin-right: .2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.RaceView-module__Oh4i1a__leadPositive {
+  color: var(--color-lead-green);
+  text-shadow: 0 0 10px #20c99733;
+}
+
+.RaceView-module__Oh4i1a__leadNegative {
+  color: var(--color-lag-red);
+  text-shadow: 0 0 10px #ff6b6b33;
+}
+
+.RaceView-module__Oh4i1a__label {
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--color-text-secondary);
+  opacity: .8;
+  font-size: .7rem;
+  position: absolute;
+  top: -2rem;
+  left: 0;
+}
+
+.RaceView-module__Oh4i1a__dashboardPanel {
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 1000;
+  pointer-events: auto;
+  background: #060e1c8c;
+  border: 1px solid #00e5ff38;
+  border-top-color: #00e5ff66;
+  border-radius: 22px;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  min-width: 320px;
+  padding: 1.2rem 2.5rem 1.4rem;
+  display: flex;
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 30px #00e5ff1f, inset 0 1px #ffffff0f;
+}
+
+.RaceView-module__Oh4i1a__completeBtn {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: #00e5ff1f;
+  border: 1px solid #00e5ff66;
+  border-radius: 999px;
+  width: 100%;
+  padding: .85rem 3rem;
+  font-size: .78rem;
+  font-weight: 800;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 0 18px #00e5ff33;
+}
+
+.RaceView-module__Oh4i1a__completeBtn:hover {
+  background: #00e5ff38;
+  border-color: #00e5ffb3;
+  transform: scale(1.02);
+  box-shadow: 0 0 30px #00e5ff59;
+}
+
+.RaceView-module__Oh4i1a__secondaryActions {
+  gap: .5rem;
+  width: 100%;
+  margin-top: .25rem;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .RaceView-module__Oh4i1a__dashboardPanel {
+    width: 90%;
+    min-width: unset;
+    padding: 1rem;
+    bottom: 1rem;
+  }
+
+  .RaceView-module__Oh4i1a__completeBtn {
+    padding: .75rem 1.5rem;
+    font-size: .7rem;
+  }
+}
+
+.RaceView-module__Oh4i1a__pauseBtn {
+  color: #ffffffe6;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: #ffffff0d;
+  border: 1px solid #ffffff4d;
+  border-radius: 999px;
+  flex: 1;
+  padding: .65rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .3s;
+}
+
+.RaceView-module__Oh4i1a__cancelAction {
+  color: #ff3b30b3;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: none;
+  border: 1px solid #0000;
+  border-radius: 999px;
+  flex: none;
+  padding: .65rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .3s;
+}
+
+.RaceView-module__Oh4i1a__cancelAction:hover {
+  color: #ff3b30;
+  background: #ff3b301a;
+}
+
+.RaceView-module__Oh4i1a__roadUnderGlow {
+  width: var(--underglow-width, 900px);
+  pointer-events: none;
+  z-index: 2;
+  filter: blur(8px);
+  background: radial-gradient(70% 60% at 50% 100%, #00e5ff38 0%, #00c8ff14 50%, #0000 100%);
+  height: 320px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.RaceView-module__Oh4i1a__speedLinesOverlay {
+  pointer-events: none;
+  z-index: 5;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.RaceView-module__Oh4i1a__speedLine {
+  background: linear-gradient(to right, transparent, var(--color-neon-cyan), transparent);
+  width: 150px;
+  height: 1px;
+  position: absolute;
+}
+
+.RaceView-module__Oh4i1a__driftOverlay {
+  pointer-events: none;
+  z-index: 100;
+  background: radial-gradient(circle, #0000 40%, #0006 100%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.RaceView-module__Oh4i1a__driftOverlay:before {
+  content: "";
+  pointer-events: none;
+  border: 24px solid #0000;
+  border-image: repeating-linear-gradient(-45deg, gold, gold 30px, #111 30px 60px) 24;
+  animation: .7s infinite alternate RaceView-module__Oh4i1a__hazardFlash;
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes RaceView-module__Oh4i1a__hazardFlash {
+  0% {
+    opacity: .3;
+    filter: brightness(.8);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+.RaceView-module__Oh4i1a__driftText {
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #111;
+  background: gold;
+  border: 6px solid #111;
+  border-radius: 12px;
+  padding: .6rem 2rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  animation: .7s infinite alternate RaceView-module__Oh4i1a__hazardTextBounce;
+  box-shadow: 0 10px 30px #00000080;
+}
+
+@keyframes RaceView-module__Oh4i1a__hazardTextBounce {
+  0% {
+    transform: scale(.96)translateY(5px);
+    box-shadow: 0 5px 15px #ffd70033;
+  }
+
+  100% {
+    transform: scale(1.04)translateY(-5px);
+    box-shadow: 0 15px 40px #ffd70099;
+  }
+}
+
+.RaceView-module__Oh4i1a__timerDrifting {
+  transition: opacity .5s;
+  opacity: 0 !important;
+}
+
+.RaceView-module__Oh4i1a__iconDrifting {
+  filter: blur(1px);
+  opacity: .6;
+  transform: translate(-50%, -50%)skewX(10deg);
+}
+
+.RaceView-module__Oh4i1a__carSpinning {
+  filter: blur(2px) drop-shadow(0 0 30px var(--color-neon-cyan));
+  animation: .6s linear infinite RaceView-module__Oh4i1a__carSpinOut;
+}
+
+@keyframes RaceView-module__Oh4i1a__carSpinOut {
+  0% {
+    transform: rotate(0)scale(1.2);
+  }
+
+  25% {
+    transform: rotate(90deg)scale(1.4);
+  }
+
+  50% {
+    transform: rotate(180deg)scale(1.1);
+  }
+
+  75% {
+    transform: rotate(270deg)scale(1.5);
+  }
+
+  100% {
+    transform: rotate(360deg)scale(1.2);
+  }
+}
+
+.RaceView-module__Oh4i1a__safeModeOverlay {
+  pointer-events: none;
+  z-index: 100;
+  background: radial-gradient(circle, #0000 40%, #00ff8726 100%);
+  border: 8px solid #00ff8733;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.RaceView-module__Oh4i1a__safeModeLabel {
+  letter-spacing: .2em;
+  color: #00ff87;
+  background: #060e1cd9;
+  border: 1px solid #00ff8766;
+  border-radius: 999px;
+  align-items: center;
+  gap: 1rem;
+  padding: .8rem 2rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: flex;
+  box-shadow: 0 0 30px #00ff8733;
+}
+
+.RaceView-module__Oh4i1a__safeModePulse {
+  color: #00ff87;
+  animation: 1.5s infinite RaceView-module__Oh4i1a__safePulse;
+}
+
+@keyframes RaceView-module__Oh4i1a__safePulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .3;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.RaceView-module__Oh4i1a__carSafe {
+  filter: drop-shadow(0 0 25px #00ff87cc);
+  animation: 3s ease-in-out infinite RaceView-module__Oh4i1a__carFloat;
+}
+
+@keyframes RaceView-module__Oh4i1a__carFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.RaceView-module__Oh4i1a__safeModeToggle {
+  color: #00ff87cc;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  pointer-events: auto;
+  background: #00ff870d;
+  border: 1px solid #00ff8733;
+  border-radius: 999px;
+  flex: 1.5;
+  padding: .65rem 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  transition: all .3s;
+}
+
+.RaceView-module__Oh4i1a__safeModeToggle:hover {
+  color: #00ff87;
+  background: #00ff8726;
+  border-color: #00ff8799;
+}
+
+.RaceView-module__Oh4i1a__safeModeActive {
+  box-shadow: 0 0 15px #00ff8766;
+  color: #020a04 !important;
+  background: #00ff87 !important;
+  border-color: #00ff87 !important;
+}
+
+.RaceView-module__Oh4i1a__scanlines {
+  z-index: 99;
+  pointer-events: none;
+  opacity: .3;
+  background: linear-gradient(#0000 50%, #0000001a 50%) 0 0 / 100% 4px;
+  position: absolute;
+  inset: 0;
+}
+
+.RaceView-module__Oh4i1a__vignette {
+  z-index: 98;
+  pointer-events: none;
+  background: radial-gradient(circle, #0000 40%, #0009 100%);
+  position: absolute;
+  inset: 0;
+}
+
+.RaceView-module__Oh4i1a__speedLinesContainer {
+  z-index: 2;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.RaceView-module__Oh4i1a__speedLine {
+  background: linear-gradient(to right, #0000, #ffffff26, #0000);
+  width: 200px;
+  height: 1px;
+  animation: .5s linear infinite RaceView-module__Oh4i1a__speedLineAnim;
+  position: absolute;
+}
+
+@keyframes RaceView-module__Oh4i1a__speedLineAnim {
+  from {
+    opacity: 0;
+    transform: translateX(-500px)scaleX(.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(0)scaleX(2);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(1000px)scaleX(.5);
+  }
+}
+
+.RaceView-module__Oh4i1a__safeModeToggle {
+  border: 1px solid #00ff8766;
+  box-shadow: inset 0 0 10px #00ff871a;
+}
+
+.RaceView-module__Oh4i1a__pauseBtn {
+  background: #ffffff08 !important;
+  border: 1px solid #ffffff26 !important;
+}
+
+.RaceView-module__Oh4i1a__pauseBtn:hover {
+  background: #ffffff1a !important;
+  border-color: #fff6 !important;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__envWrapper {
+  background: radial-gradient(60% 18% at 50% 42%, #ffa03238 0%, #ffd26414 50%, #0000 100%), radial-gradient(circle at 50% 30%, #d4e8f5 0%, #b8d4ec 40%, #8fb8d8 100%);
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__roadFloor {
+  background: linear-gradient(#05966926 1px, #0000 1px) 0 0 / 40px 40px, linear-gradient(90deg, #05966926 1px, #0000 1px) 0 0 / 40px 40px, #c8dde8 linear-gradient(#c8dbe8 0%, #d8e8f0 100%) 0 0 / 100% 100%;
+  border-left: 2px solid #05966999;
+  border-right: 2px solid #05966999;
+  box-shadow: 0 0 40px #05966926, inset 0 0 40px #c8dcf04d;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__timer {
+  color: #1e293b;
+  text-shadow: 0 2px 8px #0000001a, 0 0 30px #05966926;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__timerWinning {
+  color: #059669;
+  text-shadow: 0 0 10px #05966966, 0 0 25px #05966933;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__timerLosing {
+  color: #dc2626;
+  text-shadow: 0 0 10px #dc262666, 0 0 25px #dc262633;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__leadIndicator {
+  background: #fff9;
+  border: 1px solid #05966933;
+  box-shadow: 0 4px 20px #00000014;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__finishLine {
+  background: repeating-linear-gradient(90deg, #059669 0 20px, #0000 20px 40px);
+  box-shadow: 0 0 20px #05966980, 0 0 40px #0596694d;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__treeVisual {
+  filter: drop-shadow(0 0 12px #05966980);
+}
+
+:is([data-theme="light"] .RaceView-module__Oh4i1a__neonGatePost, [data-theme="light"] .RaceView-module__Oh4i1a__neonGateBar) {
+  background: #059669e6;
+  box-shadow: 0 0 8px #05966999, 0 0 20px #05966966, 0 0 40px #05966933;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__roadCenterLine {
+  background: repeating-linear-gradient(#1e293b4d 0 50px, #0000 50px 150px);
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__completeBtn {
+  color: #1e293b;
+  background: #0596691f;
+  border: 1px solid #05966966;
+  box-shadow: 0 0 20px #05966926;
+}
+
+[data-theme="light"] .RaceView-module__Oh4i1a__completeBtn:hover {
+  background: #05966938;
+  border-color: #05966999;
+  box-shadow: 0 0 30px #05966940;
+}
+
+/*# sourceMappingURL=app_components_RaceView_module_css_bad6b30c._.single.css.map*/

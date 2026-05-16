@@ -1,0 +1,201 @@
+/* [project]/Desktop/MindFlowApp/app/components/ResultModal.module.css [app-client] (css) */
+.ResultModal-module__RkBI0W__overlay {
+  z-index: 50;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: #0006;
+  justify-content: center;
+  align-items: center;
+  animation: .5s ease-out ResultModal-module__RkBI0W__fadeIn;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.ResultModal-module__RkBI0W__modal {
+  text-align: center;
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: #ffffff05;
+  border: 1px solid #ffffff1a;
+  border-radius: 2rem;
+  width: 90%;
+  max-width: 26rem;
+  padding: 3rem;
+  box-shadow: 0 20px 40px #0006;
+}
+
+.ResultModal-module__RkBI0W__modalWin {
+  border-color: #ffd70033;
+  box-shadow: 0 0 40px #ffd7001a, inset 0 0 20px #ffd7000d;
+}
+
+.ResultModal-module__RkBI0W__iconContainer {
+  justify-content: center;
+  margin-bottom: 2rem;
+  display: flex;
+}
+
+.ResultModal-module__RkBI0W__iconCircle {
+  border: 1px solid #ffffff1a;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  font-size: 2.5rem;
+  display: flex;
+}
+
+.ResultModal-module__RkBI0W__winIcon {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  text-shadow: 0 0 20px #ffd70080;
+  background: radial-gradient(circle, #ffd70033, #0000);
+}
+
+.ResultModal-module__RkBI0W__loseIcon {
+  color: var(--color-text-secondary);
+  background: #ffffff0d;
+}
+
+.ResultModal-module__RkBI0W__title {
+  color: #fff;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.ResultModal-module__RkBI0W__subtitle {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  opacity: .8;
+  margin-bottom: 2.5rem;
+  font-size: .8rem;
+}
+
+.ResultModal-module__RkBI0W__statsGrid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  display: grid;
+}
+
+.ResultModal-module__RkBI0W__statCard {
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.ResultModal-module__RkBI0W__statLabel {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--color-text-secondary);
+  margin-bottom: .5rem;
+  font-size: .6rem;
+}
+
+.ResultModal-module__RkBI0W__statValue {
+  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  color: #fff;
+}
+
+.ResultModal-module__RkBI0W__continueBtn {
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #ffffff1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 1rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.ResultModal-module__RkBI0W__continueBtn:hover {
+  background: #fff3;
+}
+
+.ResultModal-module__RkBI0W__levelSection {
+  text-align: center;
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.ResultModal-module__RkBI0W__levelUpLabel {
+  letter-spacing: .15em;
+  color: #cf0;
+  text-shadow: 0 0 20px #ccff0080, 0 0 40px #cf03;
+  margin-bottom: .75rem;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.ResultModal-module__RkBI0W__levelRow {
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.ResultModal-module__RkBI0W__levelTag {
+  letter-spacing: .15em;
+  color: #ffffff80;
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.ResultModal-module__RkBI0W__levelTitle {
+  letter-spacing: .12em;
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff4d;
+  font-size: .65rem;
+  font-weight: 800;
+}
+
+.ResultModal-module__RkBI0W__levelProgressBar {
+  background: #ffffff0f;
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+
+.ResultModal-module__RkBI0W__levelProgressFill {
+  background: linear-gradient(90deg, #00e5ff, #5c7cfa);
+  border-radius: 2px;
+  height: 100%;
+  box-shadow: 0 0 8px #00e5ff80;
+}
+
+.ResultModal-module__RkBI0W__levelXpText {
+  letter-spacing: .08em;
+  color: #ffffff4d;
+  font-size: .55rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+@keyframes ResultModal-module__RkBI0W__fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/*# sourceMappingURL=Desktop_MindFlowApp_app_components_ResultModal_module_css_bad6b30c._.single.css.map*/

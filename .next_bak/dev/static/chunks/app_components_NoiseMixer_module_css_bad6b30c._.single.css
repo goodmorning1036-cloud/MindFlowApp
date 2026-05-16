@@ -1,0 +1,97 @@
+/* [project]/app/components/NoiseMixer.module.css [app-client] (css) */
+.NoiseMixer-module__54vQjG__container {
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 100;
+  background: #0b0e1466;
+  border: 1px solid #ffffff14;
+  border-radius: 12px;
+  width: 200px;
+  padding: .75rem;
+  transition: all .3s;
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.NoiseMixer-module__54vQjG__header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+  display: flex;
+}
+
+.NoiseMixer-module__54vQjG__title {
+  color: #ffffff4d;
+  letter-spacing: .1em;
+  font-size: .55rem;
+  font-weight: 700;
+}
+
+.NoiseMixer-module__54vQjG__volumeControl {
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+}
+
+.NoiseMixer-module__54vQjG__range {
+  appearance: none;
+  background: #ffffff14;
+  border-radius: 2px;
+  outline: none;
+  width: 50px;
+  height: 3px;
+}
+
+.NoiseMixer-module__54vQjG__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: #00e5ff;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 8px #00e5ff66;
+}
+
+.NoiseMixer-module__54vQjG__optionsGrid {
+  grid-template-columns: repeat(5, 1fr);
+  gap: .35rem;
+  display: grid;
+}
+
+.NoiseMixer-module__54vQjG__optionButton {
+  cursor: pointer;
+  color: #fff6;
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 6px;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+  padding: .35rem .2rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.NoiseMixer-module__54vQjG__optionButton:hover {
+  background: #ffffff0f;
+  border-color: #00e5ff1a;
+}
+
+.NoiseMixer-module__54vQjG__optionButton.NoiseMixer-module__54vQjG__active {
+  color: #00e5ff;
+  background: #00e5ff14;
+  border-color: #00e5ff4d;
+}
+
+.NoiseMixer-module__54vQjG__icon {
+  font-size: .9rem;
+}
+
+.NoiseMixer-module__54vQjG__label {
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-size: .5rem;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=app_components_NoiseMixer_module_css_bad6b30c._.single.css.map*/

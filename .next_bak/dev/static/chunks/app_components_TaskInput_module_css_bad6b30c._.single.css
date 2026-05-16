@@ -1,0 +1,295 @@
+/* [project]/app/components/TaskInput.module.css [app-client] (css) */
+.TaskInput-module__BPxeiW__container {
+  z-index: 10;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.TaskInput-module__BPxeiW__form {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__inputGroup {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__input {
+  border: none;
+  border-bottom: 2px solid var(--input-border);
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  color: var(--input-text);
+  background: none;
+  padding: 1rem 0;
+  font-weight: 200;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+}
+
+.TaskInput-module__BPxeiW__input:focus {
+  border-bottom-color: #00e5ff80;
+  outline: none;
+  box-shadow: 0 15px 30px -15px #00e5ff33;
+}
+
+.TaskInput-module__BPxeiW__input::placeholder {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .9rem;
+}
+
+.TaskInput-module__BPxeiW__optionsRow {
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: .5rem;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__timeInputWrapper {
+  opacity: .7;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  transition: opacity .3s;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__pomodoroBtn {
+  color: #ff7878e6;
+  font-size: .8rem;
+  font-family: var(--font-inter);
+  cursor: pointer;
+  background: #ff50501a;
+  border: 1px solid #ff50504d;
+  border-radius: 8px;
+  padding: .4rem .8rem;
+  font-weight: 500;
+  transition: all .2s cubic-bezier(.16, 1, .3, 1);
+}
+
+.TaskInput-module__BPxeiW__pomodoroBtn:hover {
+  background: #ff505033;
+  transform: translateY(-1px);
+}
+
+.TaskInput-module__BPxeiW__pomodoroActive {
+  color: #ffb3b3;
+  background: #ff505040;
+  border-color: #ff5050cc;
+  box-shadow: 0 0 15px #ff50504d;
+}
+
+.TaskInput-module__BPxeiW__timeInputWrapper:focus-within, .TaskInput-module__BPxeiW__timeInputWrapper:hover {
+  opacity: 1;
+}
+
+.TaskInput-module__BPxeiW__timeLabel {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 1rem;
+}
+
+.TaskInput-module__BPxeiW__timeInput {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--accent-cyan);
+  text-align: center;
+  width: 90px;
+  font-family: var(--font-mono);
+  border-radius: 6px;
+  padding: .5rem .8rem;
+  font-size: 1.2rem;
+}
+
+.TaskInput-module__BPxeiW__timeInput:focus {
+  background: #00e5ff0d;
+  border-color: #00e5ff;
+  outline: none;
+}
+
+.TaskInput-module__BPxeiW__submitBtn {
+  color: #22d3ee;
+  width: 80px;
+  height: 80px;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #22d3ee66;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+  box-shadow: 0 0 20px #00e5ff26;
+}
+
+.TaskInput-module__BPxeiW__submitBtn:hover:not(:disabled) {
+  background: #22d3ee1a;
+  border-color: #22d3ee;
+  box-shadow: 0 0 40px #00e5ff66;
+}
+
+.TaskInput-module__BPxeiW__submitBtn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+  color: #ffffff4d;
+  border-color: #ffffff1a;
+}
+
+.TaskInput-module__BPxeiW__recentSection {
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  margin-top: 2rem;
+  animation: 1s ease-out .5s both TaskInput-module__BPxeiW__fadeIn;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__subtaskRow {
+  align-items: center;
+  gap: .4rem;
+  width: 100%;
+  margin-top: -.25rem;
+  margin-bottom: .25rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.TaskInput-module__BPxeiW__subtaskArrow {
+  color: #00e5ff59;
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.TaskInput-module__BPxeiW__subtaskInput {
+  font-size: .75rem;
+  font-family: var(--font-inter);
+  letter-spacing: .1em;
+  color: #ffffff73;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #ffffff1a;
+  flex: 1;
+  padding: .3rem 0;
+  font-weight: 300;
+  transition: border-color .3s;
+}
+
+.TaskInput-module__BPxeiW__subtaskInput:focus {
+  color: #ffffffb3;
+  border-bottom-color: #00e5ff59;
+  outline: none;
+}
+
+.TaskInput-module__BPxeiW__subtaskInput::placeholder {
+  color: #ffffff2e;
+  letter-spacing: .08em;
+  font-size: .7rem;
+}
+
+.TaskInput-module__BPxeiW__recentTitle {
+  letter-spacing: .3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: .7rem;
+}
+
+.TaskInput-module__BPxeiW__taskList {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  max-width: 100%;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__taskChip {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 999px;
+  align-items: center;
+  gap: .8rem;
+  padding: .6rem .5rem .6rem 1rem;
+  font-size: .85rem;
+  font-weight: 400;
+  transition: all .3s cubic-bezier(.16, 1, .3, 1);
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__taskTime {
+  color: var(--accent-cyan);
+  opacity: .8;
+  background: var(--accent-cyan-bg);
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  padding: .1rem .5rem;
+}
+
+.TaskInput-module__BPxeiW__taskChip:hover {
+  color: #00e5ff;
+  background: #22d3ee14;
+  border-color: #22d3ee66;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #0003;
+}
+
+.TaskInput-module__BPxeiW__deleteTaskBtn {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: .75rem;
+  transition: all .2s;
+  display: flex;
+}
+
+.TaskInput-module__BPxeiW__deleteTaskBtn:hover {
+  color: #ff3b30;
+  background: #ff3b3033;
+}
+
+@keyframes TaskInput-module__BPxeiW__fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*# sourceMappingURL=app_components_TaskInput_module_css_bad6b30c._.single.css.map*/

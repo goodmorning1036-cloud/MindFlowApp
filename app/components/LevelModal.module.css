@@ -1,0 +1,228 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 2rem;
+}
+
+.modal {
+    background: rgba(13, 17, 23, 0.9);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 24px;
+    width: 600px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 50px rgba(0, 229, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    color: var(--color-neon-cyan);
+    margin: 0;
+    font-weight: 300;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.closeBtn:hover {
+    opacity: 1;
+}
+
+.currentStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.statBox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.statLabel {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-family: var(--font-mono);
+    color: white;
+}
+
+.levelList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    margin: 0 1rem 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.levelList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.levelList::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.levelItem {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s;
+    position: relative;
+    opacity: 0.4;
+}
+
+.levelItem.reached {
+    opacity: 1;
+}
+
+.levelItem.current {
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.levelNumberContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+}
+
+.levelLine {
+    position: absolute;
+    top: -100%;
+    bottom: -100%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+}
+
+.levelItem:first-child .levelLine {
+    top: 50%;
+}
+
+.levelItem:last-child .levelLine {
+    bottom: 50%;
+}
+
+.levelHex {
+    width: 32px;
+    height: 32px;
+    background: rgba(13, 17, 23, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    z-index: 1;
+    border-radius: 8px;
+    transform: rotate(45deg);
+}
+
+.levelHex span {
+    transform: rotate(-45deg);
+}
+
+.reached .levelHex {
+    border-color: var(--color-neon-cyan);
+    color: var(--color-neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.reached .levelLine {
+    background: var(--color-neon-cyan);
+    opacity: 0.3;
+}
+
+.levelInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.levelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.levelTitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+}
+
+.xpRequirement {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+}
+
+.progressBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--color-neon-cyan);
+    box-shadow: 0 0 8px var(--color-neon-cyan);
+}
+
+.activeTag {
+    font-size: 0.6rem;
+    background: var(--color-neon-cyan);
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.lockedIcon {
+    font-size: 0.8rem;
+    opacity: 0.5;
+}

@@ -1,0 +1,735 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #0f111a;
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+}
+
+/* --- Environment --- */
+.envWrapper {
+    position: absolute;
+    inset: 0;
+    perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Beautiful Aurora / Nebula Horizon */
+.horizonGlow {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    height: 400px;
+    background: linear-gradient(to top,
+        transparent 0%,
+        rgba(0, 229, 255, 0.4) 10%,
+        rgba(100, 255, 150, 0.3) 25%,
+        rgba(255, 100, 100, 0.2) 50%,
+        transparent 100%
+    );
+    filter: blur(40px);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Starfield */
+.starsLayerSlow {
+    position: absolute;
+    inset: -50%;
+    background-image: 
+        radial-gradient(1px 1px at 10% 10%, #fff 100%, transparent),
+        radial-gradient(1.5px 1.5px at 20% 30%, #fff 100%, transparent),
+        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.8) 100%, transparent),
+        radial-gradient(2px 2px at 40% 40%, rgba(255,255,255,0.9) 100%, transparent),
+        radial-gradient(1px 1px at 50% 60%, #fff 100%, transparent),
+        radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.7) 100%, transparent),
+        radial-gradient(2px 2px at 70% 90%, #fff 100%, transparent),
+        radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.8) 100%, transparent),
+        radial-gradient(1.5px 1.5px at 90% 20%, #fff 100%, transparent);
+    background-size: 600px 600px;
+    opacity: 0.8;
+    animation: rotateStars 400s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotateStars {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- The Road --- */
+.roadGroup {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    transform-origin: bottom center;
+    transform: rotateX(85deg);
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+.roadFloor {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3000px;
+    background: #1a1b26; 
+    border-left: 20px solid #00E5FF;
+    border-right: 20px solid #00E5FF;
+    box-shadow: 
+        inset 60px 0 120px -20px rgba(0, 229, 255, 0.4),
+        inset -60px 0 120px -20px rgba(0, 229, 255, 0.4);
+    /* Subtle asphalt movement */
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+    animation: moveAsphalt 2s linear infinite;
+}
+
+@keyframes moveAsphalt {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+.dashContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.perspectiveDash {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    width: 6px;
+    height: 12px;
+    top: 0;
+    opacity: 0;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+    animation: dashPerspective 1.4s cubic-bezier(0.25, 0, 0.5, 1) infinite;
+}
+
+@keyframes dashPerspective {
+    0% {
+        top: 0%;
+        width: 1px;
+        height: 5px;
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    100% {
+        top: 100%;
+        width: 40px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.envStreaks {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.vaporStreak {
+    position: absolute;
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.25), transparent);
+    opacity: 0;
+    animation: vaporZoom 1.2s cubic-bezier(0.2, 0, 0.5, 1) infinite;
+    filter: blur(2px);
+}
+
+@keyframes vaporZoom {
+    0% {
+        top: 20%;
+        transform: scaleY(1) scaleX(1);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.3;
+    }
+    100% {
+        top: 120%;
+        transform: scaleY(5) scaleX(2);
+        opacity: 0;
+    }
+}
+
+/* --- Vehicles --- */
+.vehicleOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.roadVehicle {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    transform-origin: bottom center;
+}
+
+.carGlow {
+    filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5));
+    transition: filter 0.8s ease-out;
+}
+
+.bossGlow .carGlow {
+    filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.9))
+            drop-shadow(0 0 70px rgba(0, 229, 255, 0.4));
+    animation: bossPulse 2s ease-in-out infinite alternate;
+}
+
+.carSpinning {
+    animation: driftWobble 0.2s ease-in-out infinite alternate;
+}
+
+.racingSuspension {
+    animation: engineVibration 0.08s ease-in-out infinite alternate;
+}
+
+.bossSuspension {
+    animation: silkyFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes engineVibration {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2px); }
+}
+
+@keyframes silkyFloat {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-5px); }
+}
+
+@keyframes bossPulse {
+    from { filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.9)) drop-shadow(0 0 70px rgba(0, 229, 255, 0.4)); }
+    to { filter: drop-shadow(0 0 45px rgba(0, 255, 255, 1)) drop-shadow(0 0 90px rgba(0, 229, 255, 0.6)); }
+}
+
+.carSpinning {
+    animation: driftWobble 0.2s ease-in-out infinite alternate;
+}
+@keyframes driftWobble {
+    from { transform: translateX(-3px) rotate(-2deg); }
+    to { transform: translateX(3px) rotate(2deg); }
+}
+.reflection {
+    position: absolute;
+    bottom: -20px;
+    filter: blur(5px);
+    transform: scaleY(-0.4);
+    opacity: 0.15;
+}
+
+/* Ground contact shadow — dark ellipse under vehicle */
+.groundShadow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 20px;
+    background: radial-gradient(ellipse at center,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 40%,
+        transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hologramCar {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6)) brightness(1.2);
+    animation: holoFlicker 2s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes holoFlicker {
+    0% { opacity: 0.4; }
+    5% { opacity: 0.6; }
+    10% { opacity: 0.5; }
+    15% { opacity: 0.7; }
+    20% { opacity: 0.4; }
+    25% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    85% { opacity: 0.4; }
+    90% { opacity: 0.7; }
+    100% { opacity: 0.5; }
+}
+
+.groundShadowGhost {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 16px;
+    background: radial-gradient(ellipse at center,
+        rgba(0, 229, 255, 0.25) 0%,
+        rgba(0, 229, 255, 0.1) 40%,
+        transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Speed System */
+.speedLineSystem {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.streak {
+    position: absolute;
+    top: -100px;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #00E5FF, transparent);
+    opacity: 0.4;
+    animation: streakDrop 0.5s linear infinite;
+}
+
+@keyframes streakDrop {
+    0% { transform: translateY(-100px) scaleY(1); opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { transform: translateY(120vh) scaleY(2); opacity: 0; }
+}
+
+.vibrateEffect {
+    animation: engineHum 0.05s linear infinite;
+}
+
+.redlineShake {
+    animation: engineHum 0.02s linear infinite; /* Twice as fast */
+}
+
+@keyframes engineHum {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(0.2px, 0.2px); }
+    50% { transform: translate(-0.2px, 0); }
+    75% { transform: translate(0, -0.2px); }
+    100% { transform: translate(0.2px, 0); }
+}
+
+.tireHealthBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.tireHealthFill {
+    height: 100%;
+    transition: width 0.5s ease-out, background 0.3s ease;
+}
+
+/* Speed trail — glowing streak behind the car */
+.speedTrail {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 80px;
+    background: linear-gradient(to top,
+        rgba(0, 229, 255, 0.5) 0%,
+        rgba(0, 229, 255, 0.2) 40%,
+        transparent 100%);
+    border-radius: 3px;
+    filter: blur(3px);
+    pointer-events: none;
+    animation: trailPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes trailPulse {
+    from { opacity: 0.6; height: 60px; }
+    to { opacity: 1; height: 90px; }
+}
+
+/* --- HUD & UI Panels --- */
+
+/* Top Center Glassmorphic Dashboard — Compact */
+.dashboardPanel {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(40px) saturate(140%);
+    -webkit-backdrop-filter: blur(40px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+
+.telemetryRow {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.telemetryItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.telemetryLabel {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 2px;
+}
+
+.telemetryValue {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.15;
+    text-align: center;
+}
+
+.redline {
+    color: #FF3131 !important;
+    text-shadow: 0 0 10px rgba(255, 49, 49, 0.6);
+    animation: rpmPulse 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes rpmPulse {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.1); opacity: 1; }
+}
+
+.telemetryDivider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.streakIndicator {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.leadIndicator {
+    font-size: 28px;
+    font-weight: 300;
+    color: white;
+    letter-spacing: -0.02em;
+}
+.leadPositive { color: #00FF87; }
+.leadNegative { color: #FF4040; }
+.leadSign { opacity: 0.5; margin-right: 2px; }
+
+.completeBtn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.82);
+    color: #111;
+    border: none;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.completeBtn:hover {
+    background: white;
+    transform: translateY(-1px);
+}
+
+.secondaryActions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.secondaryActions button {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 7px 0;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.2s;
+}
+
+.secondaryActions button:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.safeModeActive {
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: #111 !important;
+}
+
+/* --- On-Road HUD (Timer & Energy) --- */
+.onRoadHud {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.roadTimerBlock {
+    text-align: right;
+    width: 200px;
+    padding-top: 6px; /* align slightly below play button */
+}
+
+.roadLabel {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.roadTimeValue {
+    font-size: 46px;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    line-height: 1;
+}
+
+.roadEnergyBlock {
+    width: 200px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.energyTopRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.roadPauseBtn {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+.energyBarContainer {
+    padding: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    transform: skewY(-3deg);
+    background: transparent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+.energyBarBg {
+    display: flex;
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px;
+    border-radius: 2px;
+    height: 18px;
+    align-items: stretch;
+}
+
+.energySegment {
+    width: 14px;
+    background: linear-gradient(180deg, #8AFFFF 0%, #00D5FF 100%);
+    border-radius: 1px;
+    transform: skewY(3deg); /* Un-skew the interior segment to keep vertical lines straight */
+    box-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+    opacity: 0.9;
+}
+
+.energySegment.empty {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+.energyTextGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.roadEnergyValue {
+    font-size: 22px;
+    font-weight: 400;
+    color: white;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* --- Widgets --- */
+.bgFocusWidget {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 50;
+}
+
+.bgFocusHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 0 4px;
+}
+
+.bgFocusIcons {
+    display: flex;
+    gap: 8px;
+}
+
+.bgIcon {
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bgIcon.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: #FF4040;
+}
+
+.bgIcon:hover:not(.active) {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.sparkleWidget {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    opacity: 0.7;
+    z-index: 50;
+}
+
+/* Warnings */
+.driftOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(255, 0, 0, 0.1) 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.driftText {
+    font-size: 48px;
+    font-weight: 900;
+    color: #ff3366;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.driftSubtext {
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+}

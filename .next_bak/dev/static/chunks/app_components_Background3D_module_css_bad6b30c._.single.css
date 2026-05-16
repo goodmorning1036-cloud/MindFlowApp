@@ -1,0 +1,159 @@
+/* [project]/app/components/Background3D.module.css [app-client] (css) */
+.Background3D-module__-ZvwOa__envWrapper {
+  z-index: 0;
+  perspective: 400px;
+  background: radial-gradient(circle at 50% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  transition: filter .5s, background .4s;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.Background3D-module__-ZvwOa__blurred {
+  filter: blur(8px) brightness(.7);
+}
+
+.Background3D-module__-ZvwOa__roadGroup {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Background3D-module__-ZvwOa__roadFloor {
+  background: linear-gradient(var(--accent-cyan-bg) 1px, transparent 1px), linear-gradient(90deg, var(--accent-cyan-bg) 1px, transparent 1px), linear-gradient(to bottom, var(--bg-gradient-end) 0%, var(--bg-gradient-start) 100%);
+  transform-origin: top;
+  border-left: 2px solid var(--color-neon-cyan);
+  border-right: 2px solid var(--color-neon-cyan);
+  width: 600px;
+  height: 1000px;
+  box-shadow: 0 0 20px var(--accent-cyan-bg), inset 0 0 20px #000c;
+  background-size: 50px 50px, 50px 50px, 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%)rotateX(80deg);
+  -webkit-mask-image: linear-gradient(#0000, #000 15%);
+  mask-image: linear-gradient(#0000, #000 15%);
+}
+
+.Background3D-module__-ZvwOa__roadCenterLine {
+  background: repeating-linear-gradient(#ffffff4d 0 50px, #0000 50px 150px);
+  width: 4px;
+  height: 100%;
+  animation: 1s linear infinite Background3D-module__-ZvwOa__moveRoadLine;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes Background3D-module__-ZvwOa__moveRoadLine {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 150px;
+  }
+}
+
+.Background3D-module__-ZvwOa__treeItem {
+  pointer-events: none;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Background3D-module__-ZvwOa__treeVisual {
+  filter: drop-shadow(0 0 15px var(--color-neon-cyan));
+}
+
+.Background3D-module__-ZvwOa__speedLinesOverlay {
+  pointer-events: none;
+  z-index: 6;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  overflow: visible;
+}
+
+.Background3D-module__-ZvwOa__speedLine {
+  transform-origin: 0 0;
+  width: 0;
+  height: 1px;
+  transform: rotate(var(--angle));
+  animation: Background3D-module__-ZvwOa__dashSpeedLineBg var(--dur, 1.3s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  background: linear-gradient(to right, #00e5ffd9, #00e5ff59 60%, #0000);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 3px #00e5ff66;
+}
+
+@keyframes Background3D-module__-ZvwOa__dashSpeedLineBg {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  8% {
+    opacity: .9;
+  }
+
+  80% {
+    opacity: .4;
+  }
+
+  100% {
+    width: var(--len, 180px);
+    opacity: 0;
+  }
+}
+
+.Background3D-module__-ZvwOa__lightPole {
+  width: 5px;
+  height: 110px;
+  box-shadow: 0 0 8px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  pointer-events: none;
+  z-index: 11;
+  background: linear-gradient(#00e5ff 0%, #00e5ffb3 70%, #00e5ff33 100%);
+  border-radius: 3px;
+  position: absolute;
+}
+
+.Background3D-module__-ZvwOa__neonGate {
+  pointer-events: none;
+  z-index: 12;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.Background3D-module__-ZvwOa__neonGatePost {
+  background: var(--color-neon-cyan);
+  width: 8px;
+  height: 120px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+}
+
+.Background3D-module__-ZvwOa__neonGateBar {
+  background: var(--color-neon-cyan);
+  width: 48px;
+  height: 7px;
+  box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 25px var(--color-neon-cyan), 0 0 50px #00e5ff80;
+  border-radius: 4px;
+  margin-bottom: -1px;
+}
+
+/*# sourceMappingURL=app_components_Background3D_module_css_bad6b30c._.single.css.map*/

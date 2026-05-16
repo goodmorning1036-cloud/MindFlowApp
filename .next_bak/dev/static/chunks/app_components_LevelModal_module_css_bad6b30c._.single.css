@@ -1,0 +1,232 @@
+/* [project]/app/components/LevelModal.module.css [app-client] (css) */
+.LevelModal-module__cMrEIW__overlay {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  background: #000000bf;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.LevelModal-module__cMrEIW__modal {
+  background: #0d1117e6;
+  border: 1px solid #00e5ff33;
+  border-radius: 24px;
+  flex-direction: column;
+  width: 600px;
+  max-height: 85vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 50px #00e5ff1a;
+}
+
+.LevelModal-module__cMrEIW__header {
+  border-bottom: 1px solid #ffffff0d;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__header h2 {
+  letter-spacing: .4em;
+  color: var(--color-neon-cyan);
+  margin: 0;
+  font-size: .85rem;
+  font-weight: 300;
+}
+
+.LevelModal-module__cMrEIW__closeBtn {
+  color: #fff;
+  cursor: pointer;
+  opacity: .5;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  transition: opacity .2s;
+}
+
+.LevelModal-module__cMrEIW__closeBtn:hover {
+  opacity: 1;
+}
+
+.LevelModal-module__cMrEIW__currentStats {
+  background: #ffffff05;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  display: grid;
+}
+
+.LevelModal-module__cMrEIW__statBox {
+  flex-direction: column;
+  gap: .25rem;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__statLabel {
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  font-size: .65rem;
+}
+
+.LevelModal-module__cMrEIW__statValue {
+  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  color: #fff;
+}
+
+.LevelModal-module__cMrEIW__levelList {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff1a transparent;
+  flex: 1;
+  margin: 0 1rem 1.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.LevelModal-module__cMrEIW__levelList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.LevelModal-module__cMrEIW__levelList::-webkit-scrollbar-thumb {
+  background: #ffffff1a;
+  border-radius: 2px;
+}
+
+.LevelModal-module__cMrEIW__levelItem {
+  opacity: .4;
+  border-radius: 16px;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: .5rem;
+  padding: 1.25rem;
+  transition: all .3s;
+  display: flex;
+  position: relative;
+}
+
+.LevelModal-module__cMrEIW__levelItem.LevelModal-module__cMrEIW__reached {
+  opacity: 1;
+}
+
+.LevelModal-module__cMrEIW__levelItem.LevelModal-module__cMrEIW__current {
+  background: #00e5ff0d;
+  border: 1px solid #00e5ff33;
+}
+
+.LevelModal-module__cMrEIW__levelNumberContainer {
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  display: flex;
+  position: relative;
+}
+
+.LevelModal-module__cMrEIW__levelLine {
+  z-index: 0;
+  background: #ffffff1a;
+  width: 1px;
+  position: absolute;
+  top: -100%;
+  bottom: -100%;
+}
+
+.LevelModal-module__cMrEIW__levelItem:first-child .LevelModal-module__cMrEIW__levelLine {
+  top: 50%;
+}
+
+.LevelModal-module__cMrEIW__levelItem:last-child .LevelModal-module__cMrEIW__levelLine {
+  bottom: 50%;
+}
+
+.LevelModal-module__cMrEIW__levelHex {
+  width: 32px;
+  height: 32px;
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  z-index: 1;
+  background: #0d1117;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transform: rotate(45deg);
+}
+
+.LevelModal-module__cMrEIW__levelHex span {
+  transform: rotate(-45deg);
+}
+
+.LevelModal-module__cMrEIW__reached .LevelModal-module__cMrEIW__levelHex {
+  border-color: var(--color-neon-cyan);
+  color: var(--color-neon-cyan);
+  box-shadow: 0 0 10px #00e5ff33;
+}
+
+.LevelModal-module__cMrEIW__reached .LevelModal-module__cMrEIW__levelLine {
+  background: var(--color-neon-cyan);
+  opacity: .3;
+}
+
+.LevelModal-module__cMrEIW__levelInfo {
+  flex-direction: column;
+  flex: 1;
+  gap: .5rem;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__levelHeader {
+  justify-content: space-between;
+  align-items: baseline;
+  display: flex;
+}
+
+.LevelModal-module__cMrEIW__levelTitle {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.LevelModal-module__cMrEIW__xpRequirement {
+  font-size: .75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.LevelModal-module__cMrEIW__progressBar {
+  background: #ffffff0d;
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+}
+
+.LevelModal-module__cMrEIW__progressFill {
+  background: var(--color-neon-cyan);
+  height: 100%;
+  box-shadow: 0 0 8px var(--color-neon-cyan);
+}
+
+.LevelModal-module__cMrEIW__activeTag {
+  background: var(--color-neon-cyan);
+  color: #000;
+  letter-spacing: .05em;
+  border-radius: 4px;
+  padding: .2rem .5rem;
+  font-size: .6rem;
+  font-weight: 800;
+}
+
+.LevelModal-module__cMrEIW__lockedIcon {
+  opacity: .5;
+  font-size: .8rem;
+}
+
+/*# sourceMappingURL=app_components_LevelModal_module_css_bad6b30c._.single.css.map*/
