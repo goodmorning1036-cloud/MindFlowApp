@@ -140,3 +140,55 @@
     margin-top: 1.5rem;
     font-style: italic;
 }
+
+.evidenceSection {
+    margin: 1rem 0 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0, 229, 255, 0.03);
+    border: 1px dashed rgba(0, 229, 255, 0.3);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.evidenceHeader {
+    font-size: 0.65rem;
+    color: #ff4d4d;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.uploadBtn {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.uploadBtn:hover {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: #00E5FF;
+}
+
+.verifiedBadge {
+    font-size: 0.75rem;
+    color: #00FF87;
+    font-weight: 800;
+    padding: 1rem;
+    background: rgba(0, 255, 135, 0.1);
+    border: 1px solid rgba(0, 255, 135, 0.3);
+    border-radius: 12px;
+}

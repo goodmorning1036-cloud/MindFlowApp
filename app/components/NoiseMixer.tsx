@@ -136,7 +136,7 @@ export const NoiseMixer = ({ isRacing }: NoiseMixerProps) => {
     }, [volume]);
 
     return (
-        <div className={styles.container}>
+        <div id="noise-mixer" className={styles.container}>
             <button 
                 className={`${styles.toggleBtn} ${isOpen ? styles.active : ''}`}
                 onClick={() => setIsOpen(!isOpen)}

@@ -4,12 +4,13 @@ import { formatTime } from '../utils/time';
 import styles from './RaceView.module.css';
 import { CarIcon, GhostIcon } from './Assets';
 import { CustomizationState } from '../services/ghostService';
+import { TRACK_THEMES } from './CustomizationModal';
 
 interface RaceViewProps {
     elapsed: number;
     ghostTime: number | null;
     customization: CustomizationState;
-    onComplete: (save: boolean) => void;
+    onComplete: (save: boolean, finishEarly?: boolean) => void;
     isDrifting?: boolean;
     isSafeMode: boolean;
     setIsSafeMode: (val: boolean) => void;
@@ -25,6 +26,7 @@ interface RaceViewProps {
     ghostMode: 'RIVAL' | 'PACER';
     cargo?: string;
     tireHealth: number;
+    isResearchMode?: boolean;
 }
 
 export const RaceView = ({
@@ -38,14 +40,25 @@ export const RaceView = ({
     isRunning,
     onPause,
     onResume,
+    pomodoroConfig,
     ghostMode,
     cargo,
-    tireHealth
+    tireHealth,
+    isResearchMode
 }: RaceViewProps) => {
     const [scaleMax, setScaleMax] = useState(ghostTime ? ghostTime * 1.2 : 60000);
     const [showReturnWarning, setShowReturnWarning] = useState(false);
     const wasDrifting = useRef(false);
     const [activeBgAudio, setActiveBgAudio] = useState('none'); // none, music, rain, whiteNoise
+    const [isMobile, setIsMobile] = useState(false);
+    const theme = TRACK_THEMES[customization.trackTheme] || TRACK_THEMES.cyber;
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         if (!isDrifting && wasDrifting.current) {
@@ -97,29 +110,40 @@ export const RaceView = ({
     };
 
     const getLockedLaneX = (progress: number, laneSide: 'left' | 'right') => {
-        const baseOffset = laneSide === 'right' ? 26 : -26; 
+        const magnitude = isMobile ? 32 : 26;
+        const baseOffset = laneSide === 'right' ? magnitude : -magnitude; 
         const taper = 1 - (Math.min(progress, 100) / 100) * 0.85; 
         return 50 + baseOffset * taper;
     };
 
     const bossLeft = isOvertime ? 50 : getLockedLaneX(playerProgress, 'right');
     const bossBottom = isOvertime ? 30.5 : getGroundedBottom(playerProgress); 
-    const bossScale = isOvertime ? 1.6 : 1.3 - (Math.min(playerProgress, 100) / 100) * 0.6;
+    const mobileScale = isMobile ? 0.6 : 1;
+    const bossScale = (isOvertime ? 1.6 : 1.3 - (Math.min(playerProgress, 100) / 100) * 0.6) * mobileScale;
+    const ghostScale = (1.3 - (Math.min(ghostProgress, 100) / 100) * 0.6) * mobileScale;
 
     return (
         <div className={`${styles.container} ${isRunning ? styles.roadRunning : ''} ${tireHealth < 20 ? styles.redlineShake : tireHealth < 50 ? styles.vibrateEffect : ''}`}>
             {/* --- 3D Environment --- */}
-            <div className={styles.envWrapper}>
-                <div className={styles.horizonGlow} />
+            <div className={styles.envWrapper} style={{ background: theme.skyBackground }}>
+                <div className={styles.horizonGlow} style={{ background: theme.horizonGlow }} />
                 
                 <div className={styles.roadGroup}>
-                    <div className={styles.roadFloor}>
+                    <div 
+                        className={styles.roadFloor} 
+                        style={{ 
+                            background: theme.roadColor, 
+                            borderLeft: `20px solid ${theme.roadBorder}`,
+                            borderRight: `20px solid ${theme.roadBorder}`,
+                            boxShadow: `inset 60px 0 120px -20px ${theme.roadBorder}66, inset -60px 0 120px -20px ${theme.roadBorder}66`
+                        }}
+                    >
                         {/* High-Speed Perspective Dashes */}
                         {isRunning && (
                             <div className={styles.dashContainer}>
-                                <div className={styles.perspectiveDash} style={{ animationDelay: '0s' }} />
-                                <div className={styles.perspectiveDash} style={{ animationDelay: '0.4s' }} />
-                                <div className={styles.perspectiveDash} style={{ animationDelay: '0.8s' }} />
+                                <div className={styles.perspectiveDash} style={{ animationDelay: '0s', background: theme.roadBorder }} />
+                                <div className={styles.perspectiveDash} style={{ animationDelay: '0.4s', background: theme.roadBorder }} />
+                                <div className={styles.perspectiveDash} style={{ animationDelay: '0.8s', background: theme.roadBorder }} />
                             </div>
                         )}
                     </div>
@@ -143,13 +167,13 @@ export const RaceView = ({
                     }}
                 >
                     <div className={`${styles.carSuspension} ${isOvertime ? styles.bossSuspension : ''}`}>
-                        <div className={`${styles.carUnderglow} ${styles.userUnderglow}`} />
+                        <div className={styles.carUnderglow} style={{ background: customization.carColor, boxShadow: `0 0 40px ${customization.carColor}` }} />
                         <div className={styles.groundShadow} />
                         {isRunning && <div className={styles.speedTrail} />}
                         <div className={styles.reflection}>
                             <CarIcon color={customization.carColor} width={240} height={150} />
                         </div>
-                        <div className={`${styles.carGlow} ${isDrifting ? styles.carSpinning : ''}`}>
+                        <div className={`${styles.carGlow} ${isDrifting ? styles.carSpinning : ''}`} style={{ filter: `drop-shadow(0 0 15px ${customization.carColor}88)` }}>
                             <CarIcon color={customization.carColor} width={240} height={150} />
                         </div>
                     </div>
@@ -162,7 +186,7 @@ export const RaceView = ({
                         left: `${getLockedLaneX(ghostProgress, 'left')}%`,
                         bottom: `${isOvertime ? -20 : getGroundedBottom(ghostProgress)}%`, 
                         opacity: isOvertime ? 0 : 0.8,
-                        transform: `translateX(-50%) scale(${1.3 - (Math.min(ghostProgress, 100) / 100) * 0.6})`,
+                        transform: `translateX(-50%) scale(${ghostScale})`,
                         transition: isOvertime
                             ? 'opacity 1.5s ease-out, bottom 1.5s cubic-bezier(0.4, 0, 0.2, 1), left 0.8s ease-in-out, transform 0.8s ease-in-out'
                             : 'none',
@@ -173,10 +197,10 @@ export const RaceView = ({
                     }}
                 >
                     <div className={styles.carSuspension}>
-                        <div className={`${styles.carUnderglow} ${styles.ghostUnderglow}`} />
+                        <div className={styles.carUnderglow} style={{ background: customization.carColor, boxShadow: `0 0 30px ${customization.carColor}AA` }} />
                         <div className={styles.groundShadowGhost} />
-                        <div className={styles.hologramCar}>
-                            <CarIcon color="rgba(0, 229, 255, 0.9)" width={240} height={150} />
+                        <div className={styles.hologramCar} style={{ filter: `drop-shadow(0 0 10px ${customization.carColor}66) brightness(1.2)` }}>
+                            <CarIcon color={customization.carColor} width={240} height={150} />
                         </div>
                     </div>
                 </div>
@@ -185,11 +209,17 @@ export const RaceView = ({
 
 
             {/* --- Top Center Dashboard Panel --- */}
-            <div className={styles.dashboardPanel}>
+            <div id="telemetry-hub" className={styles.dashboardPanel}>
                 <div className={styles.telemetryRow}>
                     <div className={styles.telemetryItem}>
                         <span className={styles.telemetryLabel}>MODE</span>
                         <span className={styles.telemetryValue}>{ghostMode}</span>
+                    </div>
+                    <div className={styles.telemetryItem}>
+                        <span className={styles.telemetryLabel}>PERMIT</span>
+                        <span className={`${styles.telemetryValue} ${isResearchMode ? styles.researchValue : ''}`}>
+                            {isResearchMode ? 'RESEARCH' : 'STANDARD'}
+                        </span>
                     </div>
                     {cargo && (
                         <div className={styles.telemetryItem} style={{ flex: 2 }}>
@@ -197,14 +227,14 @@ export const RaceView = ({
                             <span className={styles.telemetryValue}>{cargo.toUpperCase()}</span>
                         </div>
                     )}
-                    <div className={styles.telemetryItem} style={{ width: '120px' }}>
+                    <div id="tire-vitals" className={styles.telemetryItem} style={{ width: '120px' }}>
                         <span className={styles.telemetryLabel}>FOCUS STABILITY</span>
                         <div className={styles.tireHealthBar}>
                             <div 
                                 className={styles.tireHealthFill} 
                                 style={{ 
                                     width: `${tireHealth}%`,
-                                    background: tireHealth < 20 ? '#ff3e3e' : tireHealth < 50 ? '#ffae00' : '#00E5FF'
+                                    background: tireHealth < 20 ? '#ff3e3e' : tireHealth < 50 ? '#ffae00' : theme.roadBorder
                                 }} 
                             />
                         </div>
@@ -223,18 +253,23 @@ export const RaceView = ({
                     </div>
                 )}
 
-                <button onClick={() => onComplete(true)} className={styles.completeBtn}>
+                <button id="complete-stint-btn" onClick={() => onComplete(true)} className={styles.completeBtn}>
                     COMPLETE STINT
                 </button>
 
                 <div className={styles.secondaryActions}>
-                    <button onClick={() => setIsSafeMode(!isSafeMode)} className={isSafeMode ? styles.safeModeActive : ''}>
+                    <button id="shield-btn" onClick={() => setIsSafeMode(!isSafeMode)} className={isSafeMode ? styles.safeModeActive : ''}>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 
                         SHIELD {isSafeMode ? 'ON' : 'OFF'}
                     </button>
                     <button onClick={isRunning ? onPause : onResume}>
                         {isRunning ? 'PAUSE' : 'RESUME'}
                     </button>
+                    {pomodoroConfig.laps > 1 && (
+                        <button onClick={() => confirm("Finish entire session early? Current progress will be saved.") && onComplete(true, true)} className={styles.finishEarlyBtn}>
+                            FINISH EARLY
+                        </button>
+                    )}
                     <button onClick={() => confirm("Cancel session?") && onComplete(false)}>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         CANCEL
@@ -253,9 +288,9 @@ export const RaceView = ({
                         className={styles.driftOverlay}
                     >
                         <div className={styles.driftText}>
-                            {isDrifting ? 'STAY FOCUSED' : 'GET BACK IN THE LANE'}
+                            {isDrifting ? (isResearchMode ? 'AUTHORIZED RESEARCH' : 'STAY FOCUSED') : 'GET BACK IN THE LANE'}
                             <span className={styles.driftSubtext}>
-                                {isDrifting ? 'DANGER: DRIFTING DETECTED' : 'TIRE PRESSURE LOW • RECOVERING'}
+                                {isDrifting ? (isResearchMode ? 'RESEARCH BUFFER ACTIVE' : 'DANGER: DRIFTING DETECTED') : 'TIRE PRESSURE LOW • RECOVERING'}
                             </span>
                         </div>
                     </motion.div>

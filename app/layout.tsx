@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MindFlow",
-  description: "Gamified Productivity",
+  title: "MindFlow | High-Performance Focus",
+  description: "Restore your attention span with gamified productivity. Enter the flow state and race toward your goals.",
 };
 
 export default function RootLayout({

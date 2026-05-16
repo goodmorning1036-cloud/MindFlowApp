@@ -4,7 +4,7 @@ import { GhostService, TaskRecord } from '../services/ghostService';
 import styles from './TaskInput.module.css';
 
 interface TaskInputProps {
-    onStart: (taskName: string, ghostTime: number | undefined, subject: string, breakMinutes: number, laps: number, ghostMode: 'RIVAL' | 'PACER', cargo: string) => void;
+    onStart: (taskName: string, ghostTime: number | undefined, subject: string, breakMinutes: number, laps: number, ghostMode: 'RIVAL' | 'PACER', cargo: string, isResearchMode: boolean) => void;
 }
 
 export const TaskInput = ({ onStart }: TaskInputProps) => {
@@ -13,6 +13,7 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
     const [targetTimeStr, setTargetTimeStr] = useState('');
     const [strategyEnabled, setStrategyEnabled] = useState(false);
     const [ghostMode, setGhostMode] = useState<'RIVAL' | 'PACER'>('RIVAL');
+    const [isResearchMode, setIsResearchMode] = useState(false);
     const [allTasks, setAllTasks] = useState<TaskRecord[]>([]);
 
     const canStart = subject.trim().length > 0;
@@ -42,11 +43,11 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
         const laps = strategyEnabled ? parseInt((document.getElementById('laps-count') as HTMLInputElement)?.value || '1') : 1;
 
         if (parsedMinutes !== null && parsedMinutes > 0) {
-            onStart(subject.trim(), parsedMinutes * 60 * 1000, subject.trim(), breakMins, laps, ghostMode, cargo.trim());
+            onStart(subject.trim(), parsedMinutes * 60 * 1000, subject.trim(), breakMins, laps, ghostMode, cargo.trim(), isResearchMode);
         } else {
             const record = GhostService.getTask(subject.trim());
             const ghost = record?.bestTime || undefined;
-            onStart(subject.trim(), ghost, subject.trim(), breakMins, laps, ghostMode, cargo.trim());
+            onStart(subject.trim(), ghost, subject.trim(), breakMins, laps, ghostMode, cargo.trim(), isResearchMode);
         }
     };
 
@@ -122,7 +123,7 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
                     </AnimatePresence>
 
                     <div className={styles.optionsRow}>
-                        <div className={styles.modeSelector}>
+                        <div id="strategy-selector" className={styles.modeSelector}>
                             <button
                                 type="button"
                                 className={`${styles.modeBtn} ${!strategyEnabled ? styles.modeActive : ''}`}
@@ -139,7 +140,7 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
                             </button>
                         </div>
 
-                        <div className={styles.modeSelector}>
+                        <div id="rival-selector" className={styles.modeSelector}>
                             <button
                                 type="button"
                                 className={`${styles.modeBtn} ${ghostMode === 'RIVAL' ? styles.modeActive : ''}`}
@@ -155,6 +156,16 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
                                 title="Follow a steady pace"
                             >
                                 PACER
+                            </button>
+                        </div>
+                        <div className={styles.modeSelector}>
+                            <button
+                                type="button"
+                                className={`${styles.modeBtn} ${isResearchMode ? styles.researchActive : ''}`}
+                                onClick={() => setIsResearchMode(!isResearchMode)}
+                                title="Allow list for other apps/sites"
+                            >
+                                {isResearchMode ? 'RESEARCH: ON' : 'RESEARCH: OFF'}
                             </button>
                         </div>
                     </div>
@@ -193,31 +204,41 @@ export const TaskInput = ({ onStart }: TaskInputProps) => {
                                 </div>
                                 <div className={styles.strategyGrid}>
                                     <div className={styles.strategyItem}>
-                                        <label>LAP TIME</label>
-                                        <input
-                                            type="number"
-                                            value={targetTimeStr || '25'}
-                                            onChange={(e) => setTargetTimeStr(e.target.value)}
-                                            className={styles.strategyInput}
-                                        />
+                                        <label><span className={styles.stratIcon}>⏱</span> LAP TIME</label>
+                                        <div className={styles.inputWrapper}>
+                                            <input
+                                                type="number"
+                                                value={targetTimeStr}
+                                                onChange={(e) => setTargetTimeStr(e.target.value)}
+                                                placeholder="25"
+                                                className={styles.strategyInput}
+                                            />
+                                            <span className={styles.inputUnit}>MIN</span>
+                                        </div>
                                     </div>
                                     <div className={styles.strategyItem}>
-                                        <label>PIT STOP</label>
-                                        <input
-                                            type="number"
-                                            defaultValue="5"
-                                            className={styles.strategyInput}
-                                            id="break-time"
-                                        />
+                                        <label><span className={styles.stratIcon}>🔧</span> PIT STOP</label>
+                                        <div className={styles.inputWrapper}>
+                                            <input
+                                                type="number"
+                                                defaultValue="5"
+                                                className={styles.strategyInput}
+                                                id="break-time"
+                                            />
+                                            <span className={styles.inputUnit}>MIN</span>
+                                        </div>
                                     </div>
                                     <div className={styles.strategyItem}>
-                                        <label>LAPS</label>
-                                        <input
-                                            type="number"
-                                            defaultValue="4"
-                                            className={styles.strategyInput}
-                                            id="laps-count"
-                                        />
+                                        <label><span className={styles.stratIcon}>🔁</span> LAPS</label>
+                                        <div className={styles.inputWrapper}>
+                                            <input
+                                                type="number"
+                                                defaultValue="4"
+                                                className={styles.strategyInput}
+                                                id="laps-count"
+                                            />
+                                            <span className={styles.inputUnit}>STINTS</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className={styles.strategyDivider}>

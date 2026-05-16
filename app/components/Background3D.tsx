@@ -2,39 +2,33 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styles from './Background3D.module.css';
 import { GhostlyTreeIcon } from './Assets';
+import { GhostService } from '../services/ghostService';
+import { TRACK_THEMES } from './CustomizationModal';
 
 interface Background3DProps {
     blur?: boolean;
 }
 
-export type Season = "winter" | "spring" | "summer" | "autumn";
-
 export const Background3D = ({ blur = false }: Background3DProps) => {
-    const [season, setSeason] = useState<Season>("winter");
+    const [trackTheme, setTrackTheme] = useState("cyber");
 
     useEffect(() => {
-        const saved = localStorage.getItem("mindflow-season") as Season | null;
-        if (saved) setSeason(saved);
-
-        const handleSeasonChange = (e: Event) => {
-            const customEvent = e as CustomEvent<Season>;
-            setSeason(customEvent.detail);
+        const syncTheme = () => {
+            const custom = GhostService.getCustomization();
+            if (custom.trackTheme) setTrackTheme(custom.trackTheme);
         };
-        window.addEventListener('season-changed', handleSeasonChange);
-        return () => window.removeEventListener('season-changed', handleSeasonChange);
+
+        syncTheme();
+        window.addEventListener('customization-updated', syncTheme);
+        return () => window.removeEventListener('customization-updated', syncTheme);
     }, []);
 
-    const getSeasonColor = () => {
-        switch (season) {
-            case "spring": return "#FF7EB3"; // Sakura Pink
-            case "summer": return "#00FF87"; // Neon Green
-            case "autumn": return "#FF9A00"; // Autumn Orange
-            case "winter":
-            default: return "#00E5FF"; // Neon Cyan
-        }
+    const getThemeColor = () => {
+        const theme = TRACK_THEMES[trackTheme] || TRACK_THEMES.cyber;
+        return theme.roadBorder;
     };
 
-    const treeColor = getSeasonColor();
+    const accentColor = getThemeColor();
 
     return (
         <div className={`${styles.envWrapper} ${blur ? styles.blurred : ''}`}>
@@ -92,7 +86,7 @@ export const Background3D = ({ blur = false }: Background3DProps) => {
                         initial="initial"
                         animate="animate"
                     >
-                        <div className={styles.treeVisual} style={{ opacity: 1 }}><GhostlyTreeIcon color={treeColor} /></div>
+                        <div className={styles.treeVisual} style={{ opacity: 1 }}><GhostlyTreeIcon color={accentColor} /></div>
                     </motion.div>
                 ))}
 
@@ -115,7 +109,7 @@ export const Background3D = ({ blur = false }: Background3DProps) => {
                         initial="initial"
                         animate="animate"
                     >
-                        <div className={styles.treeVisual} style={{ opacity: 1 }}><GhostlyTreeIcon color={treeColor} /></div>
+                        <div className={styles.treeVisual} style={{ opacity: 1 }}><GhostlyTreeIcon color={accentColor} /></div>
                     </motion.div>
                 ))}
 
@@ -139,8 +133,8 @@ export const Background3D = ({ blur = false }: Background3DProps) => {
                         animate="animate"
                         transition={{ duration: 2, repeat: Infinity, ease: 'linear', delay: i * 0.5 }}
                     >
-                        <div className={styles.neonGateBar} />
-                        <div className={styles.neonGatePost} />
+                        <div className={styles.neonGateBar} style={{ background: accentColor, boxShadow: `0 0 15px ${accentColor}` }} />
+                        <div className={styles.neonGatePost} style={{ background: `linear-gradient(to top, transparent, ${accentColor})` }} />
                     </motion.div>
                 ))}
 
@@ -164,8 +158,8 @@ export const Background3D = ({ blur = false }: Background3DProps) => {
                         animate="animate"
                         transition={{ duration: 2, repeat: Infinity, ease: 'linear', delay: i * 0.5 + 0.25 }}
                     >
-                        <div className={styles.neonGateBar} />
-                        <div className={styles.neonGatePost} />
+                        <div className={styles.neonGateBar} style={{ background: accentColor, boxShadow: `0 0 15px ${accentColor}` }} />
+                        <div className={styles.neonGatePost} style={{ background: `linear-gradient(to top, transparent, ${accentColor})` }} />
                     </motion.div>
                 ))}
 
@@ -174,7 +168,12 @@ export const Background3D = ({ blur = false }: Background3DProps) => {
                     <motion.div
                         key={`pole-l-${i}`}
                         className={styles.lightPole}
-                        style={{ top: '50%', left: 'calc(50% - 220px)' }}
+                        style={{ 
+                            top: '50%', 
+                            left: 'calc(50% - 220px)',
+                            background: `linear-gradient(to top, transparent, ${accentColor})`,
+                            boxShadow: `0 0 10px ${accentColor}`
+                        }}
                         variants={{
                             initial: { x: 0, y: 0, scale: 0.08, opacity: 0 },
                             animate: {
@@ -196,7 +195,12 @@ export const Background3D = ({ blur = false }: Background3DProps) => {
                     <motion.div
                         key={`pole-r-${i}`}
                         className={styles.lightPole}
-                        style={{ top: '50%', left: 'calc(50% + 220px)' }}
+                        style={{ 
+                            top: '50%', 
+                            left: 'calc(50% + 220px)',
+                            background: `linear-gradient(to top, transparent, ${accentColor})`,
+                            boxShadow: `0 0 10px ${accentColor}`
+                        }}
                         variants={{
                             initial: { x: 0, y: 0, scale: 0.08, opacity: 0 },
                             animate: {

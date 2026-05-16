@@ -48,7 +48,7 @@ export const ResultModal = ({ duration, ghostTime, fuelGained, onClose, totalXpE
                         </p>
                     )}
 
-                    <div className={styles.statsGrid}>
+                    <div id="fuel-stats" className={styles.statsGrid}>
                         <div className={styles.statCard}>
                             <div className={styles.statLabel}>Fuel Earned</div>
                             <div className={styles.statValue} style={{ color: '#00E5FF' }}>+{Math.round(fuelGained * (rating / 5))} XP</div>
@@ -82,7 +82,10 @@ export const ResultModal = ({ duration, ghostTime, fuelGained, onClose, totalXpE
                         </div>
                     )}
 
-                    <div className={styles.evidenceSection}>
+                    <div id="evidence-stats" className={styles.evidenceSection}>
+                        {duration >= 25 * 60 * 1000 && !isUploaded && (
+                            <div className={styles.mandatoryNote}>ACCOUNTABILITY CHECK: EVIDENCE REQUIRED FOR 25M+ STINT</div>
+                        )}
                         {!isUploaded ? (
                             <button className={styles.uploadBtn} onClick={() => document.getElementById('evidence-upload')?.click()}>
                                 📷 UPLOAD COMPLETION EVIDENCE
@@ -94,7 +97,7 @@ export const ResultModal = ({ duration, ghostTime, fuelGained, onClose, totalXpE
                     </div>
 
                     {currentLevelInfo && (
-                        <div className={styles.levelSection}>
+                        <div id="level-stats" className={styles.levelSection}>
                             <div className={styles.levelRow}>
                                 <span>LVL {currentLevelInfo.level}</span>
                                 <span style={{ opacity: 0.5 }}>{currentLevelInfo.title.toUpperCase()}</span>
@@ -112,8 +115,12 @@ export const ResultModal = ({ duration, ghostTime, fuelGained, onClose, totalXpE
                 </div>
 
                 <div className={styles.modalFooter}>
-                    <button className={styles.continueBtn} onClick={onClose}>
-                        CONTINUE TO DASHBOARD
+                    <button 
+                        className={styles.continueBtn} 
+                        onClick={onClose}
+                        disabled={duration >= 25 * 60 * 1000 && !isUploaded}
+                    >
+                        {duration >= 25 * 60 * 1000 && !isUploaded ? 'UPLOAD EVIDENCE TO CONTINUE' : 'CONTINUE TO DASHBOARD'}
                     </button>
                 </div>
             </motion.div>

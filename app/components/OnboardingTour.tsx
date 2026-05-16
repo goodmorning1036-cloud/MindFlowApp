@@ -12,7 +12,9 @@ interface Step {
     position: "top" | "bottom" | "left" | "right";
 }
 
-const TOUR_STEPS: Step[] = [
+export type TourContext = 'HOME' | 'RACE' | 'RESULT';
+
+const HOME_STEPS: Step[] = [
     {
         id: "welcome",
         title: "WELCOME PILOT",
@@ -28,6 +30,20 @@ const TOUR_STEPS: Step[] = [
         position: "bottom"
     },
     {
+        id: "strategy",
+        title: "SESSION STRATEGY",
+        description: "Choose 'Quick Focus' for a single sprint, or 'Session Strategy' to plan a series of laps with scheduled breaks.",
+        targetId: "strategy-selector",
+        position: "bottom"
+    },
+    {
+        id: "rival",
+        title: "RIVAL VS PACER",
+        description: "In RIVAL mode, you race against your personal best time. PACER mode gives you a steady target to help you stay on track.",
+        targetId: "rival-selector",
+        position: "bottom"
+    },
+    {
         id: "todo",
         title: "THE PIT CREW",
         description: "Use the Todo List for smaller sub-tasks. Crossing these off during your session keeps your momentum high.",
@@ -35,24 +51,10 @@ const TOUR_STEPS: Step[] = [
         position: "bottom"
     },
     {
-        id: "garage",
-        title: "THE GARAGE",
-        description: "Customise your ride! Spend the Fuel you earn to unlock neon colors and premium holographic effects.",
-        targetId: "garage-btn",
-        position: "bottom"
-    },
-    {
-        id: "level",
-        title: "PILOT STATUS",
-        description: "This shows your current Level and XP. The more you focus, the higher you climb in the global ranks.",
-        targetId: "level-badge",
-        position: "bottom"
-    },
-    {
-        id: "calendar",
-        title: "THE LOGBOOK",
-        description: "Track your racing history or use the Exam Planner to map out your long-term focus goals.",
-        targetId: "calendar-btn",
+        id: "sensory",
+        title: "SENSORY FOCUS",
+        description: "Need total concentration? Use the Noise Mixer to play White Noise or Rain to block out distractions while you race.",
+        targetId: "noise-mixer",
         position: "bottom"
     },
     {
@@ -64,33 +66,102 @@ const TOUR_STEPS: Step[] = [
     }
 ];
 
-export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
+const RACE_STEPS: Step[] = [
+    {
+        id: "telemetry",
+        title: "TELEMETRY DASHBOARD",
+        description: "Monitor your race mode and cargo delivery status here. This panel keeps you connected to your mission objectives.",
+        targetId: "telemetry-hub",
+        position: "bottom"
+    },
+    {
+        id: "vitals",
+        title: "FOCUS STABILITY",
+        description: "This is your Tire Health. Staying in the tab keeps it high. Switching tabs causes friction and drains your stability!",
+        targetId: "tire-vitals",
+        position: "bottom"
+    },
+    {
+        id: "shields",
+        title: "FOCUS SHIELDS",
+        description: "Need to check a quick message? Activate the Shield to temporarily prevent focus penalties, or use Research Mode.",
+        targetId: "shield-btn",
+        position: "top"
+    },
+    {
+        id: "finish",
+        title: "MISSION COMPLETION",
+        description: "Once your task is done, hit COMPLETE STINT to head to the Pit Stop and collect your rewards.",
+        targetId: "complete-stint-btn",
+        position: "top"
+    }
+];
+
+const RESULT_STEPS: Step[] = [
+    {
+        id: "rewards",
+        title: "MISSION REWARDS",
+        description: "Excellent performance. Here is the Fuel you earned based on your focus stability and time.",
+        targetId: "fuel-stats",
+        position: "bottom"
+    },
+    {
+        id: "progression",
+        title: "PILOT PROGRESSION",
+        description: "Your XP contributes to your Pilot Level. Unlock higher ranks and premium garage items by staying consistent.",
+        targetId: "level-stats",
+        position: "top"
+    },
+    {
+        id: "uplink",
+        title: "DATA UPLINK",
+        description: "For long missions, upload proof of your work here to verify your progress and unlock the next track.",
+        targetId: "evidence-stats",
+        position: "top"
+    }
+];
+
+export const OnboardingTour = ({ onComplete, context = 'HOME' }: { onComplete?: () => void, context?: TourContext }) => {
     const [currentStep, setCurrentStep] = useState(0);
-    const [isVisible, setIsVisible] = useState(true); // Always visible when rendered
+    const [isVisible, setIsVisible] = useState(true);
     const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+
+    const steps = context === 'RACE' ? RACE_STEPS : context === 'RESULT' ? RESULT_STEPS : HOME_STEPS;
 
     useEffect(() => {
         // We handle visibility from the parent now
     }, []);
 
     useEffect(() => {
-        if (isVisible) {
-            const updateRect = () => {
-                const step = TOUR_STEPS[currentStep];
-                const element = document.getElementById(step.targetId);
-                if (element) {
-                    setTargetRect(element.getBoundingClientRect());
-                }
-            };
-
-            updateRect();
-            window.addEventListener("resize", updateRect);
-            return () => window.removeEventListener("resize", updateRect);
+        const step = steps[currentStep];
+        if (step.targetId && isVisible) {
+            const el = document.getElementById(step.targetId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
-    }, [currentStep, isVisible]);
+    }, [currentStep, isVisible, steps]);
+
+    useEffect(() => {
+        const updateRect = () => {
+            const step = steps[currentStep];
+            if (step && step.targetId) {
+                const el = document.getElementById(step.targetId);
+                if (el) {
+                    setTargetRect(el.getBoundingClientRect());
+                }
+            } else {
+                setTargetRect(null);
+            }
+        };
+
+        updateRect();
+        const timer = setInterval(updateRect, 100);
+        return () => clearInterval(timer);
+    }, [currentStep, isVisible, steps]);
 
     const handleNext = () => {
-        if (currentStep < TOUR_STEPS.length - 1) {
+        if (currentStep < steps.length - 1) {
             setCurrentStep(prev => prev + 1);
         } else {
             handleComplete();
@@ -99,12 +170,16 @@ export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
 
     const handleComplete = () => {
         setIsVisible(false);
-        localStorage.setItem("mindflow_tour_complete", "true");
+        if (context === 'HOME') {
+            localStorage.setItem("mindflow_tour_complete", "true");
+        } else {
+            localStorage.setItem(`mindflow_tour_${context.toLowerCase()}_complete`, "true");
+        }
         if (onComplete) onComplete();
     };
 
-    const step = TOUR_STEPS[currentStep];
-    const isWelcome = step.id === "welcome" || step.id === "ready";
+    const step = steps[currentStep];
+    const isWelcome = step?.id === "welcome" || step?.id === "ready";
 
     if (!isVisible || (!isWelcome && !targetRect)) return null;
     
@@ -182,7 +257,7 @@ export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
                 className={styles.tooltip}
             >
                 <div className={styles.tooltipHeader}>
-                    <span className={styles.stepIndicator}>STEP {currentStep + 1} OF {TOUR_STEPS.length}</span>
+                    <span className={styles.stepIndicator}>STEP {currentStep + 1} OF {steps.length}</span>
                     <button className={styles.skipBtn} onClick={handleComplete}>SKIP</button>
                 </div>
                 <h3 className={styles.title}>{step.title}</h3>
@@ -190,7 +265,7 @@ export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
                 <div className={styles.footer}>
                     <div />
                     <button className={styles.nextBtn} onClick={handleNext}>
-                        {currentStep === TOUR_STEPS.length - 1 ? "START RACING" : "NEXT"}
+                        {currentStep === steps.length - 1 ? (context === 'HOME' ? "START RACING" : context === 'RACE' ? "BEGIN STINT" : "CONTINUE") : "NEXT"}
                     </button>
                 </div>
             </motion.div>

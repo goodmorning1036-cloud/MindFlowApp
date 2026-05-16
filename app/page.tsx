@@ -15,7 +15,7 @@ import { CalendarModal } from "./components/CalendarModal";
 import { ExamPlannerModal } from "./components/ExamPlannerModal";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { PitStop } from "./components/PitStop";
-import { OnboardingTour } from "./components/OnboardingTour";
+import { OnboardingTour, TourContext } from './components/OnboardingTour';
 
 import { useTimer } from "./hooks/useTimer";
 import { GhostService, TaskRecord, CustomizationState } from "./services/ghostService";
@@ -69,6 +69,9 @@ export default function Home() {
     const [ghostMode, setGhostMode] = useState<'RIVAL' | 'PACER'>('RIVAL');
     const [currentCargo, setCurrentCargo] = useState('');
     const [tireHealth, setTireHealth] = useState(100);
+    const [isResearchMode, setIsResearchMode] = useState(false);
+    const [offTrackTime, setOffTrackTime] = useState(0);
+    const [fuelPenalty, setFuelPenalty] = useState(0);
 
     // Customization & Progression State
     const [customization, setCustomization] = useState<CustomizationState>(GhostService.getCustomization());
@@ -78,53 +81,79 @@ export default function Home() {
     const [showCalendar, setShowCalendar] = useState(false);
     const [calendarMode, setCalendarMode] = useState<'history' | 'planner'>('history');
     const [showTour, setShowTour] = useState(false);
+    const [showRaceTour, setShowRaceTour] = useState(false);
+    const [showResultTour, setShowResultTour] = useState(false);
+    const [isBooting, setIsBooting] = useState(true);
 
     useEffect(() => {
-        const hasSeenTour = localStorage.getItem("mindflow_tour_complete");
-        if (!hasSeenTour) {
-            setShowTour(true);
-        }
+        const timer = setTimeout(() => setIsBooting(false), 2000);
+        return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (!isBooting) {
+            const hasSeenTour = localStorage.getItem("mindflow_tour_complete");
+            if (!hasSeenTour && mode === 'HOME') {
+                setShowTour(true);
+            }
+            if (mode === 'RACE') {
+                const hasSeenRace = localStorage.getItem("mindflow_tour_race_complete");
+                if (!hasSeenRace) setShowRaceTour(true);
+            }
+            if (mode === 'RESULT') {
+                const hasSeenResult = localStorage.getItem("mindflow_tour_result_complete");
+                if (!hasSeenResult) setShowResultTour(true);
+            }
+        }
+    }, [isBooting, mode]);
 
     const { elapsed, isRunning, setSpeedMultiplier, start, stop, reset } = useTimer();
 
+    // Focus Penalty Logic
     useEffect(() => {
-        const handleVisibilityChange = () => {
-            const drifting = document.visibilityState === 'hidden';
-            if (mode === 'RACE') {
-                if (isSafeMode) {
+        if (mode === 'RACE' && isRunning) {
+            const interval = setInterval(() => {
+                const isHidden = document.visibilityState === 'hidden';
+                if (isHidden && !isSafeMode) {
+                    setOffTrackTime(prev => prev + 1);
+                    
+                    const buffer = isResearchMode ? 120 : 5; // 2 mins vs 5 secs
+                    if (offTrackTime > buffer) {
+                        setIsDrifting(true);
+                        setTireHealth(prev => Math.max(0, prev - 2));
+                        setFuelPenalty(prev => prev + 5);
+                        setSpeedMultiplier(0.1);
+                    }
+                } else {
+                    setOffTrackTime(0);
                     setIsDrifting(false);
                     setSpeedMultiplier(1.0);
-                } else {
-                    setIsDrifting(drifting);
-                    setSpeedMultiplier(drifting ? 0.1 : 1.0);
-                    if (drifting) {
-                        setTireHealth(prev => Math.max(0, prev - 15)); // Big penalty for drifting
-                    }
                 }
-            } else {
-                setIsDrifting(false);
-                setSpeedMultiplier(1.0);
-            }
-        };
 
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-    }, [mode, setSpeedMultiplier, isSafeMode]);
-
-    // Passive tire wear during race
-    useEffect(() => {
-        if (mode === 'RACE' && isRunning && pomodoroConfig.mode === 'RACE') {
-            const interval = setInterval(() => {
-                setTireHealth(prev => Math.max(0, prev - 0.2));
-            }, 5000);
+                // Passive tire wear
+                if (pomodoroConfig.mode === 'RACE') {
+                    setTireHealth(prev => Math.max(0, prev - 0.05));
+                }
+            }, 1000);
             return () => clearInterval(interval);
         }
-    }, [mode, isRunning, pomodoroConfig.mode]);
+    }, [mode, isRunning, isSafeMode, isResearchMode, offTrackTime, pomodoroConfig.mode]);
 
-    const handleStart = (task: string, customDuration: number | undefined, parent: string, breakTime: number, laps: number, mode: 'RIVAL' | 'PACER', cargo: string) => {
+    // Handle DNF (Mechanical Failure)
+    useEffect(() => {
+        if (tireHealth <= 0 && mode === 'RACE') {
+            handleComplete(false); // Cancel with no save
+            alert("🚨 MECHANICAL FAILURE: FOCUS COMPROMISED. STINT ABORTED.");
+        }
+    }, [tireHealth, mode]);
+
+    const handleStart = (task: string, customDuration: number | undefined, parent: string, breakTime: number, laps: number, mode: 'RIVAL' | 'PACER', cargo: string, research: boolean) => {
         setIsRacing(true);
         setCurrentCargo(cargo);
+        setIsResearchMode(research);
+        setFuelPenalty(0);
+        setOffTrackTime(0);
+        setTireHealth(100);
         const record = GhostService.getTask(task, parent);
         setTaskName(task);
         setTaskParent(parent);
@@ -154,13 +183,19 @@ export default function Home() {
         }, 800);
     };
 
-    const handleComplete = (save: boolean = true) => {
+    const handleComplete = (save: boolean = true, finishEarly: boolean = false) => {
         stop();
         if (save) {
             // If it was a Race, save it
             if (pomodoroConfig.mode === 'RACE') {
                 const { fuelGained } = GhostService.saveRun(taskName, elapsed, taskParent);
-                setLastFuelGained(fuelGained);
+                const finalFuel = Math.max(0, fuelGained - fuelPenalty);
+                setLastFuelGained(finalFuel);
+            }
+
+            if (finishEarly) {
+                setMode('RESULT');
+                return;
             }
 
             // Check if we have more laps or need a break
@@ -198,7 +233,44 @@ export default function Home() {
 
     return (
         <div className={`${styles.pageContainer} ${isRacing || mode === 'RACE' ? styles.racingBackground : ''}`}>
-            {mode === 'HOME' && showTour && <OnboardingTour onComplete={() => setShowTour(false)} />}
+            <AnimatePresence>
+                {isBooting && (
+                    <motion.div 
+                        className={styles.bootOverlay}
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div className={styles.bootContent}>
+                            <motion.div 
+                                className={styles.bootScanline}
+                                animate={{ top: ['0%', '100%'] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                            />
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: [0, 1, 0.5, 1] }}
+                                transition={{ duration: 0.5, repeat: 3 }}
+                            >
+                                ESTABLISHING NEURAL LINK...
+                            </motion.span>
+                            <div className={styles.bootProgress}>
+                                <motion.div 
+                                    className={styles.bootProgressBar}
+                                    initial={{ width: 0 }}
+                                    animate={{ width: "100%" }}
+                                    transition={{ duration: 1.8, ease: "easeInOut" }}
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {mode === 'HOME' && showTour && !isBooting && <OnboardingTour onComplete={() => setShowTour(false)} context="HOME" />}
+            {mode === 'RACE' && showRaceTour && !isBooting && <OnboardingTour onComplete={() => setShowRaceTour(false)} context="RACE" />}
+            {mode === 'RESULT' && showResultTour && !isBooting && <OnboardingTour onComplete={() => setShowResultTour(false)} context="RESULT" />}
+            
             {mode !== 'RACE' && <Background3D blur={true} />}
             <main className={styles.mainContent}>
                 <AnimatePresence>

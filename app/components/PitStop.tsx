@@ -15,7 +15,10 @@ export const PitStop = ({ onComplete, duration }: PitStopProps) => {
         eyes: false
     });
 
-    const allChecked = checks.hydrate && checks.stretch && checks.eyes;
+    const [isUploaded, setIsUploaded] = useState(false);
+    const isMandatory = duration >= 25 * 60; // 25 minutes
+
+    const allChecked = checks.hydrate && checks.stretch && checks.eyes && (!isMandatory || isUploaded);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -69,10 +72,24 @@ export const PitStop = ({ onComplete, duration }: PitStopProps) => {
                         <div className={styles.checkbox}>{checks.eyes ? '✓' : ''}</div>
                         <div className={styles.itemText}>
                             <span className={styles.itemTitle}>20-20-20 RULE</span>
-                            <span className={styles.itemDesc}>Reset visual focus calibration</span>
+                            <span className={styles.itemDesc}>Every 20 minutes, look 20 feet away for 20 seconds to protect your vision.</span>
                         </div>
                     </div>
                 </div>
+
+                {isMandatory && (
+                    <div className={styles.evidenceSection}>
+                        <div className={styles.evidenceHeader}>MANDATORY MISSION DATA</div>
+                        {!isUploaded ? (
+                            <button className={styles.uploadBtn} onClick={() => document.getElementById('evidence-upload-pit')?.click()}>
+                                📷 UPLOAD EVIDENCE OF WORK (25M+ STINT)
+                                <input id="evidence-upload-pit" type="file" style={{ display: 'none' }} onChange={() => setIsUploaded(true)} />
+                            </button>
+                        ) : (
+                            <div className={styles.verifiedBadge}>✅ DATA UPLINK VERIFIED</div>
+                        )}
+                    </div>
+                )}
 
                 <motion.button 
                     className={styles.completeBtn}
