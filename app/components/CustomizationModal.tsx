@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { GhostService, CustomizationState, getLevelInfo } from "../services/ghostService";
-import { CarIcon, GhostIcon } from "./Assets";
+import { CarIcon } from "./Assets";
 import styles from "./CustomizationModal.module.css";
 
 interface GarageProps {
@@ -32,14 +32,6 @@ const UNLOCKABLES: Unlockable[] = [
     { id: "emerald_rush", name: "Emerald Rush", cost: 1000, type: "color", value: "#00FF87" },
     { id: "rose_gold", name: "Rose Gold", cost: 1500, type: "color", value: "#E8A0BF" },
     { id: "holographic", name: "Holographic", cost: 3000, type: "color", value: "#C0C0FF" },
-
-    // Ghost Entities — escalating rarity
-    { id: "default_ghost", name: "Wisp", cost: 0, type: "ghost", value: "default" },
-    { id: "phantom_ghost", name: "Phantom", cost: 150, type: "ghost", value: "phantom" },
-    { id: "reaper_ghost", name: "Reaper", cost: 500, type: "ghost", value: "reaper" },
-    { id: "wraith_ghost", name: "Wraith", cost: 1200, type: "ghost", value: "wraith" },
-    { id: "spectre_ghost", name: "Spectre", cost: 2500, type: "ghost", value: "spectre" },
-    { id: "eternal_ghost", name: "Eternal", cost: 5000, type: "ghost", value: "eternal" },
 
     // Track Environments
     { id: "track_cyber", name: "Cyberpunk", cost: 0, type: "track", value: "cyber", emoji: "🌆", description: "Neon city at midnight" },
@@ -118,7 +110,7 @@ export const CustomizationModal = ({ onClose }: GarageProps) => {
         safeList: [],
         gracePeriod: 30,
     });
-    const [activeTab, setActiveTab] = useState<"color" | "ghost" | "track">("color");
+    const [activeTab, setActiveTab] = useState<"color" | "track" | "safe">("color");
 
     useEffect(() => {
         setFuel(GhostService.getFuel());
@@ -145,9 +137,8 @@ export const CustomizationModal = ({ onClose }: GarageProps) => {
         setCustomization({ ...customization, ...updates });
     };
 
-    const tabs: { key: "color" | "ghost" | "track" | "safe"; label: string; emoji: string }[] = [
+    const tabs: { key: "color" | "track" | "safe"; label: string; emoji: string }[] = [
         { key: "color", label: "CHASSIS", emoji: "🚗" },
-        { key: "ghost", label: "GHOST", emoji: "👻" },
         { key: "track", label: "TRACK", emoji: "🛣️" },
         { key: "safe", label: "SAFE LIST", emoji: "🛡️" },
     ];
@@ -238,33 +229,7 @@ export const CustomizationModal = ({ onClose }: GarageProps) => {
                     </div>
                 )}
 
-                {/* Ghost Entity */}
-                {activeTab === "ghost" && (
-                    <div className={styles.section}>
-                        <div className={styles.grid}>
-                            {UNLOCKABLES.filter(u => u.type === "ghost").map(item => {
-                                const isUnlocked = unlocks.includes(item.id);
-                                const isActive = customization.ghostType === item.value;
-                                return (
-                                    <div
-                                        key={item.id}
-                                        className={`${styles.card} ${isActive ? styles.active : ""} ${!isUnlocked ? styles.locked : ""}`}
-                                        onClick={() => isUnlocked ? handleSelect(item) : handleUnlock(item)}
-                                    >
-                                        <div className={styles.preview}>
-                                            <GhostIcon />
-                                        </div>
-                                        <div className={styles.info}>
-                                            <span className={styles.itemName}>{item.name}</span>
-                                            {!isUnlocked && <span className={styles.cost}>{item.cost} XP</span>}
-                                            {isActive && <span className={styles.statusLabel}>ACTIVE</span>}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                )}
+
 
                 {/* Track Environment */}
                 {activeTab === "track" && (

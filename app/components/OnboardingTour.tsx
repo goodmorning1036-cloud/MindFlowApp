@@ -23,7 +23,7 @@ const TOUR_STEPS: Step[] = [
     {
         id: "task",
         title: "THE STARTING LINE",
-        description: "Type your main goal here. This is your primary objective for the race. Set a duration and hit START to begin.",
+        description: "Type your main goal here. This is your primary objective for the race. Set a duration and hit GO to begin.",
         targetId: "task-input",
         position: "bottom"
     },
@@ -64,16 +64,13 @@ const TOUR_STEPS: Step[] = [
     }
 ];
 
-export const OnboardingTour = () => {
+export const OnboardingTour = ({ onComplete }: { onComplete?: () => void }) => {
     const [currentStep, setCurrentStep] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true); // Always visible when rendered
     const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
 
     useEffect(() => {
-        const hasSeenTour = localStorage.getItem("mindflow_tour_complete");
-        if (!hasSeenTour) {
-            setIsVisible(true);
-        }
+        // We handle visibility from the parent now
     }, []);
 
     useEffect(() => {
@@ -103,34 +100,84 @@ export const OnboardingTour = () => {
     const handleComplete = () => {
         setIsVisible(false);
         localStorage.setItem("mindflow_tour_complete", "true");
+        if (onComplete) onComplete();
     };
 
-    if (!isVisible || !targetRect) return null;
+    if (!isVisible || (currentStep > 0 && !targetRect)) return null;
 
     const step = TOUR_STEPS[currentStep];
+    const isWelcome = step.id === "welcome" || step.id === "ready";
+    
+    const getTooltipPos = () => {
+        if (isWelcome) {
+            return {
+                top: "50%",
+                left: "50%",
+                x: "-50%",
+                y: "-50%",
+                position: "fixed" as const
+            };
+        }
+
+        const tooltipWidth = 340;
+        const tooltipHeight = 220; // approximate
+        
+        // Decide whether to place above or below
+        const spaceBelow = window.innerHeight - targetRect.bottom;
+        const spaceAbove = targetRect.top;
+        
+        let top: string | number = "auto";
+        let bottom: string | number = "auto";
+        
+        if (spaceBelow > tooltipHeight + 40 || spaceBelow > spaceAbove) {
+            // Place below
+            top = targetRect.bottom + 20;
+            // Guard against bottom edge
+            if ((top as number) + tooltipHeight > window.innerHeight - 20) {
+                top = window.innerHeight - tooltipHeight - 20;
+            }
+        } else {
+            // Place above
+            bottom = (window.innerHeight - targetRect.top) + 20;
+            // Guard against top edge
+            if ((bottom as number) + tooltipHeight > window.innerHeight - 20) {
+                bottom = window.innerHeight - tooltipHeight - 20;
+            }
+        }
+
+        return {
+            top,
+            bottom,
+            left: Math.max(20, Math.min(window.innerWidth - tooltipWidth - 20, targetRect.left + (targetRect.width / 2) - (tooltipWidth / 2))),
+            x: 0,
+            y: 0,
+            position: "absolute" as const
+        };
+    };
+
+    const tooltipStyles = getTooltipPos();
 
     return (
         <div className={styles.overlay}>
             <motion.div 
                 className={styles.highlight}
                 animate={{
-                    top: targetRect.top - 8,
-                    left: targetRect.left - 8,
-                    width: targetRect.width + 16,
-                    height: targetRect.height + 16,
+                    top: isWelcome ? "50%" : targetRect.top - 8,
+                    left: isWelcome ? "50%" : targetRect.left - 8,
+                    width: isWelcome ? 0 : targetRect.width + 16,
+                    height: isWelcome ? 0 : targetRect.height + 16,
+                    opacity: isWelcome ? 0 : 1
                 }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
             />
 
             <motion.div 
                 key={step.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ 
                     opacity: 1, 
-                    y: 0,
-                    top: step.position === 'bottom' ? targetRect.bottom + 20 : 'auto',
-                    bottom: step.position === 'top' ? (window.innerHeight - targetRect.top) + 20 : 'auto',
-                    left: targetRect.left + (targetRect.width / 2) - 160,
+                    scale: 1,
+                    ...tooltipStyles
                 }}
                 className={styles.tooltip}
             >
