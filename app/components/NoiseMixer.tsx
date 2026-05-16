@@ -172,7 +172,7 @@ export const NoiseMixer = ({ isRacing }: NoiseMixerProps) => {
                             {noiseTypes.map((noise) => (
                                 <button
                                     key={noise.id}
-                                    onClick={() => toggleNoise(noise.id)}
+                                    onClick={() => handleNoiseSelect(noise.id)}
                                     className={`${styles.noiseBtn} ${activeNoise === noise.id ? styles.active : ""}`}
                                     title={noise.label}
                                 >

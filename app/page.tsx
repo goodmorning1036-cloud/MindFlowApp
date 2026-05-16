@@ -264,7 +264,7 @@ export default function Home() {
                             >
                                 <div className="mb-4 text-white/50 text-xs tracking-[0.3em] font-light" style={{ color: 'var(--text-muted)' }}>MINDFLOW</div>
                                 <TaskInput onStart={handleStart} />
-                                <TodoList onStartRace={handleStart} />
+                                <TodoList onStartRace={(task, duration) => handleStart(task, duration, '', 5, 1, 'RIVAL', '')} />
                             </motion.div>
                         </>
                     )}

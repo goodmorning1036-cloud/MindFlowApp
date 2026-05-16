@@ -72,7 +72,7 @@ export const RaceView = ({
     }, [elapsed, ghostTime, scaleMax]);
 
     // --- High-Velocity Launch Physics ---
-    const totalGoalTime = customization.duration || 1500000;
+    const totalGoalTime = (customization as any).duration || 1500000;
     
     // We use an aggressive square-root curve (0.25) so the cars shoot forward.
     // 1% of time = 31% visual progress! This guarantees they accelerate through the road.

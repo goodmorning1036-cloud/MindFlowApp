@@ -252,7 +252,7 @@ export const CustomizationModal = ({ onClose }: GarageProps) => {
                                         onClick={() => isUnlocked ? handleSelect(item) : handleUnlock(item)}
                                     >
                                         <div className={styles.preview}>
-                                            <GhostIcon type={item.value} />
+                                            <GhostIcon />
                                         </div>
                                         <div className={styles.info}>
                                             <span className={styles.itemName}>{item.name}</span>
