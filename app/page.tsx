@@ -459,7 +459,8 @@ export default function Home() {
         };
 
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.key.toLowerCase() === 'd') {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('demo') === 'true' && e.ctrlKey && e.key.toLowerCase() === 'd') {
                 e.preventDefault();
                 runDemoSequence();
             }
