@@ -51,6 +51,27 @@ const HOME_STEPS: Step[] = [
         position: "bottom"
     },
     {
+        id: "garage",
+        title: "THE GARAGE",
+        description: "Customise your ride! Spend the Fuel you earn to unlock neon colors and premium holographic effects.",
+        targetId: "garage-btn",
+        position: "bottom"
+    },
+    {
+        id: "level",
+        title: "PILOT STATUS",
+        description: "This shows your current Level and XP. The more you focus, the higher you climb in the global ranks.",
+        targetId: "level-badge",
+        position: "bottom"
+    },
+    {
+        id: "calendar",
+        title: "THE LOGBOOK",
+        description: "Track your racing history or use the Exam Planner to map out your long-term focus goals.",
+        targetId: "calendar-btn",
+        position: "bottom"
+    },
+    {
         id: "sensory",
         title: "SENSORY FOCUS",
         description: "Need total concentration? Use the Noise Mixer to play White Noise or Rain to block out distractions while you race.",

@@ -18,6 +18,17 @@ export const NoiseMixer = ({ isRacing }: NoiseMixerProps) => {
     const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
     const gainNodeRef = useRef<GainNode | null>(null);
 
+    useEffect(() => {
+        const handleOpen = () => setIsOpen(true);
+        const handleClose = () => setIsOpen(false);
+        window.addEventListener('mindflow-demo-noise-open', handleOpen);
+        window.addEventListener('mindflow-demo-noise-close', handleClose);
+        return () => {
+            window.removeEventListener('mindflow-demo-noise-open', handleOpen);
+            window.removeEventListener('mindflow-demo-noise-close', handleClose);
+        };
+    }, []);
+
     const noiseTypes: { id: NoiseType; label: string; icon: string }[] = [
         { id: "none", label: "Off", icon: "⏸" },
         { id: "white", label: "White", icon: "〰" },

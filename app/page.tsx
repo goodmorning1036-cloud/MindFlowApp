@@ -74,7 +74,13 @@ export default function Home() {
     const [fuelPenalty, setFuelPenalty] = useState(0);
 
     // Customization & Progression State
-    const [customization, setCustomization] = useState<CustomizationState>(GhostService.getCustomization());
+    const [customization, setCustomization] = useState<CustomizationState>({
+        carColor: '#00E5FF',
+        ghostType: 'default',
+        trackTheme: 'cyber',
+        safeList: [],
+        gracePeriod: 30
+    });
     const [lastFuelGained, setLastFuelGained] = useState(0);
     const [showCustomization, setShowCustomization] = useState(false);
     const [showLevelModal, setShowLevelModal] = useState(false);
@@ -87,6 +93,7 @@ export default function Home() {
 
     useEffect(() => {
         const timer = setTimeout(() => setIsBooting(false), 2000);
+        setCustomization(GhostService.getCustomization());
         return () => clearTimeout(timer);
     }, []);
 
@@ -107,37 +114,70 @@ export default function Home() {
         }
     }, [isBooting, mode]);
 
-    const { elapsed, isRunning, setSpeedMultiplier, start, stop, reset } = useTimer();
+    const { elapsed, isRunning, setSpeedMultiplier, start, stop, reset, setElapsed } = useTimer();
 
     // Focus Penalty Logic
     useEffect(() => {
-        if (mode === 'RACE' && isRunning) {
-            const interval = setInterval(() => {
-                const isHidden = document.visibilityState === 'hidden';
-                if (isHidden && !isSafeMode) {
-                    setOffTrackTime(prev => prev + 1);
-                    
-                    const buffer = isResearchMode ? 120 : 5; // 2 mins vs 5 secs
-                    if (offTrackTime > buffer) {
-                        setIsDrifting(true);
-                        setTireHealth(prev => Math.max(0, prev - 2));
-                        setFuelPenalty(prev => prev + 5);
-                        setSpeedMultiplier(0.1);
-                    }
-                } else {
-                    setOffTrackTime(0);
-                    setIsDrifting(false);
-                    setSpeedMultiplier(1.0);
-                }
+        if (mode !== 'RACE' || !isRunning || isSafeMode) return;
 
-                // Passive tire wear
-                if (pomodoroConfig.mode === 'RACE') {
-                    setTireHealth(prev => Math.max(0, prev - 0.05));
+        let hiddenTime = document.visibilityState === 'hidden' ? Date.now() : 0;
+        let isCurrentlyHidden = document.visibilityState === 'hidden';
+        
+        const handleHide = () => {
+            if (!isCurrentlyHidden) {
+                isCurrentlyHidden = true;
+                hiddenTime = Date.now();
+            }
+        };
+
+        const handleShow = () => {
+            if (isCurrentlyHidden) {
+                const timeAwaySecs = (Date.now() - hiddenTime) / 1000;
+                const buffer = isResearchMode ? 120 : 5;
+                
+                if (timeAwaySecs > buffer) {
+                    const penaltySecs = timeAwaySecs - buffer;
+                    setTireHealth(t => Math.max(0, t - (2 * penaltySecs)));
+                    setFuelPenalty(f => f + (5 * penaltySecs));
                 }
-            }, 1000);
-            return () => clearInterval(interval);
-        }
-    }, [mode, isRunning, isSafeMode, isResearchMode, offTrackTime, pomodoroConfig.mode]);
+                
+                isCurrentlyHidden = false;
+                setIsDrifting(false);
+                setSpeedMultiplier(1.0);
+            }
+        };
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'hidden') handleHide();
+            else handleShow();
+        };
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        const interval = setInterval(() => {
+            if (isCurrentlyHidden) {
+                const timeAwaySecs = (Date.now() - hiddenTime) / 1000;
+                const buffer = isResearchMode ? 120 : 5;
+                
+                if (timeAwaySecs > buffer) {
+                    setIsDrifting(true);
+                    setSpeedMultiplier(0.1);
+                    setTireHealth(t => Math.max(0, t - 2));
+                    setFuelPenalty(f => f + 5);
+                    hiddenTime += 1000; // Move hidden time forward so we don't double count
+                }
+            }
+
+            // Passive tire wear
+            if (pomodoroConfig.mode === 'RACE') {
+                setTireHealth(t => Math.max(0, t - 0.05));
+            }
+        }, 1000);
+
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            clearInterval(interval);
+        };
+    }, [mode, isRunning, isSafeMode, isResearchMode, pomodoroConfig.mode, setSpeedMultiplier]);
 
     // Handle DNF (Mechanical Failure)
     useEffect(() => {
@@ -230,6 +270,204 @@ export default function Home() {
         setCustomization(GhostService.getCustomization());
         reset();
     };
+
+    // Automated Demo Sequence for Recording
+    useEffect(() => {
+        const runDemoSequence = async () => {
+            let oldStorage: string | null = null;
+            try {
+                oldStorage = localStorage.getItem('mindflow_data');
+                localStorage.setItem('mindflow_data', JSON.stringify({
+                    fuel: 9999,
+                    totalXpEarned: 15000,
+                    unlocks: [
+                        'default_cyan', 'volt_yellow', 'crimson_pulse', 'obsidian', 'phantom_violet', 
+                        'solar_orange', 'arctic_white', 'emerald_rush', 'rose_gold', 'holographic', 
+                        'track_cyber', 'track_desert', 'track_storm', 'track_forest', 'track_space', 'track_volcano'
+                    ],
+                    customization: {
+                        carColor: '#00E5FF',
+                        ghostType: 'default',
+                        trackTheme: 'cyber',
+                        safeList: ['Google Docs', 'Notion', 'Wikipedia'],
+                        gracePeriod: 30
+                    },
+                    exams: []
+                }));
+            } catch (e) {
+                console.error(e);
+            }
+
+            // "After each session, you see your results..."
+            setElapsed(26 * 60 * 1000); // 26 minutes to trigger the accountability check requirement
+            setMode('RESULT');
+            setLastFuelGained(450);
+            
+            // Wait 2.5 seconds, select 1 star (Mostly Distracted)
+            await new Promise(r => setTimeout(r, 2500));
+            const starButtons1 = document.querySelectorAll('[class*="starsRow"] button');
+            if (starButtons1[0]) (starButtons1[0] as HTMLButtonElement).click();
+            
+            // Wait 2.5 seconds, select 3 stars (Solid Performance)
+            await new Promise(r => setTimeout(r, 2500));
+            const starButtons2 = document.querySelectorAll('[class*="starsRow"] button');
+            if (starButtons2[2]) (starButtons2[2] as HTMLButtonElement).click();
+
+            // Wait 2.5 seconds, select 5 stars (Absolute Flow State)
+            await new Promise(r => setTimeout(r, 2500));
+            const starButtons3 = document.querySelectorAll('[class*="starsRow"] button');
+            if (starButtons3[4]) (starButtons3[4] as HTMLButtonElement).click();
+
+            // Wait 1.5 seconds, then scroll down to show the upload function
+            await new Promise(r => setTimeout(r, 1500));
+            const evidenceSection = document.getElementById('evidence-stats');
+            if (evidenceSection) {
+                evidenceSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Wait 1.5 seconds for scroll to complete, then simulate clicking evidence upload and completing it
+            await new Promise(r => setTimeout(r, 1500));
+            const fileInput = document.getElementById('evidence-upload');
+            if (fileInput) {
+                fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            
+            // Wait 3.5 seconds (adding up to 14 seconds for the entire result modal part)
+            await new Promise(r => setTimeout(r, 3500));
+            
+            // "All that XP goes into your Pilot Level..."
+            setMode('HOME');
+            setShowLevelModal(true);
+            
+            // Wait 2.0 seconds, then scroll down in the XP level list
+            await new Promise(r => setTimeout(r, 2000));
+            const levelList = document.querySelector('[class*="levelList"]');
+            if (levelList) {
+                levelList.scrollTo({ top: levelList.scrollHeight, behavior: 'smooth' });
+            }
+
+            // Wait 3.5 seconds, then scroll back up
+            await new Promise(r => setTimeout(r, 3500));
+            if (levelList) {
+                levelList.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Wait 3.5 seconds to complete Level Path segment
+            await new Promise(r => setTimeout(r, 3500));
+            
+            // "And you can spend your XP in the Garage..."
+            setShowLevelModal(false);
+            setShowCustomization(true);
+            
+            // Wait 2.0 seconds, select Volt Yellow car
+            await new Promise(r => setTimeout(r, 2000));
+            const cards = document.querySelectorAll('[class*="CustomizationModal_grid"] [class*="CustomizationModal_card"]');
+            if (cards[1]) (cards[1] as HTMLElement).click();
+
+            // Wait 2.0 seconds, select Obsidian car
+            await new Promise(r => setTimeout(r, 2000));
+            const cardsObsidian = document.querySelectorAll('[class*="CustomizationModal_grid"] [class*="CustomizationModal_card"]');
+            if (cardsObsidian[3]) (cardsObsidian[3] as HTMLElement).click();
+
+            // Wait 2.0 seconds, switch to TRACK tab
+            await new Promise(r => setTimeout(r, 2000));
+            const customTabs = document.querySelectorAll('[class*="CustomizationModal_tab"]');
+            if (customTabs[1]) (customTabs[1] as HTMLElement).click();
+
+            // Wait 2.0 seconds, select Neon Desert track
+            await new Promise(r => setTimeout(r, 2000));
+            const trackCards1 = document.querySelectorAll('[class*="CustomizationModal_trackCard"]');
+            if (trackCards1[1]) (trackCards1[1] as HTMLElement).click();
+
+            // Wait 2.0 seconds, select Storm Circuit track
+            await new Promise(r => setTimeout(r, 2000));
+            const trackCards2 = document.querySelectorAll('[class*="CustomizationModal_trackCard"]');
+            if (trackCards2[2]) (trackCards2[2] as HTMLElement).click();
+
+            // Wait 2.0 seconds, select Ghost Forest track
+            await new Promise(r => setTimeout(r, 2000));
+            const trackCards3 = document.querySelectorAll('[class*="CustomizationModal_trackCard"]');
+            if (trackCards3[3]) (trackCards3[3] as HTMLElement).click();
+
+            // Wait 2.0 seconds to finish garage presentation
+            await new Promise(r => setTimeout(r, 2000));
+            
+            // "We also built a Calendar that tracks all your study sessions..."
+            setShowCustomization(false);
+            setShowCalendar(true);
+            setCalendarMode('history');
+            await new Promise(r => setTimeout(r, 6000));
+            
+            // "And there's an Exam Planner to organize your upcoming tests."
+            setCalendarMode('planner');
+            
+            // Wait 2.0 seconds, click on today's cell to open detail panel
+            await new Promise(r => setTimeout(r, 2000));
+            const todayCell = document.querySelector('[class*="ExamPlannerModal_today"]');
+            if (todayCell) (todayCell as HTMLElement).click();
+
+            // Wait 2.0 seconds, type "Math Final Exam" in the calendar planner input
+            await new Promise(r => setTimeout(r, 2000));
+            const examInput = document.querySelector('[placeholder*="Schedule an Exam"]') as HTMLInputElement;
+            if (examInput) {
+                const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
+                setter?.call(examInput, 'Math Final Exam');
+                examInput.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+
+            // Wait 2.0 seconds, click the Add Exam button
+            await new Promise(r => setTimeout(r, 2000));
+            const addExamBtn = Array.from(document.querySelectorAll('button')).find(el => el.textContent === 'Add Exam');
+            if (addExamBtn) (addExamBtn as HTMLElement).click();
+
+            // Wait 5.0 seconds so the viewer sees the new exam listed
+            await new Promise(r => setTimeout(r, 5000));
+            
+            // "There's also a Noise Mixer with white noise and rain sounds..."
+            setShowCalendar(false);
+            window.dispatchEvent(new CustomEvent('mindflow-demo-noise-open'));
+            
+            // Wait 2.0 seconds, click White Noise (idx 1)
+            await new Promise(r => setTimeout(r, 2000));
+            const noiseBtns1 = document.querySelectorAll('[class*="NoiseMixer_noiseBtn"]');
+            if (noiseBtns1[1]) (noiseBtns1[1] as HTMLElement).click();
+
+            // Wait 3.0 seconds, click Rain sound (idx 4)
+            await new Promise(r => setTimeout(r, 3000));
+            const noiseBtns2 = document.querySelectorAll('[class*="NoiseMixer_noiseBtn"]');
+            if (noiseBtns2[4]) (noiseBtns2[4] as HTMLElement).click();
+
+            // Wait 4.0 seconds, click Off (idx 0)
+            await new Promise(r => setTimeout(r, 4000));
+            const noiseBtns3 = document.querySelectorAll('[class*="NoiseMixer_noiseBtn"]');
+            if (noiseBtns3[0]) (noiseBtns3[0] as HTMLElement).click();
+
+            // Wait 3.0 seconds to close Noise Mixer
+            await new Promise(r => setTimeout(r, 3000));
+            window.dispatchEvent(new CustomEvent('mindflow-demo-noise-close'));
+
+            // Clean up and restore original localStorage
+            try {
+                if (oldStorage) {
+                    localStorage.setItem('mindflow_data', oldStorage);
+                } else {
+                    localStorage.removeItem('mindflow_data');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.ctrlKey && e.key.toLowerCase() === 'd') {
+                e.preventDefault();
+                runDemoSequence();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [setElapsed]);
 
     return (
         <div className={`${styles.pageContainer} ${isRacing || mode === 'RACE' ? styles.racingBackground : ''}`}>

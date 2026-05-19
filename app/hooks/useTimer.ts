@@ -54,5 +54,5 @@ export const useTimer = () => {
         };
     }, []);
 
-    return { elapsed, isRunning, speedMultiplier, setSpeedMultiplier, start, stop, reset };
+    return { elapsed, isRunning, speedMultiplier, setSpeedMultiplier, start, stop, reset, setElapsed };
 };
